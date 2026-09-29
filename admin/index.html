@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Admin – Grundschule Flegessen</title>
+<meta name="description" content="Internes Bearbeitungswerkzeug für die Texte und Bilder der Website der Grundschule Flegessen.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="vendor/quill.snow.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ================= LOGIN SCREEN ================= -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <h1>Admin-Bereich</h1>
+    <p class="lead">Grundschule Flegessen – Website-Inhalte bearbeiten</p>
+    <form id="loginForm" autocomplete="off">
+      <div class="field-group">
+        <label for="passwordInput">Passwort</label>
+        <input type="password" id="passwordInput" name="password" autocomplete="current-password" required>
+      </div>
+      <div id="loginError" class="error-msg" role="alert"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Anmelden</button>
+    </form>
+    <div class="hint-box">
+      <strong>Hinweis:</strong> Dieser Passwortschutz ist nur ein einfacher Basisschutz.
+      Schützen Sie den <code>/admin/</code>-Ordner zusätzlich serverseitig (z.&nbsp;B. per
+      <code>.htpasswd</code>), sobald die Seite online ist. Eine Beispieldatei
+      (<code>admin/.htaccess.example</code>) liegt diesem Ordner bereits bei.
+    </div>
+    <div id="secureContextWarning" class="warning-box hidden"></div>
+  </div>
+</div>
+
+<!-- ================= APP (after login) ================= -->
+<div id="appRoot" class="hidden">
+
+  <header class="app-header">
+    <div class="app-header-inner">
+      <h1 class="app-title">Flegessen&nbsp;Admin</h1>
+      <span id="modeBadge" class="mode-badge hidden"></span>
+      <div class="spacer"></div>
+      <span id="saveStatus" class="save-status">Noch nicht gespeichert</span>
+      <button id="logoutBtn" class="btn btn-outline btn-small" type="button">Abmelden</button>
+    </div>
+  </header>
+
+  <!-- Onboarding: choose how to load content.json -->
+  <div id="startScreen" class="start-screen">
+    <div class="start-card">
+      <h2>Projekt öffnen</h2>
+      <p>Um die Inhalte zu bearbeiten, öffnen Sie zunächst die Projektdaten. Je nach
+         Browser stehen unterschiedliche Möglichkeiten zur Verfügung.</p>
+
+      <div id="fullModeOption">
+        <p><strong>Vollmodus (empfohlen, Chrome/Edge):</strong> Wählen Sie den obersten
+           Ordner der Website (den Ordner, der <code>content/content.json</code>,
+           <code>assets/</code> usw. enthält). Änderungen werden direkt gespeichert.</p>
+        <div class="option-row">
+          <button id="openFolderBtn" class="btn btn-primary" type="button">📁 Projektordner öffnen</button>
+        </div>
+      </div>
+
+      <div id="fallbackModeOption" style="margin-top: var(--space-3);">
+        <p><strong>Download-Modus (Firefox/Safari &amp; als Alternative):</strong> Wählen Sie
+           nur die Datei <code>content/content.json</code> aus. Änderungen werden am Ende als
+           Datei zum Herunterladen bereitgestellt.</p>
+        <div class="option-row">
+          <label class="btn btn-outline" style="cursor:pointer;">
+            📄 content.json auswählen
+            <input type="file" id="jsonFileInput" accept=".json,application/json" class="visually-hidden">
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main editor -->
+  <div id="editorShell" class="app-body hidden">
+    <nav id="tabNav" class="tab-nav" aria-label="Seiten"></nav>
+    <main id="pageContent" class="page-content"></main>
+  </div>
+
+  <div id="saveBar" class="save-bar hidden">
+    <button id="saveBtn" class="btn btn-accent" type="button">💾 Speichern</button>
+    <span id="saveBarStatus" class="save-status"></span>
+  </div>
+
+  <footer class="admin-footer">Grundschule Flegessen — internes Admin-Werkzeug, läuft vollständig im Browser.</footer>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- Hidden helper elements -->
+<a id="downloadHelperLink" class="hidden"></a>
+
+<script src="vendor/quill.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

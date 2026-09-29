@@ -1,0 +1,37 @@
+# ==========================================================================
+# Beispiel: htpasswd-Schutz für den /admin/-Ordner aktivieren
+# ==========================================================================
+#
+# Das Passwortfeld in admin/index.html ist NUR ein einfacher Basisschutz
+# (clientseitig, im Browser). Sobald diese Website online ist, sollte der
+# gesamte /admin/-Ordner zusätzlich serverseitig abgesichert werden, z. B.
+# mit HTTP Basic Auth über Apache .htaccess/.htpasswd.
+#
+# So richten Sie es ein:
+#
+# 1. Diese Datei umbenennen (Endung ".example" entfernen), sodass sie
+#    tatsächlich ".htaccess" heißt:
+#
+#      mv admin/.htaccess.example admin/.htaccess
+#
+# 2. Eine .htpasswd-Datei mit Benutzername/Passwort erzeugen (per SSH beim
+#    Hoster, oder mit einem Online-Generator für htpasswd-Dateien). Diese
+#    Datei sollte AUSSERHALB des öffentlich erreichbaren Web-Ordners liegen,
+#    z. B. eine Ebene über dem Website-Stammverzeichnis:
+#
+#      htpasswd -c /pfad/ausserhalb/des/webroots/.htpasswd sekretariat
+#
+# 3. Den Pfad in der Zeile "AuthUserFile" unten an Ihren Hoster anpassen.
+#
+# 4. Testen Sie den Zugriff auf /admin/ – der Browser sollte nun zusätzlich
+#    nach Benutzername und Passwort fragen, bevor die Seite überhaupt lädt.
+#
+# ---- Ab hier die eigentliche Konfiguration (auskommentiert) -------------
+
+# AuthType Basic
+# AuthName "Grundschule Flegessen – Admin-Bereich"
+# AuthUserFile /pfad/ausserhalb/des/webroots/.htpasswd
+# Require valid-user
+
+# Optional: Verzeichnis-Auflistung verhindern
+# Options -Indexes
