@@ -5,9 +5,10 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-const SRC = process.env.IMG_SRC || '/tmp/claude-0/-home-user-grundschule-flegessen/2d6668bf-14ef-574e-8bf3-25af573ed38c/scratchpad/site-crawl/downloaded/images';
+const SRC = process.env.IMG_SRC;
+if (!SRC) { console.error('Bitte IMG_SRC=<Ordner mit Originalfotos> setzen'); process.exit(1); }
 const OUT = path.join(__dirname, '..', 'assets', 'images', 'gallery');
-const MANIFEST_OUT = path.join(__dirname, '..', 'content', 'gallery-manifest.json');
+const MANIFEST_OUT = path.join(__dirname, '..', 'archive', 'gallery-manifest.json');
 
 const FULL_WIDTH = 1600;
 const THUMB_WIDTH = 480;

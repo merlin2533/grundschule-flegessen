@@ -16,11 +16,17 @@ Reines **HTML, CSS und JavaScript** – kein Server, keine Datenbank, keine Cook
 | `assets/images/` | Optimierte Bilder (JPEG + WebP) |
 | `assets/downloads/` | PDFs (Elternbriefe) und Schullied |
 | `assets/fonts/` | Selbst gehostete Schrift (keine Verbindung zu Google) |
-| `tools/` | Hilfsskripte (Bildoptimierung) |
+| `tools/` | Hilfsskripte (`bake-content.js`, Bildoptimierung) |
+| `archive/` | Aussortierte Fotos (Porträts, Klassenfotos …) – **nicht hochladen** |
 
 Die HTML-Seiten enthalten die Texte bereits fest eingebaut (gut für Suchmaschinen, funktioniert auch ohne JavaScript).
 Beim Laden überschreibt `main.js` diese Texte mit den aktuellen Werten aus `content/content.json` –
-so wirken Änderungen aus dem Admin-Bereich sofort.
+so wirken Änderungen aus dem Admin-Bereich für Besucher sofort.
+Damit auch Suchmaschinen und Besucher ohne JavaScript den neuen Stand sehen, nach größeren Änderungen einmal ausführen:
+
+```bash
+node tools/bake-content.js   # schreibt content.json fest in die HTML-Seiten
+```
 
 ## Lokale Vorschau
 
@@ -38,20 +44,23 @@ python3 -m http.server 8080
 
 Neue PDFs für „Mitteilungen“ legt man in `assets/downloads/` ab und trägt sie im Admin unter *Mitteilungen* ein.
 
-> **Sicherheit:** Der Passwortschutz im Admin ist nur ein Basisschutz im Browser. Vor dem Livegang den Ordner `admin/` zusätzlich serverseitig schützen (z. B. `.htpasswd`, siehe `admin/.htaccess`).
+> **Sicherheit:** Der Passwortschutz im Admin ist nur ein Basisschutz im Browser. Vor dem Livegang den Ordner `admin/` zusätzlich serverseitig schützen (z. B. `.htpasswd`, Vorlage: `admin/.htaccess.example`) – oder den Admin nur lokal nutzen und ihn nicht hochladen.
+
+Bilder, die im Admin ersetzt werden, werden verkleinert (max. 1600 px) und unter neuem Dateinamen gespeichert (kein Cache-Problem).
 
 ## Rechtliches
 
 - **Impressum** und **Datenschutzerklärung** sind enthalten (bearbeitbar im Admin) – bitte von der Schulleitung / dem Datenschutzbeauftragten prüfen lassen.
 - Keine Cookies, kein Tracking, keine externen Schriftarten.
 - Die OpenStreetMap-Karte lädt erst nach Klick („Zwei-Klick-Lösung“).
-- Personenfotos nur mit Einwilligung der Sorgeberechtigten veröffentlichen.
+- Personenfotos nur mit Einwilligung der Sorgeberechtigten veröffentlichen – vor dem Livegang alle Galerie- und Klassenfotos prüfen.
+- Vor dem Livegang in der Datenschutzerklärung Hosting-Anbieter und Datenschutzbeauftragte/n eintragen.
 
 ## SEO
 
-Semantisches HTML, Meta-Tags, Open Graph, JSON-LD (`School`), `sitemap.xml`, `robots.txt`, WebP-Bilder, Lazy Loading, Caching/Kompression via `.htaccess`.
+Semantisches HTML, Meta-Tags, Open Graph, JSON-LD (`School`), `sitemap.xml`, `robots.txt`, Lazy Loading, Caching/Kompression, automatische WebP-Auslieferung und 301-Weiterleitungen der alten WordPress-Adressen via `.htaccess` (Apache).
 Für Google Ads (SEA): Zielseiten `eltern.html` (Anmeldung/Einschulung), `unsere-schule.html`, `kontakt.html`; Conversion = Klick auf Telefon/E-Mail.
 
 ## Deployment
 
-Alle Dateien (außer `node_modules/`, `tools/`) auf den Webspace hochladen. Kein Build-Schritt nötig.
+Alle Dateien (außer `node_modules/`, `tools/`, `archive/`) auf den Webspace hochladen. Kein Build-Schritt nötig.

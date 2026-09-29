@@ -113,8 +113,14 @@
         '<li class="doc-item"><div class="doc-item__icon">' + esc(ext) + "</div>" +
         '<div class="doc-item__body"><div class="doc-item__date">' + esc(d.date) + "</div>" +
         '<p class="doc-item__title">' + esc(d.title) + "</p>" +
-        '<p class="doc-item__desc">' + esc(d.description || "") + "</div>" +
+        '<p class="doc-item__desc">' + esc(d.description || "") + "</p></div>" +
         '<a class="btn btn-ghost btn-sm" href="' + esc(rootPath() + d.file) + '" target="_blank" rel="noopener">Öffnen</a></li>'
+      );
+    },
+    "faq-item": function (f) {
+      return (
+        '<details class="value-card"><summary style="cursor:pointer;font-weight:700;font-family:var(--font-heading)">' + esc(f.question) + "</summary>" +
+        '<p style="margin-top:.6em">' + esc(f.answer) + "</p></details>"
       );
     },
     "timetable-row": function (r) {
@@ -125,11 +131,13 @@
     },
     "gallery-item": function (g, idx) {
       return (
-        '<button type="button" data-full="' + esc(rootPath() + g.jpg) + '" data-alt="' + esc(g.alt || "Impression aus dem Schulleben") + '" data-index="' + idx + '">' +
-        '<img src="' + esc(rootPath() + g.thumbJpg) + '" alt="' + esc(g.alt || "Impression aus dem Schulleben") + '" loading="lazy"></button>'
+        '<button type="button" data-full="' + esc(rootPath() + g.jpg) + '" data-index="' + idx + '" aria-label="Bild ' + (idx + 1) + ' vergrößern">' +
+        '<img src="' + esc(rootPath() + g.thumbJpg) + '" alt="' + esc((g.alt || "Impression aus dem Schulleben") + ", Bild " + (idx + 1)) + '" loading="lazy" width="480" height="320"></button>'
       );
     }
   };
+
+  window.GSRenderers = renderers;
 
   function applyContent(data) {
     if (!data) return;
@@ -189,21 +197,38 @@
     var lightbox = document.querySelector(".lightbox");
     if (!lightbox) return;
     var imgEl = lightbox.querySelector("img");
+    var closeBtn = lightbox.querySelector(".lightbox__close");
     var current = 0;
+    var lastFocus = null;
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Bildansicht");
 
     function show(i) {
       current = (i + items.length) % items.length;
       var it = items[current];
       imgEl.src = rootPath() + it.jpg;
-      imgEl.alt = it.alt || "Impression aus dem Schulleben";
+      imgEl.alt = (it.alt || "Impression aus dem Schulleben") + ", Bild " + (current + 1) + " von " + items.length;
+      if (!lightbox.classList.contains("is-open")) lastFocus = document.activeElement;
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
     }
     function close() {
       lightbox.classList.remove("is-open");
       lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
       imgEl.src = "";
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
+    lightbox.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      var f = lightbox.querySelectorAll("button");
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
 
     container.addEventListener("click", function (e) {
       var btn = e.target.closest("button[data-index]");
@@ -242,6 +267,20 @@
     });
   }
 
+  /* ---------------- Contact form: compose a mailto: link ---------------- */
+  function initContactForm() {
+    var form = document.querySelector("form[data-mailto]");
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var v = function (n) { return (form.elements[n] && form.elements[n].value || "").trim(); };
+      var body = "Name: " + v("name") + "\nE-Mail: " + v("email") + "\n\n" + v("message");
+      window.location.href = "mailto:" + form.getAttribute("data-mailto") +
+        "?subject=" + encodeURIComponent("Anfrage über die Website") +
+        "&body=" + encodeURIComponent(body);
+    });
+  }
+
   /* ---------------- Misc ---------------- */
   function initYear() {
     document.querySelectorAll("[data-year]").forEach(function (el) {
@@ -253,6 +292,7 @@
     initNav();
     initYear();
     initMapConsent();
+    initContactForm();
     loadContent().then(applyContent);
     initGalleryPage();
   });

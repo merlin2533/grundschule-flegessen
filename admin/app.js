@@ -217,20 +217,13 @@ function startEditor() {
   }
 
   renderTabs();
-  const firstKey = "site";
+  const firstKey = Object.keys(contentData.pages || {})[0];
   selectTab(firstKey);
 }
 
 function renderTabs() {
   const nav = document.getElementById("tabNav");
   nav.innerHTML = "";
-
-  const siteBtn = document.createElement("button");
-  siteBtn.type = "button";
-  siteBtn.textContent = "Allgemein (Website)";
-  siteBtn.dataset.tabKey = "site";
-  siteBtn.addEventListener("click", () => selectTab("site"));
-  nav.appendChild(siteBtn);
 
   Object.keys(contentData.pages || {}).forEach((pageKey) => {
     const pageObj = contentData.pages[pageKey];
@@ -265,7 +258,7 @@ function selectTab(key) {
 function isProbablyRichText(key, value) {
   if (typeof value !== "string") return false;
   if (/<p[ >]|<ul[ >]|<ol[ >]|<li[ >]|<h2[ >]|<h3[ >]/i.test(value)) return true;
-  if (/Html$|Text$/.test(key) && value.length > 40) return true;
+  if (key === "html" || (/Html$|Text$/.test(key) && value.length > 40)) return true;
   return false;
 }
 
@@ -341,6 +334,9 @@ function renderObjectFields(container, obj, pathPrefix) {
   Object.keys(obj).forEach((key) => {
     const value = obj[key];
     const path = pathPrefix + "." + key;
+
+    // Link-Ziele werden von den Seiten nicht aus content.json gelesen -> nicht anzeigen
+    if (/Href$/.test(key)) return;
 
     if (Array.isArray(value)) {
       renderArrayField(container, obj, key, path);
@@ -436,7 +432,7 @@ function renderRichTextField(container, obj, key, path) {
   wrap.appendChild(editorHost);
   container.appendChild(wrap);
 
-  const quill = new Quill("#" + editorId, {
+  const quill = new Quill(editorHost, {
     theme: "snow",
     modules: {
       toolbar: [
@@ -448,9 +444,10 @@ function renderRichTextField(container, obj, key, path) {
       ]
     }
   });
-  quill.root.innerHTML = obj[key] || "";
-  quill.on("text-change", () => {
-    obj[key] = quill.root.innerHTML;
+  quill.clipboard.dangerouslyPasteHTML(obj[key] || "", "silent");
+  quill.on("text-change", (delta, old, source) => {
+    if (source === "silent") return;
+    obj[key] = quill.getSemanticHTML().replace(/&nbsp;/g, " ").replace(/<p><\/p>/g, "");
     markDirty();
   });
 }
@@ -514,10 +511,13 @@ function renderImageField(container, obj, key, path) {
   });
   controls.appendChild(altInput);
 
-  fileInput.addEventListener("change", () => {
-    const file = fileInput.files && fileInput.files[0];
-    if (!file) return;
-    const targetPath = obj[key].file;
+  fileInput.addEventListener("change", async () => {
+    const original = fileInput.files && fileInput.files[0];
+    if (!original) return;
+    const file = await optimizeImage(original);
+    const targetPath = makeUploadPath(obj[key].file, file, original.name);
+    obj[key].file = targetPath;      // neuer Dateiname -> kein veralteter Browser-Cache
+    pathLabel.textContent = targetPath;
     pendingImages[path] = file;
     markDirty();
 
@@ -546,6 +546,41 @@ function renderImageField(container, obj, key, path) {
   row.appendChild(controls);
   wrap.appendChild(row);
   container.appendChild(wrap);
+}
+
+// Verkleinert große Fotos (max. 1600 px) und speichert sie als JPEG.
+async function optimizeImage(file) {
+  try {
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;
+    const bmp = await createImageBitmap(file);
+    const maxW = 1600;
+    if (bmp.width <= maxW && file.size < 600 * 1024) return file;
+    const scale = Math.min(1, maxW / bmp.width);
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(bmp.width * scale);
+    canvas.height = Math.round(bmp.height * scale);
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise((res) => canvas.toBlob(res, "image/jpeg", 0.82));
+    return blob ? new File([blob], file.name.replace(/\.[^.]+$/, "") + ".jpg", { type: "image/jpeg" }) : file;
+  } catch (e) {
+    return file;
+  }
+}
+
+function makeUploadPath(oldPath, file, originalName) {
+  const ext = /\.png$/i.test(file.name) ? ".png" : /\.webp$/i.test(file.name) ? ".webp" : ".jpg";
+  const dir = oldPath && oldPath.includes("/") ? oldPath.slice(0, oldPath.lastIndexOf("/")) : "assets/images/uploads";
+  let base = oldPath
+    ? oldPath.split("/").pop().replace(/\.[^.]+$/, "").replace(/-\d{8}-\d{4}$/, "")
+    : originalName.replace(/\.[^.]+$/, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
+  base = base || "bild";
+  const d = new Date();
+  const p2 = (n) => String(n).padStart(2, "0");
+  const stamp = "" + d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + "-" + p2(d.getHours()) + p2(d.getMinutes());
+  return dir + "/" + base + "-" + stamp + ext;
 }
 
 function cloneBlankFromShape(sample) {
@@ -639,9 +674,16 @@ function renderArrayField(container, obj, key, path) {
   addBtn.className = "btn btn-primary btn-small array-add-btn";
   addBtn.textContent = "+ Eintrag hinzufügen";
   addBtn.addEventListener("click", () => {
-    const sample = arr.length > 0 ? arr[0] : null;
+    const sample = arr.length > 0
+      ? arr.reduce((a, b) => (b && typeof b === "object" && Object.keys(b).length > Object.keys(a).length ? b : a))
+      : null;
     const blank = sample !== null ? cloneBlankFromShape(sample) : "";
-    arr.push(blank);
+    if (/\.(posts|documents)$/.test(path)) {
+      arr.unshift(blank);          // neueste Einträge stehen oben
+      clearPendingImagesUnder(path);
+    } else {
+      arr.push(blank);
+    }
     markDirty();
     renderActivePage();
   });
