@@ -1,0 +1,23 @@
+{
+  "name": "grundschule-flegessen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merlin2533/grundschule-flegessen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/merlin2533/grundschule-flegessen/issues"
+  },
+  "homepage": "https://github.com/merlin2533/grundschule-flegessen#readme",
+  "dependencies": {
+    "sharp": "^0.35.5"
+  }
+}
