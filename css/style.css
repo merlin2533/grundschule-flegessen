@@ -76,6 +76,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  overflow-x: hidden;
   overflow-x: clip;
   font-family: var(--font-body);
   color: var(--color-body);
@@ -166,7 +167,9 @@ p { margin: 0 0 var(--space-2); }
   position: sticky;
   top: 0;
   z-index: 500;
+  background: var(--color-surface);
   background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-line);
 }
@@ -323,7 +326,7 @@ p { margin: 0 0 var(--space-2); }
   gap: var(--space-3);
 }
 .page-hero__media { border-radius: var(--radius-l); overflow: hidden; box-shadow: var(--shadow-m); max-height: 360px; }
-.page-hero__media img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16/6; }
+.page-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; aspect-ratio: 16/6; }
 .breadcrumbs { font-size: 0.85rem; color: var(--color-muted); margin-bottom: var(--space-1); }
 .breadcrumbs a { color: var(--color-muted); }
 
