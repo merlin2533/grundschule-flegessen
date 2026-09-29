@@ -17,9 +17,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/site/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/site/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/images/site/favicon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -101,6 +99,15 @@
       <div class="hero__media">
         <img data-edit-img="pages.home.heroImage" src="assets/images/site/hero-schule.jpg" alt="Schulgebäude der Grundschule Flegessen" width="800" height="600">
       </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container grid grid--4">
+      <div class="stat"><span class="stat__value" data-edit="pages.home.quickFact1Value">85</span><span class="stat__label" data-edit="pages.home.quickFact1Label">Schülerinnen &amp; Schüler</span></div>
+      <div class="stat"><span class="stat__value" data-edit="pages.home.quickFact2Value">5</span><span class="stat__label" data-edit="pages.home.quickFact2Label">Klassen</span></div>
+      <div class="stat"><span class="stat__value" data-edit="pages.home.quickFact3Value">1934</span><span class="stat__label" data-edit="pages.home.quickFact3Label">gegründet</span></div>
+      <div class="stat"><span class="stat__value" data-edit="pages.home.quickFact4Value">16 Uhr</span><span class="stat__label" data-edit="pages.home.quickFact4Label">Ganztag bis</span></div>
     </div>
   </section>
 
@@ -193,12 +200,12 @@
         <div class="prose" data-edit="pages.home.kontaktText"><p>Wir freuen uns über Ihre Nachricht.</p></div>
         <ul class="contact-list">
           <li><span class="icon" aria-hidden="true">📍</span> Gülichstr. 1, 31848 Bad Münder</li>
-          <li><span class="icon" aria-hidden="true">📞</span> <a href="tel:+4950425306 0">05042 53060</a></li>
+          <li><span class="icon" aria-hidden="true">📞</span> <a href="tel:+49504253060">05042 53060</a></li>
           <li><span class="icon" aria-hidden="true">✉️</span> <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></li>
         </ul>
         <a class="btn btn-primary" href="kontakt.html" style="margin-top: var(--space-3);">Zur Kontaktseite</a>
       </div>
-      <iframe class="map-frame" title="Karte: Grundschule Flegessen" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=9.2270%2C52.1960%2C9.2420%2C52.2040&amp;layer=mapnik&amp;marker=52.2000%2C9.2345"></iframe>
+      <div data-map-src="https://www.openstreetmap.org/export/embed.html?bbox=9.2270%2C52.1960%2C9.2420%2C52.2040&amp;layer=mapnik&amp;marker=52.2000%2C9.2345"><p><a href="https://www.openstreetmap.org/?mlat=52.2000&amp;mlon=9.2345#map=16/52.2000/9.2345" target="_blank" rel="noopener">Karte auf openstreetmap.org ansehen</a></p></div>
     </div>
   </section>
 
@@ -211,7 +218,7 @@
         <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44">
         <strong>Grundschule Flegessen</strong>
       </div>
-      <p>Gülichstr. 1, 31848 Bad Münder<br>Telefon: <a href="tel:+4950425306 0">05042 53060</a><br>E-Mail: <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></p>
+      <p>Gülichstr. 1, 31848 Bad Münder<br>Telefon: <a href="tel:+49504253060">05042 53060</a><br>E-Mail: <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></p>
     </div>
     <div>
       <h4>Schule</h4>

@@ -170,6 +170,20 @@
       .catch(function () { return null; });
   }
 
+  /* ---------------- Gallery page (loads its own manifest) ---------------- */
+  function initGalleryPage() {
+    var container = document.querySelector('[data-gallery-list="gallery-public"]');
+    if (!container) return;
+    fetch(rootPath() + "content/gallery-public.json", { cache: "no-store" })
+      .then(function (res) { return res.ok ? res.json() : []; })
+      .catch(function () { return []; })
+      .then(function (items) {
+        if (!items || !items.length) return;
+        container.innerHTML = items.map(renderers["gallery-item"]).join("");
+        initLightbox(container, items);
+      });
+  }
+
   /* ---------------- Lightbox (gallery) ---------------- */
   function initLightbox(container, items) {
     var lightbox = document.querySelector(".lightbox");
@@ -207,6 +221,27 @@
     });
   }
 
+  /* ---------------- Map: load third-party embed only after click ---------------- */
+  function initMapConsent() {
+    document.querySelectorAll("[data-map-src]").forEach(function (box) {
+      var src = box.getAttribute("data-map-src");
+      box.innerHTML =
+        '<div class="map-consent">' +
+        "<p><strong>Karte von OpenStreetMap</strong><br>Beim Laden der Karte werden Daten (u. a. Ihre IP-Adresse) an die OpenStreetMap Foundation übertragen. Mehr dazu in der <a href=\"datenschutz.html\">Datenschutzerklärung</a>.</p>" +
+        '<button type="button" class="btn btn-primary btn-sm">Karte laden</button></div>';
+      box.querySelector("button").addEventListener("click", function () {
+        var f = document.createElement("iframe");
+        f.className = "map-frame";
+        f.title = "Karte: Grundschule Flegessen";
+        f.loading = "lazy";
+        f.referrerPolicy = "no-referrer";
+        f.src = src;
+        box.innerHTML = "";
+        box.appendChild(f);
+      });
+    });
+  }
+
   /* ---------------- Misc ---------------- */
   function initYear() {
     document.querySelectorAll("[data-year]").forEach(function (el) {
@@ -217,6 +252,8 @@
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
     initYear();
+    initMapConsent();
     loadContent().then(applyContent);
+    initGalleryPage();
   });
 })();

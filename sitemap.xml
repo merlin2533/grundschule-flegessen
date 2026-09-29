@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://grundschule-flegessen.de/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://grundschule-flegessen.de/unsere-schule.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://grundschule-flegessen.de/team.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://grundschule-flegessen.de/klassen.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://grundschule-flegessen.de/schulalltag.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://grundschule-flegessen.de/unterrichtszeiten.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://grundschule-flegessen.de/aktuelles.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://grundschule-flegessen.de/eltern.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://grundschule-flegessen.de/mitteilungen.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://grundschule-flegessen.de/galerie.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://grundschule-flegessen.de/kontakt.html</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://grundschule-flegessen.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://grundschule-flegessen.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+</urlset>

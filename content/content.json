@@ -5,7 +5,7 @@
     "claim": "Eine kleine Schule mit großem Herz",
     "metaDescription": "Die Grundschule Flegessen in Bad Münder ist eine musikalische Grundschule für Kinder aus Flegessen, Klein Süntel, Hasperde, Hachmühlen und Brullsen. Ganztag, offene Betreuung und ein herzliches Miteinander.",
     "phone": "05042 53060",
-    "phoneHref": "tel:+4950425306 0",
+    "phoneHref": "tel:+49504253060",
     "email": "gs-flegessen@t-online.de",
     "street": "Gülichstr. 1",
     "zip": "31848",
@@ -13,8 +13,14 @@
     "region": "Niedersachsen",
     "country": "DE",
     "principal": "Natali Friesen",
-    "logo": { "file": "assets/images/site/logo.jpg", "alt": "Logo der Grundschule Flegessen" },
-    "ogImage": { "file": "assets/images/site/og-image.jpg", "alt": "Grundschule Flegessen – Schulgebäude und Schulhof" },
+    "logo": {
+      "file": "assets/images/site/logo.jpg",
+      "alt": "Logo der Grundschule Flegessen"
+    },
+    "ogImage": {
+      "file": "assets/images/site/og-image.jpg",
+      "alt": "Grundschule Flegessen – Schulgebäude und Schulhof"
+    },
     "mapEmbedUrl": "https://www.openstreetmap.org/export/embed.html?bbox=9.2270%2C52.1960%2C9.2420%2C52.2040&layer=mapnik&marker=52.2000%2C9.2345"
   },
   "pages": {
@@ -23,42 +29,70 @@
       "heroTitle": "Grundschule Flegessen",
       "heroClaim": "Eine kleine Schule mit großem Herz",
       "heroText": "<p>Herzlich willkommen! Die Grundschule Flegessen ist eine musikalische Grundschule bei Bad Münder – lebendig, naturnah und mit einem starken Zusammenhalt. Bei uns lernen aktuell rund 85 Kinder in fünf Klassen gemeinsam, singen, entdecken und wachsen.</p>",
-      "heroImage": { "file": "assets/images/site/hero-schule.jpg", "alt": "Schulgebäude der Grundschule Flegessen im Sommer" },
+      "heroImage": {
+        "file": "assets/images/site/hero-schule.jpg",
+        "alt": "Schulgebäude der Grundschule Flegessen im Sommer"
+      },
       "heroPrimaryCtaLabel": "Unsere Schule entdecken",
       "heroPrimaryCtaHref": "unsere-schule.html",
       "heroSecondaryCtaLabel": "Zur Einschulung",
       "heroSecondaryCtaHref": "eltern.html#einschulung",
-      "quickFact1Value": "85", "quickFact1Label": "Schülerinnen &amp; Schüler",
-      "quickFact2Value": "5", "quickFact2Label": "Klassen",
-      "quickFact3Value": "1934", "quickFact3Label": "gegründet",
-      "quickFact4Value": "16 Uhr", "quickFact4Label": "Ganztag bis",
+      "quickFact1Value": "85",
+      "quickFact1Label": "Schülerinnen &amp; Schüler",
+      "quickFact2Value": "5",
+      "quickFact2Label": "Klassen",
+      "quickFact3Value": "1934",
+      "quickFact3Label": "gegründet",
+      "quickFact4Value": "16 Uhr",
+      "quickFact4Label": "Ganztag bis",
       "introTitle": "Unsere Schule",
       "introText": "<p>Die Grundschule Flegessen ist <strong>eine kleine Schule mit großem Herz</strong>.</p><p>Wir sind eine begeisterte musikalische Grundschule – unser eigenes Schullied wurde von unserer Musiklehrerin Ellen Grützmacher komponiert und von unseren Schülerinnen und Schülern eingesungen.</p><p>Zurzeit besuchen rund 85 Schülerinnen und Schüler unsere Schule.</p>",
-      "introImage": { "file": "assets/images/site/schulgemeinschaft.jpg", "alt": "Die Schulgemeinschaft der Grundschule Flegessen" },
+      "introImage": {
+        "file": "assets/images/site/schulgemeinschaft.jpg",
+        "alt": "Die Schulgemeinschaft der Grundschule Flegessen"
+      },
       "introCtaLabel": "Mehr erfahren",
       "introCtaHref": "unsere-schule.html",
       "schulliedCtaLabel": "Hier geht's zu unserem Schullied",
       "schulliedHref": "assets/downloads/schulsong-flegessen.mp3",
       "schulalltagTitle": "Schulalltag",
       "schulalltagText": "<p>An der Grundschule Flegessen gibt es viel zu erleben. Vormittags haben wir Unterricht, danach kann man in der Betreuung bis 13:00 Uhr in der Schule bleiben. Am Nachmittag bieten wir einen offenen Ganztag mit verschiedenen Angeboten bis 16:00 Uhr an.</p><p>Unterrichtet wird unter anderem in den Fächern Deutsch, Mathematik, Sachunterricht, Musik, Sport, Religion und Englisch.</p>",
-      "schulalltagImage": { "file": "assets/images/site/schulalltag.jpg", "alt": "Kinder im Unterricht an der Grundschule Flegessen" },
+      "schulalltagImage": {
+        "file": "assets/images/site/schulalltag.jpg",
+        "alt": "Kinder im Unterricht an der Grundschule Flegessen"
+      },
       "schulalltagCtaLabel": "Mehr erfahren",
       "schulalltagCtaHref": "schulalltag.html",
       "highlight1Title": "Aktionen",
-      "highlight1Image": { "file": "assets/images/site/highlight-aktionen.jpg", "alt": "Gemeinsame Aktionen an der Grundschule Flegessen" },
+      "highlight1Image": {
+        "file": "assets/images/site/highlight-aktionen.jpg",
+        "alt": "Gemeinsame Aktionen an der Grundschule Flegessen"
+      },
       "highlight1Href": "aktuelles.html",
       "highlight2Title": "Konzepte",
-      "highlight2Image": { "file": "assets/images/site/highlight-konzepte.jpg", "alt": "Lernkonzepte an der Grundschule Flegessen" },
+      "highlight2Image": {
+        "file": "assets/images/site/highlight-konzepte.jpg",
+        "alt": "Lernkonzepte an der Grundschule Flegessen"
+      },
       "highlight2Href": "unsere-schule.html#leitbild",
       "highlight3Title": "Unterrichtszeiten",
-      "highlight3Image": { "file": "assets/images/site/highlight-zeiten.jpg", "alt": "Uhr als Symbol für die Unterrichtszeiten" },
+      "highlight3Image": {
+        "file": "assets/images/site/highlight-zeiten.jpg",
+        "alt": "Uhr als Symbol für die Unterrichtszeiten"
+      },
       "highlight3Href": "unterrichtszeiten.html",
       "highlight4Title": "Ganztag und Mittagessen",
-      "highlight4Image": { "file": "assets/images/site/highlight-ganztag.jpg", "alt": "Gemeinsames Frühstück im Ganztag" },
+      "highlight4Image": {
+        "file": "assets/images/site/highlight-ganztag.jpg",
+        "alt": "Gemeinsames Frühstück im Ganztag"
+      },
       "highlight4Href": "schulalltag.html#ganztag",
       "elternTitle": "Infos für Eltern",
       "infosTitle": "Infos",
-      "infosImage": { "file": "assets/images/site/infos-banner.jpg", "alt": "Elterninformationen der Grundschule Flegessen" },
+      "infosImage": {
+        "file": "assets/images/site/infos-banner.jpg",
+        "alt": "Elterninformationen der Grundschule Flegessen"
+      },
       "infosCtaLabel": "Mehr erfahren",
       "infosCtaHref": "mitteilungen.html",
       "gremienTitle": "Gremien",
@@ -66,21 +100,29 @@
       "kontaktTitle": "Kontakt",
       "kontaktText": "<p>Wir freuen uns über Ihre Nachricht – rufen Sie an, schreiben Sie uns eine E-Mail oder besuchen Sie uns direkt vor Ort.</p>"
     },
-
     "unsere-schule": {
       "pageTitle": "Unsere Schule",
       "metaDescription": "Die Grundschule Flegessen bei Bad Münder: Leitbild, Geschichte und aktuelle Zahlen einer kleinen Schule mit großem Herz.",
-      "heroImage": { "file": "assets/images/pages/unsere-schule-hero.jpg", "alt": "Ansicht der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/unsere-schule-hero.jpg",
+        "alt": "Ansicht der Grundschule Flegessen"
+      },
       "introHtml": "<p>Unsere Schule besteht aus rund 85 Kindern und etwa 20 Erwachsenen – gemeinsam bilden wir eine lebendige Schulgemeinschaft, in der sich jede und jeder wohlfühlen soll.</p>",
       "historyTitle": "Das ist unsere Schule",
       "historyHtml": "<ul><li>Die Schule besteht seit 1934 an diesem Standort.</li><li>Sie gehört zum Landkreis Hameln-Pyrmont und wird von der Stadt Bad Münder als Schulträger unterstützt.</li><li>Es besuchen Kinder aus den Ortsteilen Flegessen, Klein Süntel, Hasperde, Hachmühlen, Brullsen und der Dyes-Siedlung / Bad Münder unsere Schule.</li><li>Seit dem Schuljahr 2014/2015 sind aus zwei Schulen eine Einheit geworden.</li></ul>",
       "statsTitle": "Aktuelle Zahlen",
-      "stat1Label": "Schülerinnen und Schüler", "stat1Value": "85",
-      "stat2Label": "Klassen", "stat2Value": "5",
-      "stat3Label": "Lehrkräfte", "stat3Value": "8",
-      "stat4Label": "Pädagogische Mitarbeiterinnen", "stat4Value": "4",
-      "stat5Label": "Förderschullehrkraft", "stat5Value": "1",
-      "stat6Label": "Kooperationspartner im Ganztag", "stat6Value": "2",
+      "stat1Label": "Schülerinnen und Schüler",
+      "stat1Value": "85",
+      "stat2Label": "Klassen",
+      "stat2Value": "5",
+      "stat3Label": "Lehrkräfte",
+      "stat3Value": "8",
+      "stat4Label": "Pädagogische Mitarbeiterinnen",
+      "stat4Value": "4",
+      "stat5Label": "Förderschullehrkraft",
+      "stat5Value": "1",
+      "stat6Label": "Kooperationspartner im Ganztag",
+      "stat6Value": "2",
       "specialTitle": "Unsere Schule ist ganz besonders, weil …",
       "specialHtml": "<ul><li>wir seit dem Schuljahr 2014/2015 aus zwei Schulen eine Einheit geworden sind.</li><li>Kinder aus verschiedenen Orten zusammenkommen und miteinander spielen, lachen, lernen, singen und tanzen können.</li><li>wir es lieben, Feste gemeinsam zu feiern – zum Beispiel Einschulungsfeier, Weihnachtsfeier, Faschingsfeier und Klassenfeste.</li><li>wir eng mit unseren Nachbargrundschulen und der KGS Bad Münder zusammenarbeiten.</li><li>wir einen großartigen Eltern-Förderverein haben.</li><li>wir gemeinsam große Ziele erreichen – zum Beispiel den Bau eines Soccerplatzes oder die Neugestaltung des Spielplatzes.</li></ul>",
       "leitbildTitle": "Unser Leitbild",
@@ -97,87 +139,250 @@
       "schulliedCtaLabel": "Schullied anhören",
       "schulliedHref": "assets/downloads/schulsong-flegessen.mp3"
     },
-
     "team": {
       "pageTitle": "Unser Team",
       "metaDescription": "Das Team der Grundschule Flegessen: Schulleitung, Lehrkräfte, pädagogische Mitarbeiterinnen und alle, die unsere Schule jeden Tag am Laufen halten.",
-      "heroImage": { "file": "assets/images/pages/team-hero.jpg", "alt": "Das Team der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/team-hero.jpg",
+        "alt": "Das Team der Grundschule Flegessen"
+      },
       "introHtml": "<p>Unser Team besteht aus sieben Kolleginnen, einem Kollegen und einer Förderschullehrerin. Tatkräftig unterstützt werden wir von vier pädagogischen Mitarbeiterinnen. Unser Schulhund Oskar begleitet Frau Friesen in den Unterricht und tröstet gerne unsere Schülerinnen und Schüler. Unsere Sekretärin sorgt dafür, dass alles geordnet abläuft, unser Hausmeister bringt alles in Ordnung und unsere Reinigungskraft sorgt für eine saubere Schule.</p>",
       "members": [
-        { "name": "Natali Friesen", "role": "Schulleiterin", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Natali Friesen, Schulleiterin" } },
-        { "name": "Wiebke Molitor", "role": "Vertretung der Schulleitung, Klassenlehrerin Klasse 4, Fachleitung Religion, Englisch, Sachunterricht", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Wiebke Molitor" } },
-        { "name": "Claudia Schmidt", "role": "Klassenlehrerin Klasse 1, Fachleitung Deutsch", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Claudia Schmidt" } },
-        { "name": "Carola Willner-Nagel", "role": "Klassenlehrerin Klasse 2, Fachleitung MuKuTe", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Carola Willner-Nagel" } },
-        { "name": "Monika Winninger", "role": "Klassenlehrerin Klasse 3a, Fachleitung Sport", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Monika Winninger" } },
-        { "name": "Dominik Schicke", "role": "Klassenlehrer Klasse 3b, Fachleitung Mathematik", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Dominik Schicke" } },
-        { "name": "Ellen Grützmacher", "role": "Fachlehrerin Musik, Musik-Koordinatorin Musikalische Grundschule, Fachleitung Musik", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Ellen Grützmacher" } },
-        { "name": "Raimund Teske", "role": "Fachlehrer Englisch", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Raimund Teske" } },
-        { "name": "Jeannette Viecens", "role": "Fachlehrerin Religion", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Jeannette Viecens" } },
-        { "name": "Uta Bormann-Nickel", "role": "Fachlehrerin Sport", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Uta Bormann-Nickel" } },
-        { "name": "Frau Driller", "role": "Fachlehrerin Religion", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Frau Driller" } },
-        { "name": "Claudine Reiter", "role": "Förderschullehrerin", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Claudine Reiter" } },
-        { "name": "Patricia Petrol", "role": "Referendarin", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Patricia Petrol" } },
-        { "name": "Anja Fritsch", "role": "Pädagogische Mitarbeiterin, Vertretungsunterricht", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Anja Fritsch" } },
-        { "name": "Ellen Sundermann", "role": "Pädagogische Mitarbeiterin Ganztag, Tanz-AG, Seilspring-AG", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Ellen Sundermann" } },
-        { "name": "Nicole Musch", "role": "Pädagogische Mitarbeiterin Betreuung", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Nicole Musch" } },
-        { "name": "Fadia Haci", "role": "Pädagogische Mitarbeiterin Ganztag", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Fadia Haci" } },
-        { "name": "Schoch", "role": "Schulbegleitung", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Schulbegleitung Schoch" } },
-        { "name": "Nina Bons", "role": "Sekretärin", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Nina Bons, Sekretärin" } },
-        { "name": "Tim Dreyer", "role": "Hausmeister", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Tim Dreyer, Hausmeister" } },
-        { "name": "Frau Beiße", "role": "Reinigungskraft", "photo": { "file": "assets/images/team/placeholder-person.jpg", "alt": "Frau Beiße, Reinigungskraft" } },
-        { "name": "Oskar", "role": "Schulhund", "photo": { "file": "assets/images/team/placeholder-dog.jpg", "alt": "Oskar, der Schulhund" } }
+        {
+          "name": "Natali Friesen",
+          "role": "Schulleiterin",
+          "photo": {
+            "file": "assets/images/team/natali-friesen.jpg",
+            "alt": "Natali Friesen, Schulleiterin"
+          }
+        },
+        {
+          "name": "Wiebke Molitor",
+          "role": "Vertretung der Schulleitung, Klassenlehrerin Klasse 4, Fachleitung Religion, Englisch, Sachunterricht"
+        },
+        {
+          "name": "Claudia Schmidt",
+          "role": "Klassenlehrerin Klasse 1, Fachleitung Deutsch",
+          "photo": {
+            "file": "assets/images/team/claudia-schmidt.jpg",
+            "alt": "Claudia Schmidt"
+          }
+        },
+        {
+          "name": "Carola Willner-Nagel",
+          "role": "Klassenlehrerin Klasse 2, Fachleitung MuKuTe",
+          "photo": {
+            "file": "assets/images/team/carola-willner-nagel.jpg",
+            "alt": "Carola Willner-Nagel"
+          }
+        },
+        {
+          "name": "Monika Winninger",
+          "role": "Klassenlehrerin Klasse 3a, Fachleitung Sport"
+        },
+        {
+          "name": "Dominik Schicke",
+          "role": "Klassenlehrer Klasse 3b, Fachleitung Mathematik"
+        },
+        {
+          "name": "Ellen Grützmacher",
+          "role": "Fachlehrerin Musik, Musik-Koordinatorin Musikalische Grundschule, Fachleitung Musik",
+          "photo": {
+            "file": "assets/images/team/ellen-gruetzmacher.jpg",
+            "alt": "Ellen Grützmacher"
+          }
+        },
+        {
+          "name": "Raimund Teske",
+          "role": "Fachlehrer Englisch"
+        },
+        {
+          "name": "Jeannette Viecens",
+          "role": "Fachlehrerin Religion"
+        },
+        {
+          "name": "Uta Bormann-Nickel",
+          "role": "Fachlehrerin Sport"
+        },
+        {
+          "name": "Frau Driller",
+          "role": "Fachlehrerin Religion"
+        },
+        {
+          "name": "Claudine Reiter",
+          "role": "Förderschullehrerin"
+        },
+        {
+          "name": "Patricia Petrol",
+          "role": "Referendarin"
+        },
+        {
+          "name": "Anja Fritsch",
+          "role": "Pädagogische Mitarbeiterin, Vertretungsunterricht",
+          "photo": {
+            "file": "assets/images/team/anja-fritsch.jpg",
+            "alt": "Anja Fritsch"
+          }
+        },
+        {
+          "name": "Ellen Sundermann",
+          "role": "Pädagogische Mitarbeiterin Ganztag, Tanz-AG, Seilspring-AG",
+          "photo": {
+            "file": "assets/images/team/ellen-sundermann.jpg",
+            "alt": "Ellen Sundermann"
+          }
+        },
+        {
+          "name": "Nicole Musch",
+          "role": "Pädagogische Mitarbeiterin Betreuung"
+        },
+        {
+          "name": "Fadia Haci",
+          "role": "Pädagogische Mitarbeiterin Ganztag"
+        },
+        {
+          "name": "Schoch",
+          "role": "Schulbegleitung"
+        },
+        {
+          "name": "Nina Bons",
+          "role": "Sekretärin"
+        },
+        {
+          "name": "Tim Dreyer",
+          "role": "Hausmeister"
+        },
+        {
+          "name": "Frau Beiße",
+          "role": "Reinigungskraft"
+        },
+        {
+          "name": "Oskar",
+          "role": "Schulhund"
+        }
       ]
     },
-
     "klassen": {
       "pageTitle": "Unsere Klassen",
       "metaDescription": "Die fünf Klassen der Grundschule Flegessen mit ihren Klassenlehrerinnen und Klassenlehrern.",
-      "heroImage": { "file": "assets/images/pages/klassen-hero.jpg", "alt": "Kinder der Grundschule Flegessen im Klassenraum" },
+      "heroImage": {
+        "file": "assets/images/pages/klassen-hero.jpg",
+        "alt": "Kinder der Grundschule Flegessen im Klassenraum"
+      },
       "introHtml": "<p>An der Grundschule Flegessen lernen die Kinder in fünf Klassen gemeinsam – vom ersten Schultag an in vertrauter, kleiner Runde.</p>",
       "classes": [
-        { "name": "Klasse 1", "teacher": "Klassenlehrerin Frau Schmidt", "photo": { "file": "assets/images/klassen/klasse-1.jpg", "alt": "Klasse 1 der Grundschule Flegessen" } },
-        { "name": "Klasse 2", "teacher": "Klassenlehrerin Frau Willner-Nagel", "photo": { "file": "assets/images/klassen/klasse-2.jpg", "alt": "Klasse 2 der Grundschule Flegessen" } },
-        { "name": "Klasse 3a", "teacher": "Klassenlehrerin Frau Winninger", "photo": { "file": "assets/images/klassen/klasse-3a.jpg", "alt": "Klasse 3a der Grundschule Flegessen" } },
-        { "name": "Klasse 3b", "teacher": "Klassenlehrer Herr Schicke", "photo": { "file": "assets/images/klassen/klasse-3b.jpg", "alt": "Klasse 3b der Grundschule Flegessen" } },
-        { "name": "Klasse 4", "teacher": "Klassenlehrerin Frau Molitor", "photo": { "file": "assets/images/klassen/klasse-4.jpg", "alt": "Klasse 4 der Grundschule Flegessen" } }
+        {
+          "name": "Klasse 1",
+          "teacher": "Klassenlehrerin Frau Schmidt",
+          "photo": {
+            "file": "assets/images/klassen/klasse-1.jpg",
+            "alt": "Klasse 1 der Grundschule Flegessen"
+          }
+        },
+        {
+          "name": "Klasse 2",
+          "teacher": "Klassenlehrerin Frau Willner-Nagel",
+          "photo": {
+            "file": "assets/images/klassen/klasse-2.jpg",
+            "alt": "Klasse 2 der Grundschule Flegessen"
+          }
+        },
+        {
+          "name": "Klasse 3a",
+          "teacher": "Klassenlehrerin Frau Winninger",
+          "photo": {
+            "file": "assets/images/klassen/klasse-3a.jpg",
+            "alt": "Klasse 3a der Grundschule Flegessen"
+          }
+        },
+        {
+          "name": "Klasse 3b",
+          "teacher": "Klassenlehrer Herr Schicke",
+          "photo": {
+            "file": "assets/images/klassen/klasse-3b.jpg",
+            "alt": "Klasse 3b der Grundschule Flegessen"
+          }
+        },
+        {
+          "name": "Klasse 4",
+          "teacher": "Klassenlehrerin Frau Molitor",
+          "photo": {
+            "file": "assets/images/klassen/klasse-4.jpg",
+            "alt": "Klasse 4 der Grundschule Flegessen"
+          }
+        }
       ]
     },
-
     "schulalltag": {
       "pageTitle": "Schulalltag",
       "metaDescription": "So sieht ein Schultag an der Grundschule Flegessen aus: Unterricht, Betreuung, offener Ganztag und unsere Fächer.",
-      "heroImage": { "file": "assets/images/pages/schulalltag-hero.jpg", "alt": "Schulalltag an der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/schulalltag-hero.jpg",
+        "alt": "Schulalltag an der Grundschule Flegessen"
+      },
       "introHtml": "<p>An der Grundschule Flegessen gibt es viel zu erleben. Vormittags haben wir Unterricht. Danach kann man in der Betreuung bis 13:00 Uhr in der Schule bleiben. Am Nachmittag haben wir einen offenen Ganztag mit verschiedenen Angeboten – der Ganztag ist bei uns bis 16:00 Uhr.</p><p>An unserer Schule lernen wir unter anderem in den Fächern Deutsch, Mathematik, Sachunterricht, Musik, Sport, Religion und Englisch.</p>",
       "betreuungTitle": "Betreuung & Ganztag",
       "betreuungHtml": "<p><strong>Betreuung</strong> bis 13:00 Uhr im Anschluss an den Unterricht.</p><p><strong>Offener Ganztag</strong> mit vielfältigen Angeboten bis 16:00 Uhr – von AGs bis zum gemeinsamen Mittagessen.</p>",
-      "betreuungImage": { "file": "assets/images/pages/schulalltag-ganztag.jpg", "alt": "Kinder im offenen Ganztag der Grundschule Flegessen" },
+      "betreuungImage": {
+        "file": "assets/images/pages/schulalltag-ganztag.jpg",
+        "alt": "Kinder im offenen Ganztag der Grundschule Flegessen"
+      },
       "konzepteTitle": "Konzepte & Mitteilungen",
       "konzepteHtml": "<p>Aktuelle Informationen für Eltern, unsere pädagogischen Konzepte sowie die genauen Unterrichtszeiten finden Sie auf den verlinkten Seiten.</p>"
     },
-
     "unterrichtszeiten": {
       "pageTitle": "Unterrichtszeiten",
       "metaDescription": "Die Unterrichtszeiten der Grundschule Flegessen im Überblick – von der 1. bis zur 6. Stunde.",
-      "heroImage": { "file": "assets/images/pages/unterrichtszeiten-hero.jpg", "alt": "Uhr im Klassenraum der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/unterrichtszeiten-hero.jpg",
+        "alt": "Uhr im Klassenraum der Grundschule Flegessen"
+      },
       "updatedLabel": "Aktualisiert am",
       "updatedDate": "25.10.2024",
       "introHtml": "<p>Der Unterricht an der Grundschule Flegessen gliedert sich in sechs Stunden mit zwei großen Pausen. Die 6. Stunde findet nur mittwochs für die Klassen 3 und 4 statt.</p>",
       "rows": [
-        { "label": "1. Stunde", "time": "8:15 – 9:00" },
-        { "label": "2. Stunde", "time": "9:05 – 9:50" },
-        { "label": "Große Pause", "time": "9:50 – 10:20" },
-        { "label": "3. Stunde", "time": "10:20 – 11:05" },
-        { "label": "4. Stunde", "time": "11:10 – 11:55" },
-        { "label": "Große Pause", "time": "11:55 – 12:05" },
-        { "label": "5. Stunde", "time": "12:05 – 12:50" },
-        { "label": "6. Stunde", "time": "12:55 – 13:40", "note": "nur mittwochs für Klasse 3 und 4" }
+        {
+          "label": "1. Stunde",
+          "time": "8:15 – 9:00"
+        },
+        {
+          "label": "2. Stunde",
+          "time": "9:05 – 9:50"
+        },
+        {
+          "label": "Große Pause",
+          "time": "9:50 – 10:20"
+        },
+        {
+          "label": "3. Stunde",
+          "time": "10:20 – 11:05"
+        },
+        {
+          "label": "4. Stunde",
+          "time": "11:10 – 11:55"
+        },
+        {
+          "label": "Große Pause",
+          "time": "11:55 – 12:05"
+        },
+        {
+          "label": "5. Stunde",
+          "time": "12:05 – 12:50"
+        },
+        {
+          "label": "6. Stunde",
+          "time": "12:55 – 13:40",
+          "note": "nur mittwochs für Klasse 3 und 4"
+        }
       ]
     },
-
     "eltern": {
       "pageTitle": "Eltern & Einschulung",
       "metaDescription": "Informationen für Eltern der Grundschule Flegessen: Einschulung, Elternbeirat, Förderverein und aktuelle Elternbriefe.",
-      "heroImage": { "file": "assets/images/pages/eltern-hero.jpg", "alt": "Eltern und Kinder an der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/eltern-hero.jpg",
+        "alt": "Eltern und Kinder an der Grundschule Flegessen"
+      },
       "introHtml": "<p>Als Eltern sind Sie ein wichtiger Teil unserer Schulgemeinschaft. Auf dieser Seite finden Sie alle wichtigen Informationen rund um die Einschulung, unsere Gremien und aktuelle Elternbriefe.</p>",
       "newParentsEyebrow": "Ihr Kind wird bald eingeschult?",
       "newParentsTitle": "Willkommen an der Grundschule Flegessen",
@@ -186,11 +391,26 @@
       "newParentsCtaHref": "kontakt.html",
       "faqTitle": "Häufige Fragen von neuen Eltern",
       "faq": [
-        { "question": "Wie melde ich mein Kind an der Grundschule Flegessen an?", "answer": "Die Anmeldung zukünftiger Schulkinder erfolgt über unser Sekretariat. Sprechen Sie uns gerne telefonisch oder per E-Mail an – wir informieren Sie über den genauen Ablauf, benötigte Unterlagen und Termine des Informationsabends." },
-        { "question": "Wie läuft der Informationsabend zur Einschulung ab?", "answer": "Vor der Einschulung laden wir zu einem Elternabend ein, an dem wir alle wichtigen Informationen rund um den Schulstart, den Tagesablauf und unsere pädagogischen Schwerpunkte vorstellen. Die Präsentation des letzten Elternabends finden Sie weiter unten zum Nachlesen." },
-        { "question": "Gibt es eine Betreuung vor und nach dem Unterricht?", "answer": "Ja. Im Anschluss an den Unterricht bieten wir eine Betreuung bis 13:00 Uhr sowie einen offenen Ganztag mit vielfältigen Angeboten bis 16:00 Uhr an." },
-        { "question": "Aus welchen Orten kommen die Kinder an unsere Schule?", "answer": "Unsere Schülerinnen und Schüler kommen aus Flegessen, Klein Süntel, Hasperde, Hachmühlen, Brullsen und der Dyes-Siedlung / Bad Münder." },
-        { "question": "Wie kann ich mich als Elternteil einbringen?", "answer": "Über den Elternbeirat und unseren aktiven Förderverein können sich Eltern aktiv einbringen – von der Mitgestaltung von Festen bis zu größeren Projekten wie unserem Soccerplatz und dem Schulspielplatz." }
+        {
+          "question": "Wie melde ich mein Kind an der Grundschule Flegessen an?",
+          "answer": "Die Anmeldung zukünftiger Schulkinder erfolgt über unser Sekretariat. Sprechen Sie uns gerne telefonisch oder per E-Mail an – wir informieren Sie über den genauen Ablauf, benötigte Unterlagen und Termine des Informationsabends."
+        },
+        {
+          "question": "Wie läuft der Informationsabend zur Einschulung ab?",
+          "answer": "Vor der Einschulung laden wir zu einem Elternabend ein, an dem wir alle wichtigen Informationen rund um den Schulstart, den Tagesablauf und unsere pädagogischen Schwerpunkte vorstellen. Die Präsentation des letzten Elternabends finden Sie weiter unten zum Nachlesen."
+        },
+        {
+          "question": "Gibt es eine Betreuung vor und nach dem Unterricht?",
+          "answer": "Ja. Im Anschluss an den Unterricht bieten wir eine Betreuung bis 13:00 Uhr sowie einen offenen Ganztag mit vielfältigen Angeboten bis 16:00 Uhr an."
+        },
+        {
+          "question": "Aus welchen Orten kommen die Kinder an unsere Schule?",
+          "answer": "Unsere Schülerinnen und Schüler kommen aus Flegessen, Klein Süntel, Hasperde, Hachmühlen, Brullsen und der Dyes-Siedlung / Bad Münder."
+        },
+        {
+          "question": "Wie kann ich mich als Elternteil einbringen?",
+          "answer": "Über den Elternbeirat und unseren aktiven Förderverein können sich Eltern aktiv einbringen – von der Mitgestaltung von Festen bis zu größeren Projekten wie unserem Soccerplatz und dem Schulspielplatz."
+        }
       ],
       "einschulungTitle": "Einschulung",
       "einschulungDate": "03.04.2025",
@@ -203,62 +423,167 @@
       "downloadsCtaLabel": "Alle Mitteilungen ansehen",
       "downloadsCtaHref": "mitteilungen.html"
     },
-
     "mitteilungen": {
       "pageTitle": "Mitteilungen & Downloads",
       "metaDescription": "Aktuelle Elterninformationen und Downloads der Grundschule Flegessen.",
-      "heroImage": { "file": "assets/images/pages/mitteilungen-hero.jpg", "alt": "Elternbriefe und Mitteilungen der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/mitteilungen-hero.jpg",
+        "alt": "Elternbriefe und Mitteilungen der Grundschule Flegessen"
+      },
       "introHtml": "<p>Hier finden Sie aktuelle Elternbriefe und wichtige Dokumente der Grundschule Flegessen zum Nachlesen und Herunterladen.</p>",
       "documents": [
-        { "date": "03.04.2025", "title": "Informationen zur Einschulung – Präsentation Elternabend", "description": "In der Präsentation erhalten Sie alle Informationen aus dem Elternabend zur Einschulung.", "file": "assets/downloads/informationselternabend-einschulung-2025.pdf" },
-        { "date": "25.10.2024", "title": "Unser Team 2024", "description": "Übersicht über das gesamte Team der Grundschule Flegessen im Schuljahr 2024/25.", "file": "assets/downloads/team-2024.pdf" },
-        { "date": "19.01.2023", "title": "3. Elterninformation Schuljahr 2022/23", "description": "Informationen zur Schulorganisation im 2. Halbjahr 2022/23.", "file": "assets/downloads/2023-01-19-info-iii-schuljahr-2022-2023.pdf" },
-        { "date": "29.09.2022", "title": "2. Elterninformation Schuljahr 2022/23", "description": "Informationen zur Schulorganisation im Schuljahr 2022/23.", "file": "assets/downloads/2022-09-29-info-ii-schuljahr-2022-2023.pdf" },
-        { "date": "28.08.2022", "title": "1. Elterninformation Schuljahr 2022/23", "description": "Informationen zur Schulorganisation zu Beginn des Schuljahres 2022/23.", "file": "assets/downloads/2022-08-28-elterninfo-i.pdf" }
+        {
+          "date": "03.04.2025",
+          "title": "Informationen zur Einschulung – Präsentation Elternabend",
+          "description": "In der Präsentation erhalten Sie alle Informationen aus dem Elternabend zur Einschulung.",
+          "file": "assets/downloads/informationselternabend-einschulung-2025.pdf"
+        },
+        {
+          "date": "25.10.2024",
+          "title": "Unser Team 2024",
+          "description": "Übersicht über das gesamte Team der Grundschule Flegessen im Schuljahr 2024/25.",
+          "file": "assets/downloads/team-2024.pdf"
+        },
+        {
+          "date": "19.01.2023",
+          "title": "3. Elterninformation Schuljahr 2022/23",
+          "description": "Informationen zur Schulorganisation im 2. Halbjahr 2022/23.",
+          "file": "assets/downloads/2023-01-19-info-iii-schuljahr-2022-2023.pdf"
+        },
+        {
+          "date": "29.09.2022",
+          "title": "2. Elterninformation Schuljahr 2022/23",
+          "description": "Informationen zur Schulorganisation im Schuljahr 2022/23.",
+          "file": "assets/downloads/2022-09-29-info-ii-schuljahr-2022-2023.pdf"
+        },
+        {
+          "date": "28.08.2022",
+          "title": "1. Elterninformation Schuljahr 2022/23",
+          "description": "Informationen zur Schulorganisation zu Beginn des Schuljahres 2022/23.",
+          "file": "assets/downloads/2022-08-28-elterninfo-i.pdf"
+        }
       ]
     },
-
     "aktuelles": {
       "pageTitle": "Aktuelles",
       "metaDescription": "Neuigkeiten, Aktionen und Erlebnisse aus dem Schulleben der Grundschule Flegessen.",
-      "heroImage": { "file": "assets/images/pages/aktuelles-hero.jpg", "alt": "Aktionen und Erlebnisse an der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/aktuelles-hero.jpg",
+        "alt": "Aktionen und Erlebnisse an der Grundschule Flegessen"
+      },
       "introHtml": "<p>Hier berichten wir regelmäßig über Aktionen, Ausflüge und besondere Erlebnisse aus dem Schulleben unserer Grundschule.</p>",
       "posts": [
-        { "date": "05.05.2023", "title": "Schulsongaufnahme", "image": { "file": "assets/images/pages/aktuelles-schulsong.jpg", "alt": "Aufnahme des Schulsongs mit den Kindern" }, "html": "<p>Die Kinder konnten unseren Schulsong professionell aufnehmen – Frau Grützmacher wurde dabei tatkräftig unterstützt. Ganz aufgeregt und gespannt waren alle dabei. Das Ergebnis ist so toll geworden – ihr seid wirklich klasse!</p>" },
-        { "date": "08.–10.05.2023", "title": "Methodentage", "image": { "file": "assets/images/pages/aktuelles-methodentage.jpg", "alt": "Methodentage an der Grundschule Flegessen" }, "html": "<p>An drei Tagen haben sich die Kinder mit verschiedenen Methoden beschäftigt und viele neue Kompetenzen aufgebaut: Klasse 1 mit Hefteinträgen und Partnerarbeit, Klasse 2 mit Plakatgestaltung, Klasse 3 mit dem Thema Präsentation und Klasse 4 mit digitalen Medien und neuen iPad-Tools.</p>" },
-        { "date": "16.05.2023", "title": "Mathematik-Olympiade – Landesrunde", "image": { "file": "assets/images/pages/aktuelles-mathe-olympiade.jpg", "alt": "Kinder bei der Mathematik-Olympiade" }, "html": "<p>Vier Kinder unserer Schule erreichten die dritte Stufe der Mathematik-Olympiade, die Landesrunde, am Viktoria-Luise-Gymnasium. Jan (Klasse 3) gewann einen Anerkennungspreis, Marvin (Klasse 4) und Enno (Klasse 3) je eine Silbermedaille, und Linus (Klasse 3) sogar Gold! In der Gesamtwertung erreichten wir als Schule den 1. Platz im Landkreis – wir sind so stolz auf eure Leistung!</p>" },
-        { "date": "17.05.2023", "title": "Laufwettbewerb der AOK", "image": { "file": "assets/images/pages/aktuelles-laufwettbewerb.jpg", "alt": "Laufwettbewerb der AOK an der Grundschule Flegessen" }, "html": "<p>Beim Laufabzeichen auf dem Sportplatz erreichten 9 Kinder Bronze (15 Minuten), 2 Kinder Silber (30 Minuten) und 59 Kinder sogar Gold (60 Minuten)! Die gesamte 4. Klasse hielt 60 Minuten durch. Wir sind so stolz auf alle Kinder!</p>" },
-        { "date": "09.02.2023", "title": "Schlittschuhfahren mit der gesamten Schule", "image": { "file": "assets/images/pages/aktuelles-schlittschuh.jpg", "alt": "Schlittschuhfahren der Grundschule Flegessen" }, "html": "<p>Gemeinsam ging es für die ganze Schulgemeinschaft in die Eishalle nach Lauenau – im Vordergrund standen Spaß und das gemeinsame Erlebnis!</p>" },
-        { "date": "08.02.2023", "title": "Neujahrsstuten von den Bürgermeistern", "image": { "file": "assets/images/pages/aktuelles-neujahrsstuten.jpg", "alt": "Neujahrsstuten-Tradition an der Grundschule Flegessen" }, "html": "<p>Unsere Ortsbürgermeister Herr Möller (Hachmühlen-Brullsen) und Herr Piepoh (Flegessen, Klein Süntel, Hasperde) besuchten uns wieder und brachten allen Kindern leckere Neujahrsstuten mit – nach einer jahrhundertealten Tradition der Grafschaft Spiegelberg, die an die Not früherer Generationen erinnert und zum Nachdenken anregen soll. Vielen Dank an die Mitglieder beider Ortsräte!</p>" },
-        { "date": "14.–15.06.2021", "title": "Bundesjugendspiele", "image": { "file": "assets/images/pages/aktuelles-bundesjugendspiele.jpg", "alt": "Bundesjugendspiele an der Grundschule Flegessen" }, "html": "<p>An zwei Tagen fanden unsere Bundesjugendspiele statt – Laufen, Springen, Werfen und vor allem gemeinsames Erleben standen im Mittelpunkt. Die Kinder motivierten sich gegenseitig, sodass beim 1000-Meter-Lauf niemand allein laufen musste. Ein toller Zusammenhalt der Klassen!</p>" },
-        { "date": "28.05. & 04.06.2021", "title": "Besuch der Verkehrsschule in Hameln", "image": { "file": "assets/images/pages/aktuelles-verkehrsschule.jpg", "alt": "Besuch der Verkehrsschule Hameln" }, "html": "<p>Die vierten Klassen besuchten die Verkehrsschule in Hameln und sammelten erste Erfahrungen für ihre anstehende Radfahrausbildung und die Prüfung.</p>" }
+        {
+          "date": "05.05.2023",
+          "title": "Schulsongaufnahme",
+          "html": "<p>Die Kinder konnten unseren Schulsong professionell aufnehmen – Frau Grützmacher wurde dabei tatkräftig unterstützt. Ganz aufgeregt und gespannt waren alle dabei. Das Ergebnis ist so toll geworden – ihr seid wirklich klasse!</p>"
+        },
+        {
+          "date": "08.–10.05.2023",
+          "title": "Methodentage",
+          "image": {
+            "file": "assets/images/pages/aktuelles-methodentage.jpg",
+            "alt": "Methodentage an der Grundschule Flegessen"
+          },
+          "html": "<p>An drei Tagen haben sich die Kinder mit verschiedenen Methoden beschäftigt und viele neue Kompetenzen aufgebaut: Klasse 1 mit Hefteinträgen und Partnerarbeit, Klasse 2 mit Plakatgestaltung, Klasse 3 mit dem Thema Präsentation und Klasse 4 mit digitalen Medien und neuen iPad-Tools.</p>"
+        },
+        {
+          "date": "16.05.2023",
+          "title": "Mathematik-Olympiade – Landesrunde",
+          "image": {
+            "file": "assets/images/pages/aktuelles-mathe-olympiade.jpg",
+            "alt": "Kinder bei der Mathematik-Olympiade"
+          },
+          "html": "<p>Vier Kinder unserer Schule erreichten die dritte Stufe der Mathematik-Olympiade, die Landesrunde, am Viktoria-Luise-Gymnasium. Jan (Klasse 3) gewann einen Anerkennungspreis, Marvin (Klasse 4) und Enno (Klasse 3) je eine Silbermedaille, und Linus (Klasse 3) sogar Gold! In der Gesamtwertung erreichten wir als Schule den 1. Platz im Landkreis – wir sind so stolz auf eure Leistung!</p>"
+        },
+        {
+          "date": "17.05.2023",
+          "title": "Laufwettbewerb der AOK",
+          "image": {
+            "file": "assets/images/pages/aktuelles-laufwettbewerb.jpg",
+            "alt": "Laufwettbewerb der AOK an der Grundschule Flegessen"
+          },
+          "html": "<p>Beim Laufabzeichen auf dem Sportplatz erreichten 9 Kinder Bronze (15 Minuten), 2 Kinder Silber (30 Minuten) und 59 Kinder sogar Gold (60 Minuten)! Die gesamte 4. Klasse hielt 60 Minuten durch. Wir sind so stolz auf alle Kinder!</p>"
+        },
+        {
+          "date": "09.02.2023",
+          "title": "Schlittschuhfahren mit der gesamten Schule",
+          "image": {
+            "file": "assets/images/pages/aktuelles-schlittschuh.jpg",
+            "alt": "Schlittschuhfahren der Grundschule Flegessen"
+          },
+          "html": "<p>Gemeinsam ging es für die ganze Schulgemeinschaft in die Eishalle nach Lauenau – im Vordergrund standen Spaß und das gemeinsame Erlebnis!</p>"
+        },
+        {
+          "date": "08.02.2023",
+          "title": "Neujahrsstuten von den Bürgermeistern",
+          "image": {
+            "file": "assets/images/pages/aktuelles-neujahrsstuten.jpg",
+            "alt": "Neujahrsstuten-Tradition an der Grundschule Flegessen"
+          },
+          "html": "<p>Unsere Ortsbürgermeister Herr Möller (Hachmühlen-Brullsen) und Herr Piepoh (Flegessen, Klein Süntel, Hasperde) besuchten uns wieder und brachten allen Kindern leckere Neujahrsstuten mit – nach einer jahrhundertealten Tradition der Grafschaft Spiegelberg, die an die Not früherer Generationen erinnert und zum Nachdenken anregen soll. Vielen Dank an die Mitglieder beider Ortsräte!</p>"
+        },
+        {
+          "date": "14.–15.06.2021",
+          "title": "Bundesjugendspiele",
+          "image": {
+            "file": "assets/images/pages/aktuelles-bundesjugendspiele.jpg",
+            "alt": "Bundesjugendspiele an der Grundschule Flegessen"
+          },
+          "html": "<p>An zwei Tagen fanden unsere Bundesjugendspiele statt – Laufen, Springen, Werfen und vor allem gemeinsames Erleben standen im Mittelpunkt. Die Kinder motivierten sich gegenseitig, sodass beim 1000-Meter-Lauf niemand allein laufen musste. Ein toller Zusammenhalt der Klassen!</p>"
+        },
+        {
+          "date": "04.06.2021",
+          "title": "Die Handglocken-AG startet wieder",
+          "image": {
+            "file": "assets/images/pages/aktuelles-handglocken.jpg",
+            "alt": "Handglocken-AG an der Grundschule Flegessen"
+          },
+          "html": "<p>Frau Grützmacher übt mit den Kindern in der Handglocken-AG – ein weiterer Baustein unseres musikalischen Schulprofils.</p>"
+        },
+        {
+          "date": "04.06.2021",
+          "title": "Freude am neuen Spielplatz",
+          "image": {
+            "file": "assets/images/pages/aktuelles-spielplatz.jpg",
+            "alt": "Neuer Spielplatz der Grundschule Flegessen"
+          },
+          "html": "<p>Die Kinder freuen sich sehr über unseren neu eingeweihten Spielplatz – ein Projekt, das mit großer Unterstützung unseres Fördervereins möglich wurde.</p>"
+        },
+        {
+          "date": "28.05. & 04.06.2021",
+          "title": "Besuch der Verkehrsschule in Hameln",
+          "html": "<p>Die vierten Klassen besuchten die Verkehrsschule in Hameln und sammelten erste Erfahrungen für ihre anstehende Radfahrausbildung und die Prüfung.</p>"
+        }
       ],
       "moreLabel": "Weitere Neuigkeiten folgen in Kürze."
     },
-
     "galerie": {
       "pageTitle": "Galerie",
       "metaDescription": "Impressionen aus dem Schulleben der Grundschule Flegessen – Feste, Ausflüge und der Schulalltag in Bildern.",
-      "heroImage": { "file": "assets/images/pages/galerie-hero.jpg", "alt": "Impressionen aus dem Schulleben der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/galerie-hero.jpg",
+        "alt": "Impressionen aus dem Schulleben der Grundschule Flegessen"
+      },
       "introHtml": "<p>Ein Einblick in unser buntes Schulleben – von Festen über Ausflüge bis zum ganz normalen Schulalltag.</p>"
     },
-
     "kontakt": {
       "pageTitle": "Kontakt",
       "metaDescription": "So erreichen Sie die Grundschule Flegessen in Bad Münder: Adresse, Telefon, E-Mail und Anfahrt.",
-      "heroImage": { "file": "assets/images/pages/kontakt-hero.jpg", "alt": "Eingang der Grundschule Flegessen" },
+      "heroImage": {
+        "file": "assets/images/pages/kontakt-hero.jpg",
+        "alt": "Eingang der Grundschule Flegessen"
+      },
       "introHtml": "<p>Wir freuen uns über Ihre Nachricht! Rufen Sie uns an, schreiben Sie uns eine E-Mail oder besuchen Sie uns direkt vor Ort.</p>",
       "formIntroHtml": "<p>Nutzen Sie gerne unser Kontaktformular – es öffnet Ihr E-Mail-Programm mit einer vorausgefüllten Nachricht an unser Sekretariat.</p>"
     },
-
     "impressum": {
       "pageTitle": "Impressum",
-      "html": "<h2>Angaben gemäß § 5 TMG</h2><p>Grundschule Flegessen<br>Gülichstr. 1<br>31848 Bad Münder</p><h2>Kontakt</h2><p>Telefon: 05042 53060<br>E-Mail: gs-flegessen@t-online.de</p><h2>Vertreten durch</h2><p>Land Niedersachsen (Diensteanbieter im Sinne des Telemediengesetzes). Das Land Niedersachsen ist eine juristische Person des öffentlichen Rechts, vertreten durch Natali Friesen, Schulleiterin.</p><h2>Streitschlichtung</h2><p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href=\"https://ec.europa.eu/consumers/odr/\" target=\"_blank\" rel=\"noopener\">https://ec.europa.eu/consumers/odr/</a>. Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p><h2>Haftung für Inhalte</h2><p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Für fremde Inhalte, auf die wir lediglich verlinken, übernehmen wir keine Gewähr.</p>"
+      "html": "<h2>Angaben gemäß § 5 DDG</h2><p>Grundschule Flegessen<br>Gülichstr. 1<br>31848 Bad Münder</p><h2>Kontakt</h2><p>Telefon: 05042 53060<br>E-Mail: <a href=\"mailto:gs-flegessen@t-online.de\">gs-flegessen@t-online.de</a></p><h2>Vertreten durch</h2><p>Land Niedersachsen (Diensteanbieter im Sinne des Digitale-Dienste-Gesetzes). Das Land Niedersachsen ist eine juristische Person des öffentlichen Rechts, vertreten durch Natali Friesen, Schulleiterin.</p><h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2><p>Natali Friesen, Schulleiterin, Anschrift wie oben.</p><h2>Streitschlichtung</h2><p>Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p><h2>Haftung für Inhalte</h2><p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Bei Bekanntwerden entsprechender Rechtsverletzungen entfernen wir diese Inhalte umgehend.</p><h2>Haftung für Links</h2><p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p><h2>Urheberrecht</h2><p>Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Fotos von Kindern und Personen werden nur mit Einwilligung der Sorgeberechtigten bzw. der abgebildeten Personen veröffentlicht.</p>"
     },
-
     "datenschutz": {
       "pageTitle": "Datenschutzerklärung",
-      "html": "<h2>Verantwortlicher</h2><p>Grundschule Flegessen, Gülichstr. 1, 31848 Bad Münder, Telefon: 05042 53060, E-Mail: gs-flegessen@t-online.de</p><h2>Server-Logfiles</h2><p>Beim Besuch unserer Website erhebt unser Hosting-Anbieter automatisch Zugriffsdaten (Server-Logfiles), unter anderem Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und IP-Adresse. Diese Daten dienen ausschließlich dem sicheren und stabilen Betrieb der Website.</p><h2>Kontaktaufnahme</h2><p>Wenn Sie per E-Mail oder Kontaktformular mit uns in Kontakt treten, werden Ihre Angaben zur Bearbeitung der Anfrage sowie für mögliche Anschlussfragen gespeichert.</p><h2>Cookies</h2><p>Diese Website verwendet nach aktuellem Stand keine Analyse- oder Tracking-Cookies. Sollte sich dies ändern, informieren wir Sie an dieser Stelle.</p><h2>Ihre Rechte</h2><p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer bei uns gespeicherten personenbezogenen Daten sowie ein Recht auf Datenübertragbarkeit und Beschwerde bei einer Aufsichtsbehörde.</p>"
+      "html": "<h2>1. Verantwortlicher</h2><p>Verantwortlich für die Datenverarbeitung auf dieser Website ist die Grundschule Flegessen, Gülichstr. 1, 31848 Bad Münder, Telefon: 05042 53060, E-Mail: <a href=\"mailto:gs-flegessen@t-online.de\">gs-flegessen@t-online.de</a>, vertreten durch die Schulleiterin Natali Friesen.</p><h2>2. Hosting und Server-Logfiles</h2><p>Beim Aufruf dieser Website werden durch den Hosting-Anbieter automatisch Daten in sogenannten Server-Logfiles verarbeitet: IP-Adresse, Datum und Uhrzeit des Abrufs, aufgerufene Seite/Datei, übertragene Datenmenge, Browsertyp und -version, Betriebssystem sowie die Referrer-URL. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. e DSGVO i. V. m. den schulrechtlichen Vorschriften bzw. lit. f DSGVO (berechtigtes Interesse an einem sicheren und stabilen Betrieb der Website). Die Daten werden nach kurzer Zeit gelöscht.</p><h2>3. Cookies und Tracking</h2><p>Diese Website setzt <strong>keine Cookies</strong> und verwendet <strong>keine Analyse- oder Tracking-Werkzeuge</strong>. Ein Cookie-Banner ist daher nicht erforderlich. Der Administrationsbereich speichert lediglich im Arbeitsspeicher Ihres Browsers (sessionStorage), ob Sie angemeldet sind; diese Information verlässt Ihr Gerät nicht.</p><h2>4. Schriftarten</h2><p>Die verwendeten Schriftarten sind auf dem eigenen Server gespeichert (lokales Hosting). Es wird keine Verbindung zu Google oder anderen Schriftarten-Anbietern aufgebaut.</p><h2>5. Karte (OpenStreetMap)</h2><p>Auf der Kontaktseite und der Startseite bieten wir eine Anfahrtskarte von OpenStreetMap an. Die Karte wird <strong>erst nach Ihrem Klick auf „Karte laden“</strong> eingebunden. Erst dann wird eine Verbindung zu den Servern der OpenStreetMap Foundation (St John’s Innovation Centre, Cowley Road, Cambridge, CB4 0WS, Vereinigtes Königreich) hergestellt und Ihre IP-Adresse übertragen. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die Sie durch den Klick erteilen und jederzeit durch Verlassen der Seite widerrufen können. Weitere Informationen: <a href=\"https://wiki.osmfoundation.org/wiki/Privacy_Policy\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung der OpenStreetMap Foundation</a>.</p><h2>6. Kontaktaufnahme</h2><p>Wenn Sie uns per E-Mail, Telefon oder über das Kontaktformular kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. e bzw. lit. b DSGVO). Das Kontaktformular öffnet Ihr E-Mail-Programm; es findet keine Speicherung auf dem Server dieser Website statt. Ihre Daten werden gelöscht, sobald sie zur Bearbeitung nicht mehr erforderlich sind und keine Aufbewahrungspflichten entgegenstehen.</p><h2>7. Fotos und Veröffentlichungen</h2><p>Fotos, auf denen Schülerinnen und Schüler, Lehrkräfte oder andere Personen erkennbar sind, werden ausschließlich mit vorheriger schriftlicher Einwilligung der Betroffenen bzw. der Sorgeberechtigten veröffentlicht (Art. 6 Abs. 1 lit. a DSGVO). Die Einwilligung ist jederzeit mit Wirkung für die Zukunft widerruflich; bitte wenden Sie sich dazu an das Sekretariat.</p><h2>8. Ihre Rechte</h2><p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21) sowie das Recht, erteilte Einwilligungen jederzeit zu widerrufen. Zudem haben Sie das Recht auf Beschwerde bei einer Datenschutz-Aufsichtsbehörde, in Niedersachsen bei der Landesbeauftragten für den Datenschutz Niedersachsen, Prinzenstraße 5, 30159 Hannover.</p><h2>9. Datenschutzbeauftragte</h2><p>Die Kontaktdaten der oder des zuständigen Datenschutzbeauftragten erhalten Sie im Sekretariat der Schule oder beim Niedersächsischen Landesamt für Schule und Bildung.</p><h2>10. Aktualität</h2><p>Diese Datenschutzerklärung wird bei Änderungen der Website oder der Rechtslage angepasst. Stand: 2026.</p>"
     }
   }
 }

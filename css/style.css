@@ -2,6 +2,15 @@
    Grundschule Flegessen — Design System
    ========================================================================== */
 
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("../assets/fonts/baloo2-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122;
+}
+
 :root {
   /* Brand colors */
   --color-primary: #0091c2;
@@ -441,6 +450,14 @@ p { margin: 0 0 var(--space-2); }
 .contact-list li { display: flex; gap: 0.8em; align-items: flex-start; }
 .contact-list .icon { flex: none; width: 38px; height: 38px; border-radius: 50%; background: var(--color-primary-light); color: var(--color-primary-dark); display: flex; align-items: center; justify-content: center; font-weight: 800; }
 .map-frame { border: 0; width: 100%; height: 320px; border-radius: var(--radius-m); box-shadow: var(--shadow-s); }
+.map-consent {
+  min-height: 320px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-2); text-align: center; padding: var(--space-4);
+  background: var(--color-surface-deep); border: 1px dashed var(--color-line);
+  border-radius: var(--radius-m);
+}
+.map-consent p { max-width: 42ch; font-size: 0.92rem; color: var(--color-muted); margin: 0; }
 
 .form-field { margin-bottom: var(--space-2); }
 .form-field label { display: block; font-weight: 700; margin-bottom: 0.35em; font-size: 0.92rem; }
