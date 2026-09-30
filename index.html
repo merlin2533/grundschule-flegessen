@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00789f">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="content-root" content="">
 <title>Grundschule Flegessen – Eine kleine Schule mit großem Herz</title>
@@ -20,29 +21,66 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/site/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/images/site/favicon-180.png">
 <link rel="preload" href="assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20260930-081500-e28fd7">
-<script type="application/ld+json">
+<link rel="stylesheet" href="css/style.css?v=20260930-083224-db04f6">
+<script type="application/ld+json" id="ld-schema">
 {
   "@context": "https://schema.org",
-  "@type": "School",
-  "name": "Grundschule Flegessen",
-  "alternateName": "GS Flegessen",
-  "url": "https://grundschule-flegessen.de/",
-  "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
-  "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
-  "telephone": "+49 5042 53060",
-  "email": "gs-flegessen@t-online.de",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Gülichstr. 1",
-    "postalCode": "31848",
-    "addressLocality": "Bad Münder",
-    "addressRegion": "Niedersachsen",
-    "addressCountry": "DE"
-  }
+  "@graph": [
+    {
+      "@type": "School",
+      "@id": "https://grundschule-flegessen.de/#school",
+      "name": "Grundschule Flegessen",
+      "alternateName": "GS Flegessen",
+      "url": "https://grundschule-flegessen.de/",
+      "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
+      "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
+      "telephone": "+49504253060",
+      "email": "gs-flegessen@t-online.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gülichstr. 1",
+        "postalCode": "31848",
+        "addressLocality": "Bad Münder",
+        "addressRegion": "Niedersachsen",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.1554,
+        "longitude": 9.441
+      },
+      "foundingDate": "1934",
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Flegessen"
+        },
+        {
+          "@type": "Place",
+          "name": "Klein Süntel"
+        },
+        {
+          "@type": "Place",
+          "name": "Hasperde"
+        },
+        {
+          "@type": "Place",
+          "name": "Hachmühlen"
+        },
+        {
+          "@type": "Place",
+          "name": "Brullsen"
+        },
+        {
+          "@type": "Place",
+          "name": "Bad Münder am Deister"
+        }
+      ]
+    }
+  ]
 }
 </script>
-<script src="js/version-check.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/version-check.js?v=20260930-083224-db04f6" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -50,7 +88,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="index.html">
-      <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48">
+      <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48" decoding="async">
       <span>
         <span class="brand__name">Grundschule Flegessen</span>
         <span class="brand__claim">Eine kleine Schule mit großem Herz</span>
@@ -100,7 +138,7 @@
         </div>
       </div>
       <div class="hero__media">
-        <img data-edit-img="pages.home.heroImage" src="assets/images/site/hero-schule.jpg" alt="Schulgebäude der Grundschule Flegessen im Sommer" width="800" height="600">
+        <img data-edit-img="pages.home.heroImage" src="assets/images/site/hero-schule.jpg" alt="Schulgebäude der Grundschule Flegessen im Sommer" width="1600" height="1067" srcset="assets/images/site/hero-schule-400w.jpg 400w, assets/images/site/hero-schule-800w.jpg 800w, assets/images/site/hero-schule-1200w.jpg 1200w, assets/images/site/hero-schule.jpg 1600w" decoding="async" sizes="(max-width: 860px) 100vw, 560px" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -126,7 +164,7 @@
         </div>
       </div>
       <div class="hero__media" style="aspect-ratio: 4/3;">
-        <img data-edit-img="pages.home.introImage" src="assets/images/site/schulgemeinschaft.jpg" alt="Die Schulgemeinschaft der Grundschule Flegessen" loading="lazy">
+        <img data-edit-img="pages.home.introImage" src="assets/images/site/schulgemeinschaft.jpg" alt="Die Schulgemeinschaft der Grundschule Flegessen" loading="lazy" srcset="assets/images/site/schulgemeinschaft-400w.jpg 400w, assets/images/site/schulgemeinschaft-800w.jpg 800w, assets/images/site/schulgemeinschaft-1200w.jpg 1200w, assets/images/site/schulgemeinschaft.jpg 1600w" width="1600" height="1067" decoding="async" sizes="(max-width: 860px) 100vw, 560px">
       </div>
     </div>
   </section>
@@ -134,7 +172,7 @@
   <section class="section section--alt">
     <div class="container grid grid--2" style="align-items:center;">
       <div class="hero__media" style="aspect-ratio: 4/3;">
-        <img data-edit-img="pages.home.schulalltagImage" src="assets/images/site/schulalltag.jpg" alt="Kinder im Unterricht an der Grundschule Flegessen" loading="lazy">
+        <img data-edit-img="pages.home.schulalltagImage" src="assets/images/site/schulalltag.jpg" alt="Kinder im Unterricht an der Grundschule Flegessen" loading="lazy" srcset="assets/images/site/schulalltag-400w.jpg 400w, assets/images/site/schulalltag-800w.jpg 800w, assets/images/site/schulalltag-1200w.jpg 1200w, assets/images/site/schulalltag.jpg 1400w" width="1400" height="1866" decoding="async" sizes="(max-width: 860px) 100vw, 560px">
       </div>
       <div>
         <span class="eyebrow">Von 8 bis 16 Uhr</span>
@@ -149,19 +187,19 @@
     <div class="container">
       <div class="grid grid--4">
         <a class="tile" href="aktuelles.html">
-          <div class="tile__media"><img data-edit-img="pages.home.highlight1Image" src="assets/images/site/highlight-aktionen.jpg" alt="Gemeinsame Aktionen an der Grundschule Flegessen" loading="lazy"></div>
+          <div class="tile__media"><img data-edit-img="pages.home.highlight1Image" src="assets/images/site/highlight-aktionen.jpg" alt="Gemeinsame Aktionen an der Grundschule Flegessen" loading="lazy" srcset="assets/images/site/highlight-aktionen-400w.jpg 400w, assets/images/site/highlight-aktionen-800w.jpg 800w, assets/images/site/highlight-aktionen-1200w.jpg 1200w, assets/images/site/highlight-aktionen.jpg 1400w" width="1400" height="1866" decoding="async" sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 920px) 45vw, 270px"></div>
           <h3 data-edit="pages.home.highlight1Title">Aktionen</h3>
         </a>
         <a class="tile" href="unsere-schule.html#leitbild">
-          <div class="tile__media"><img data-edit-img="pages.home.highlight2Image" src="assets/images/site/highlight-konzepte.jpg" alt="Lernkonzepte an der Grundschule Flegessen" loading="lazy"></div>
+          <div class="tile__media"><img data-edit-img="pages.home.highlight2Image" src="assets/images/site/highlight-konzepte.jpg" alt="Lernkonzepte an der Grundschule Flegessen" loading="lazy" srcset="assets/images/site/highlight-konzepte-400w.jpg 400w, assets/images/site/highlight-konzepte.jpg 720w" width="720" height="480" decoding="async" sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 920px) 45vw, 270px"></div>
           <h3 data-edit="pages.home.highlight2Title">Konzepte</h3>
         </a>
         <a class="tile" href="unterrichtszeiten.html">
-          <div class="tile__media"><img data-edit-img="pages.home.highlight3Image" src="assets/images/site/highlight-zeiten.jpg" alt="Uhr als Symbol für die Unterrichtszeiten" loading="lazy"></div>
+          <div class="tile__media"><img data-edit-img="pages.home.highlight3Image" src="assets/images/site/highlight-zeiten.jpg" alt="Uhr als Symbol für die Unterrichtszeiten" loading="lazy" srcset="assets/images/site/highlight-zeiten-400w.jpg 400w, assets/images/site/highlight-zeiten-800w.jpg 800w, assets/images/site/highlight-zeiten-1200w.jpg 1200w, assets/images/site/highlight-zeiten.jpg 1600w" width="1600" height="1067" decoding="async" sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 920px) 45vw, 270px"></div>
           <h3 data-edit="pages.home.highlight3Title">Unterrichtszeiten</h3>
         </a>
         <a class="tile" href="schulalltag.html#ganztag">
-          <div class="tile__media"><img data-edit-img="pages.home.highlight4Image" src="assets/images/site/highlight-ganztag.jpg" alt="Gemeinsames Frühstück im Ganztag" loading="lazy"></div>
+          <div class="tile__media"><img data-edit-img="pages.home.highlight4Image" src="assets/images/site/highlight-ganztag.jpg" alt="Gemeinsames Frühstück im Ganztag" loading="lazy" srcset="assets/images/site/highlight-ganztag-400w.jpg 400w, assets/images/site/highlight-ganztag-800w.jpg 800w, assets/images/site/highlight-ganztag-1200w.jpg 1200w, assets/images/site/highlight-ganztag.jpg 1600w" width="1600" height="1066" decoding="async" sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 920px) 45vw, 270px"></div>
           <h3 data-edit="pages.home.highlight4Title">Ganztag und Mittagessen</h3>
         </a>
       </div>
@@ -175,7 +213,7 @@
       </div>
       <div class="grid grid--2" style="align-items:start;">
         <div class="card">
-          <div class="card__media card__media--wide"><img data-edit-img="pages.home.infosImage" src="assets/images/site/infos-banner.jpg" alt="Elterninformationen der Grundschule Flegessen" loading="lazy"></div>
+          <div class="card__media card__media--wide"><img data-edit-img="pages.home.infosImage" src="assets/images/site/infos-banner.jpg" alt="Elterninformationen der Grundschule Flegessen" loading="lazy" srcset="assets/images/site/infos-banner-400w.jpg 400w, assets/images/site/infos-banner-800w.jpg 800w, assets/images/site/infos-banner-1200w.jpg 1200w, assets/images/site/infos-banner.jpg 1600w" width="1600" height="534" decoding="async" sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 1180px) 45vw, 540px"></div>
           <div class="card__body">
             <h3 data-edit="pages.home.infosTitle">Infos</h3>
             <a class="btn btn-primary btn-sm card__link" data-edit="pages.home.infosCtaLabel" href="mitteilungen.html">Mehr erfahren</a>
@@ -214,7 +252,7 @@
   <div class="site-footer__inner">
     <div>
       <div class="site-footer__brand">
-        <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44">
+        <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44" decoding="async">
         <strong>Grundschule Flegessen</strong>
       </div>
       <p>Gülichstr. 1, 31848 Bad Münder<br>Telefon: <a href="tel:+49504253060">05042 53060</a><br>E-Mail: <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></p>
@@ -253,6 +291,6 @@
   <button class="lightbox__next" aria-label="Nächstes Bild">›</button>
 </div>
 
-<script src="js/main.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/main.js?v=20260930-083224-db04f6" defer></script>
 </body>
 </html>

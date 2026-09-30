@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00789f">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="content-root" content="">
 <title>Unser Team – Grundschule Flegessen</title>
@@ -20,29 +21,83 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/site/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/images/site/favicon-180.png">
 <link rel="preload" href="assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20260930-081500-e28fd7">
-<script type="application/ld+json">
+<link rel="stylesheet" href="css/style.css?v=20260930-083224-db04f6">
+<script type="application/ld+json" id="ld-schema">
 {
   "@context": "https://schema.org",
-  "@type": "School",
-  "name": "Grundschule Flegessen",
-  "alternateName": "GS Flegessen",
-  "url": "https://grundschule-flegessen.de/",
-  "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
-  "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
-  "telephone": "+49 5042 53060",
-  "email": "gs-flegessen@t-online.de",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Gülichstr. 1",
-    "postalCode": "31848",
-    "addressLocality": "Bad Münder",
-    "addressRegion": "Niedersachsen",
-    "addressCountry": "DE"
-  }
+  "@graph": [
+    {
+      "@type": "School",
+      "@id": "https://grundschule-flegessen.de/#school",
+      "name": "Grundschule Flegessen",
+      "alternateName": "GS Flegessen",
+      "url": "https://grundschule-flegessen.de/",
+      "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
+      "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
+      "telephone": "+49504253060",
+      "email": "gs-flegessen@t-online.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gülichstr. 1",
+        "postalCode": "31848",
+        "addressLocality": "Bad Münder",
+        "addressRegion": "Niedersachsen",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.1554,
+        "longitude": 9.441
+      },
+      "foundingDate": "1934",
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Flegessen"
+        },
+        {
+          "@type": "Place",
+          "name": "Klein Süntel"
+        },
+        {
+          "@type": "Place",
+          "name": "Hasperde"
+        },
+        {
+          "@type": "Place",
+          "name": "Hachmühlen"
+        },
+        {
+          "@type": "Place",
+          "name": "Brullsen"
+        },
+        {
+          "@type": "Place",
+          "name": "Bad Münder am Deister"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://grundschule-flegessen.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Unser Team",
+          "item": "https://grundschule-flegessen.de/team.html"
+        }
+      ]
+    }
+  ]
 }
 </script>
-<script src="js/version-check.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/version-check.js?v=20260930-083224-db04f6" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -50,7 +105,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="index.html">
-      <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48">
+      <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48" decoding="async">
       <span>
         <span class="brand__name">Grundschule Flegessen</span>
         <span class="brand__claim">Eine kleine Schule mit großem Herz</span>
@@ -90,12 +145,12 @@
   <div class="page-hero">
     <div class="page-hero__inner">
       <div>
-        <p class="breadcrumbs"><a href="index.html">Home</a> › Unser Team</p>
+        <nav class="breadcrumbs" aria-label="Brotkrumen"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Unser Team</li></ol></nav>
         <h1 data-edit="pages.team.pageTitle">Unser Team</h1>
         <div class="prose" data-edit="pages.team.introHtml"><p>Unser Team besteht aus sieben Kolleginnen, einem Kollegen und einer Förderschullehrerin. Tatkräftig unterstützt werden wir von vier pädagogischen Mitarbeiterinnen. Unser Schulhund Oskar begleitet Frau Friesen in den Unterricht und tröstet gerne unsere Schülerinnen und Schüler. Unsere Sekretärin sorgt dafür, dass alles geordnet abläuft, unser Hausmeister bringt alles in Ordnung und unsere Reinigungskraft sorgt für eine saubere Schule.</p></div>
       </div>
       <div class="page-hero__media">
-        <img data-edit-img="pages.team.heroImage" src="assets/images/pages/team-hero.jpg" alt="Das Team der Grundschule Flegessen">
+        <img data-edit-img="pages.team.heroImage" src="assets/images/pages/team-hero.jpg" alt="Das Team der Grundschule Flegessen" srcset="assets/images/pages/team-hero-400w.jpg 400w, assets/images/pages/team-hero-800w.jpg 800w, assets/images/pages/team-hero-1200w.jpg 1200w, assets/images/pages/team-hero.jpg 1600w" width="1600" height="1200" decoding="async" sizes="(max-width: 1180px) 100vw, 1180px" fetchpriority="high">
       </div>
     </div>
   </div>
@@ -103,21 +158,21 @@
   <section class="section">
     <div class="container">
       <div class="grid grid--4 grid--team" data-edit-list="pages.team.members" data-list-template="team-member">
-<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/natali-friesen.jpg" alt="Natali Friesen, Schulleiterin" loading="lazy"></div><h3 class="team-card__name">Natali Friesen</h3><p class="team-card__role">Schulleiterin</p></div>
+<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/natali-friesen.jpg" alt="Natali Friesen, Schulleiterin" srcset="assets/images/team/natali-friesen-400w.jpg 400w, assets/images/team/natali-friesen.jpg 1600w" sizes="(max-width: 620px) 96px, 132px" width="1600" height="2400" decoding="async" loading="lazy"></div><h3 class="team-card__name">Natali Friesen</h3><p class="team-card__role">Schulleiterin</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">WM</span></div><h3 class="team-card__name">Wiebke Molitor</h3><p class="team-card__role">Vertretung der Schulleitung, Klassenlehrerin Klasse 4, Fachleitung Religion, Englisch, Sachunterricht</p></div>
-<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/claudia-schmidt.jpg" alt="Claudia Schmidt" loading="lazy"></div><h3 class="team-card__name">Claudia Schmidt</h3><p class="team-card__role">Klassenlehrerin Klasse 1, Fachleitung Deutsch</p></div>
-<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/carola-willner-nagel.jpg" alt="Carola Willner-Nagel" loading="lazy"></div><h3 class="team-card__name">Carola Willner-Nagel</h3><p class="team-card__role">Klassenlehrerin Klasse 2, Fachleitung MuKuTe</p></div>
+<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/claudia-schmidt.jpg" alt="Claudia Schmidt" srcset="assets/images/team/claudia-schmidt-400w.jpg 400w, assets/images/team/claudia-schmidt.jpg 1400w" sizes="(max-width: 620px) 96px, 132px" width="1400" height="2101" decoding="async" loading="lazy"></div><h3 class="team-card__name">Claudia Schmidt</h3><p class="team-card__role">Klassenlehrerin Klasse 1, Fachleitung Deutsch</p></div>
+<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/carola-willner-nagel.jpg" alt="Carola Willner-Nagel" srcset="assets/images/team/carola-willner-nagel-400w.jpg 400w, assets/images/team/carola-willner-nagel.jpg 1400w" sizes="(max-width: 620px) 96px, 132px" width="1400" height="2101" decoding="async" loading="lazy"></div><h3 class="team-card__name">Carola Willner-Nagel</h3><p class="team-card__role">Klassenlehrerin Klasse 2, Fachleitung MuKuTe</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">MW</span></div><h3 class="team-card__name">Monika Winninger</h3><p class="team-card__role">Klassenlehrerin Klasse 3a, Fachleitung Sport</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">DS</span></div><h3 class="team-card__name">Dominik Schicke</h3><p class="team-card__role">Klassenlehrer Klasse 3b, Fachleitung Mathematik</p></div>
-<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/ellen-gruetzmacher.jpg" alt="Ellen Grützmacher" loading="lazy"></div><h3 class="team-card__name">Ellen Grützmacher</h3><p class="team-card__role">Fachlehrerin Musik, Musik-Koordinatorin Musikalische Grundschule, Fachleitung Musik</p></div>
+<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/ellen-gruetzmacher.jpg" alt="Ellen Grützmacher" srcset="assets/images/team/ellen-gruetzmacher-400w.jpg 400w, assets/images/team/ellen-gruetzmacher.jpg 1400w" sizes="(max-width: 620px) 96px, 132px" width="1400" height="2100" decoding="async" loading="lazy"></div><h3 class="team-card__name">Ellen Grützmacher</h3><p class="team-card__role">Fachlehrerin Musik, Musik-Koordinatorin Musikalische Grundschule, Fachleitung Musik</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">RT</span></div><h3 class="team-card__name">Raimund Teske</h3><p class="team-card__role">Fachlehrer Englisch</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">JV</span></div><h3 class="team-card__name">Jeannette Viecens</h3><p class="team-card__role">Fachlehrerin Religion</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">UB</span></div><h3 class="team-card__name">Uta Bormann-Nickel</h3><p class="team-card__role">Fachlehrerin Sport</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">FD</span></div><h3 class="team-card__name">Frau Driller</h3><p class="team-card__role">Fachlehrerin Religion</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">CR</span></div><h3 class="team-card__name">Claudine Reiter</h3><p class="team-card__role">Förderschullehrerin</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">PP</span></div><h3 class="team-card__name">Patricia Petrol</h3><p class="team-card__role">Referendarin</p></div>
-<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/anja-fritsch.jpg" alt="Anja Fritsch" loading="lazy"></div><h3 class="team-card__name">Anja Fritsch</h3><p class="team-card__role">Pädagogische Mitarbeiterin, Vertretungsunterricht</p></div>
-<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/ellen-sundermann.jpg" alt="Ellen Sundermann" loading="lazy"></div><h3 class="team-card__name">Ellen Sundermann</h3><p class="team-card__role">Pädagogische Mitarbeiterin Ganztag, Tanz-AG, Seilspring-AG</p></div>
+<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/anja-fritsch.jpg" alt="Anja Fritsch" srcset="assets/images/team/anja-fritsch-400w.jpg 400w, assets/images/team/anja-fritsch.jpg 1400w" sizes="(max-width: 620px) 96px, 132px" width="1400" height="2101" decoding="async" loading="lazy"></div><h3 class="team-card__name">Anja Fritsch</h3><p class="team-card__role">Pädagogische Mitarbeiterin, Vertretungsunterricht</p></div>
+<div class="team-card"><div class="team-card__photo"><img src="assets/images/team/ellen-sundermann.jpg" alt="Ellen Sundermann" srcset="assets/images/team/ellen-sundermann-400w.jpg 400w, assets/images/team/ellen-sundermann.jpg 1600w" sizes="(max-width: 620px) 96px, 132px" width="1600" height="2400" decoding="async" loading="lazy"></div><h3 class="team-card__name">Ellen Sundermann</h3><p class="team-card__role">Pädagogische Mitarbeiterin Ganztag, Tanz-AG, Seilspring-AG</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">NM</span></div><h3 class="team-card__name">Nicole Musch</h3><p class="team-card__role">Pädagogische Mitarbeiterin Betreuung</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">FH</span></div><h3 class="team-card__name">Fadia Haci</h3><p class="team-card__role">Pädagogische Mitarbeiterin Ganztag</p></div>
 <div class="team-card"><div class="team-card__photo"><span class="team-card__initials">S</span></div><h3 class="team-card__name">Schoch</h3><p class="team-card__role">Schulbegleitung</p></div>
@@ -146,7 +201,7 @@
   <div class="site-footer__inner">
     <div>
       <div class="site-footer__brand">
-        <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44">
+        <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44" decoding="async">
         <strong>Grundschule Flegessen</strong>
       </div>
       <p>Gülichstr. 1, 31848 Bad Münder<br>Telefon: <a href="tel:+49504253060">05042 53060</a><br>E-Mail: <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></p>
@@ -185,6 +240,6 @@
   <button class="lightbox__next" aria-label="Nächstes Bild">›</button>
 </div>
 
-<script src="js/main.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/main.js?v=20260930-083224-db04f6" defer></script>
 </body>
 </html>

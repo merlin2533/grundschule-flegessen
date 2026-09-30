@@ -2,3 +2,12 @@ node_modules/
 .DS_Store
 *.log
 .env
+
+# Laufzeitdaten des Admin-Bereichs (werden nie committet und beim Deployment nicht überschrieben)
+data/*
+!data/.gitkeep
+!data/.htaccess
+uploads/*
+!uploads/.gitkeep
+!uploads/.htaccess
+api/config.local.php

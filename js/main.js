@@ -170,7 +170,7 @@
     return "<img" + attrs + ">";
   }
 
-  var SIZES_TILE = "(max-width: 620px) calc(100vw - 48px), (max-width: 920px) 45vw, 270px";
+  var SIZES_TILE = "(max-width: 620px) calc(100vw - 48px), (max-width: 920px) 45vw, 370px";
 
   var renderers = {
     "team-member": function (m) {

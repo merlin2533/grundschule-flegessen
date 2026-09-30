@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00789f">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="content-root" content="">
 <title>Schulalltag – Grundschule Flegessen</title>
@@ -20,29 +21,83 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/site/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/images/site/favicon-180.png">
 <link rel="preload" href="assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20260930-081500-e28fd7">
-<script type="application/ld+json">
+<link rel="stylesheet" href="css/style.css?v=20260930-083224-db04f6">
+<script type="application/ld+json" id="ld-schema">
 {
   "@context": "https://schema.org",
-  "@type": "School",
-  "name": "Grundschule Flegessen",
-  "alternateName": "GS Flegessen",
-  "url": "https://grundschule-flegessen.de/",
-  "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
-  "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
-  "telephone": "+49 5042 53060",
-  "email": "gs-flegessen@t-online.de",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Gülichstr. 1",
-    "postalCode": "31848",
-    "addressLocality": "Bad Münder",
-    "addressRegion": "Niedersachsen",
-    "addressCountry": "DE"
-  }
+  "@graph": [
+    {
+      "@type": "School",
+      "@id": "https://grundschule-flegessen.de/#school",
+      "name": "Grundschule Flegessen",
+      "alternateName": "GS Flegessen",
+      "url": "https://grundschule-flegessen.de/",
+      "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
+      "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
+      "telephone": "+49504253060",
+      "email": "gs-flegessen@t-online.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gülichstr. 1",
+        "postalCode": "31848",
+        "addressLocality": "Bad Münder",
+        "addressRegion": "Niedersachsen",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.1554,
+        "longitude": 9.441
+      },
+      "foundingDate": "1934",
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Flegessen"
+        },
+        {
+          "@type": "Place",
+          "name": "Klein Süntel"
+        },
+        {
+          "@type": "Place",
+          "name": "Hasperde"
+        },
+        {
+          "@type": "Place",
+          "name": "Hachmühlen"
+        },
+        {
+          "@type": "Place",
+          "name": "Brullsen"
+        },
+        {
+          "@type": "Place",
+          "name": "Bad Münder am Deister"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://grundschule-flegessen.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Schulalltag",
+          "item": "https://grundschule-flegessen.de/schulalltag.html"
+        }
+      ]
+    }
+  ]
 }
 </script>
-<script src="js/version-check.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/version-check.js?v=20260930-083224-db04f6" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -50,7 +105,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="index.html">
-      <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48">
+      <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48" decoding="async">
       <span>
         <span class="brand__name">Grundschule Flegessen</span>
         <span class="brand__claim">Eine kleine Schule mit großem Herz</span>
@@ -90,20 +145,36 @@
   <div class="page-hero">
     <div class="page-hero__inner">
       <div>
-        <p class="breadcrumbs"><a href="index.html">Home</a> › Schulalltag</p>
+        <nav class="breadcrumbs" aria-label="Brotkrumen"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Schulalltag</li></ol></nav>
         <h1 data-edit="pages.schulalltag.pageTitle">Schulalltag</h1>
         <div class="prose" data-edit="pages.schulalltag.introHtml"><p>An der Grundschule Flegessen gibt es viel zu erleben. Vormittags haben wir Unterricht. Danach kann man in der Betreuung bis 13:00 Uhr in der Schule bleiben. Am Nachmittag haben wir einen offenen Ganztag mit verschiedenen Angeboten – der Ganztag ist bei uns bis 16:00 Uhr.</p><p>An unserer Schule lernen wir unter anderem in den Fächern Deutsch, Mathematik, Sachunterricht, Musik, Sport, Religion und Englisch.</p></div>
       </div>
       <div class="page-hero__media">
-        <img data-edit-img="pages.schulalltag.heroImage" src="assets/images/pages/schulalltag-hero.jpg" alt="Schulalltag an der Grundschule Flegessen">
+        <img data-edit-img="pages.schulalltag.heroImage" src="assets/images/pages/schulalltag-hero.jpg" alt="Schulalltag an der Grundschule Flegessen" srcset="assets/images/pages/schulalltag-hero-400w.jpg 400w, assets/images/pages/schulalltag-hero-800w.jpg 800w, assets/images/pages/schulalltag-hero-1200w.jpg 1200w, assets/images/pages/schulalltag-hero.jpg 1600w" width="1600" height="1067" decoding="async" sizes="(max-width: 1180px) 100vw, 1180px" fetchpriority="high">
       </div>
     </div>
   </div>
 
+  <section class="section" id="tagesablauf">
+    <div class="container">
+      <div class="section-head">
+        <h2 data-edit="pages.schulalltag.timelineTitle">Ein Tag an unserer Schule</h2>
+      </div>
+      <ol class="timeline" data-edit-list="pages.schulalltag.timeline" data-list-template="timeline-item">
+<li class="timeline__item"><span class="timeline__time">8:15 Uhr</span><div class="timeline__body"><h3>Unterrichtsbeginn</h3><p>Der Schultag startet mit der 1. Stunde. Gelernt wird in kleinen Klassen in Deutsch, Mathematik, Sachunterricht, Musik, Sport, Religion und Englisch.</p></div></li>
+<li class="timeline__item"><span class="timeline__time">9:50 Uhr</span><div class="timeline__body"><h3>Große Pause</h3><p>30 Minuten zum Toben, Spielen und Frühstücken – auf unserem Schulhof mit neuem Spielplatz und Soccerplatz.</p></div></li>
+<li class="timeline__item"><span class="timeline__time">10:20 Uhr</span><div class="timeline__body"><h3>3. und 4. Stunde</h3><p>Weiter geht es mit Unterricht. Zwischen der 3. und 4. Stunde gibt es eine kurze Verschnaufpause.</p></div></li>
+<li class="timeline__item"><span class="timeline__time">11:55 Uhr</span><div class="timeline__body"><h3>Kleine Pause</h3><p>Zehn Minuten, um durchzuatmen, bevor die 5. Stunde beginnt.</p></div></li>
+<li class="timeline__item"><span class="timeline__time">13:00 Uhr</span><div class="timeline__body"><h3>Betreuung</h3><p>Kinder, die nach dem Unterricht nicht sofort nach Hause gehen, werden bis 13:00 Uhr in der Schule betreut.</p></div></li>
+<li class="timeline__item"><span class="timeline__time">bis 16:00 Uhr</span><div class="timeline__body"><h3>Offener Ganztag</h3><p>Am Nachmittag gibt es Mittagessen und verschiedene Angebote, zum Beispiel Tanz-AG und Seilspring-AG.</p></div></li>
+</ol>
+    </div>
+  </section>
+
   <section class="section--alt" id="ganztag">
     <div class="container grid grid--2" style="align-items:center;">
       <div class="hero__media" style="aspect-ratio: 4/3;">
-        <img data-edit-img="pages.schulalltag.betreuungImage" src="assets/images/pages/schulalltag-ganztag.jpg" alt="Kinder im offenen Ganztag der Grundschule Flegessen" loading="lazy">
+        <img data-edit-img="pages.schulalltag.betreuungImage" src="assets/images/pages/schulalltag-ganztag.jpg" alt="Kinder im offenen Ganztag der Grundschule Flegessen" loading="lazy" srcset="assets/images/pages/schulalltag-ganztag-400w.jpg 400w, assets/images/pages/schulalltag-ganztag-800w.jpg 800w, assets/images/pages/schulalltag-ganztag-1200w.jpg 1200w, assets/images/pages/schulalltag-ganztag.jpg 1600w" width="1600" height="1066" decoding="async" sizes="(max-width: 860px) 100vw, 560px">
       </div>
       <div>
         <span class="eyebrow">Nach dem Unterricht</span>
@@ -131,7 +202,7 @@
   <div class="site-footer__inner">
     <div>
       <div class="site-footer__brand">
-        <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44">
+        <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44" decoding="async">
         <strong>Grundschule Flegessen</strong>
       </div>
       <p>Gülichstr. 1, 31848 Bad Münder<br>Telefon: <a href="tel:+49504253060">05042 53060</a><br>E-Mail: <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></p>
@@ -170,6 +241,6 @@
   <button class="lightbox__next" aria-label="Nächstes Bild">›</button>
 </div>
 
-<script src="js/main.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/main.js?v=20260930-083224-db04f6" defer></script>
 </body>
 </html>

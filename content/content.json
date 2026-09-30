@@ -328,7 +328,40 @@
         "alt": "Kinder im offenen Ganztag der Grundschule Flegessen"
       },
       "konzepteTitle": "Konzepte & Mitteilungen",
-      "konzepteHtml": "<p>Aktuelle Informationen für Eltern, unsere pädagogischen Konzepte sowie die genauen Unterrichtszeiten finden Sie auf den verlinkten Seiten.</p>"
+      "konzepteHtml": "<p>Aktuelle Informationen für Eltern, unsere pädagogischen Konzepte sowie die genauen Unterrichtszeiten finden Sie auf den verlinkten Seiten.</p>",
+      "timelineTitle": "Ein Tag an unserer Schule",
+      "timeline": [
+        {
+          "time": "8:15 Uhr",
+          "title": "Unterrichtsbeginn",
+          "text": "Der Schultag startet mit der 1. Stunde. Gelernt wird in kleinen Klassen in Deutsch, Mathematik, Sachunterricht, Musik, Sport, Religion und Englisch."
+        },
+        {
+          "time": "9:50 Uhr",
+          "title": "Große Pause",
+          "text": "30 Minuten zum Toben, Spielen und Frühstücken – auf unserem Schulhof mit neuem Spielplatz und Soccerplatz."
+        },
+        {
+          "time": "10:20 Uhr",
+          "title": "3. und 4. Stunde",
+          "text": "Weiter geht es mit Unterricht. Zwischen der 3. und 4. Stunde gibt es eine kurze Verschnaufpause."
+        },
+        {
+          "time": "11:55 Uhr",
+          "title": "Kleine Pause",
+          "text": "Zehn Minuten, um durchzuatmen, bevor die 5. Stunde beginnt."
+        },
+        {
+          "time": "13:00 Uhr",
+          "title": "Betreuung",
+          "text": "Kinder, die nach dem Unterricht nicht sofort nach Hause gehen, werden bis 13:00 Uhr in der Schule betreut."
+        },
+        {
+          "time": "bis 16:00 Uhr",
+          "title": "Offener Ganztag",
+          "text": "Am Nachmittag gibt es Mittagessen und verschiedene Angebote, zum Beispiel Tanz-AG und Seilspring-AG."
+        }
+      ]
     },
     "unterrichtszeiten": {
       "pageTitle": "Unterrichtszeiten",

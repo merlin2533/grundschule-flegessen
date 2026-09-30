@@ -36,10 +36,16 @@ async function makeJpg(src, out, w) {
 }
 
 // .webp neben jpg sicherstellen; nicht kleinere .webp entfernen
-async function ensureWebp(jpg, force) {
+// tools/image-nowebp.json merkt sich verworfene .webp (Schlüssel = jpg, Wert = mtime der jpg), damit sie nicht bei jedem Lauf neu gerechnet werden
+const nowebpPath = p('tools/image-nowebp.json');
+const nowebp = fs.existsSync(nowebpPath) ? JSON.parse(fs.readFileSync(nowebpPath, 'utf8')) : {};
+const nowebpBefore = JSON.stringify(nowebp);
+async function ensureWebp(jpgAbs, force) {
+  const jpg = jpgAbs, key = path.relative(root, jpg).split(path.sep).join('/');
   const webp = jpg.replace(/\.jpe?g$/i, '.webp');
+  if (!force && !fs.existsSync(webp) && nowebp[key] && nowebp[key] >= mtime(jpg)) return;
   if (force || mtime(webp) < mtime(jpg)) await sharp(jpg).rotate().webp({ quality: Q }).toFile(webp + '.tmp').then(() => fs.renameSync(webp + '.tmp', webp));
-  if (fs.existsSync(webp) && size(webp) >= size(jpg)) fs.unlinkSync(webp);
+  if (fs.existsSync(webp) && size(webp) >= size(jpg)) { fs.unlinkSync(webp); nowebp[key] = mtime(jpg); } else delete nowebp[key];
 }
 
 async function variantsFor(srcRel, widths, meta) {
@@ -122,6 +128,8 @@ async function run() {
   const mini = JSON.stringify(sorted);
   const miniPath = p('content/image-meta.json');
   if (!fs.existsSync(miniPath) || fs.readFileSync(miniPath, 'utf8') !== mini) fs.writeFileSync(miniPath, mini);
+  const sortedNo = Object.fromEntries(Object.keys(nowebp).sort().map((k) => [k, nowebp[k]]));
+  if (JSON.stringify(sortedNo) !== nowebpBefore) fs.writeFileSync(nowebpPath, JSON.stringify(sortedNo, null, 1) + '\n');
   console.log('Bilder geprüft:', count, '| Meta-Einträge:', Object.keys(sorted).length);
 }
 

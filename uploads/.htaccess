@@ -1,0 +1,36 @@
+# Hier liegen nur vom Admin hochgeladene Bilder – niemals Skripte ausführen.
+Options -Indexes -ExecCGI
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8 .phps .pht .phar
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8 .phps .pht .phar
+<IfModule mod_mime.c>
+  SetHandler none
+</IfModule>
+
+# Nur Bilddateien ausliefern
+<IfModule mod_authz_core.c>
+  Require all denied
+  <FilesMatch "\.(jpe?g|png|webp)$">
+    Require all granted
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+  <FilesMatch "\.(jpe?g|png|webp)$">
+    Allow from all
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Content-Security-Policy "default-src 'none'"
+</IfModule>

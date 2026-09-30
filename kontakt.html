@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00789f">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="content-root" content="">
 <title>Kontakt – Grundschule Flegessen</title>
@@ -20,29 +21,83 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/site/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/images/site/favicon-180.png">
 <link rel="preload" href="assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20260930-081500-e28fd7">
-<script type="application/ld+json">
+<link rel="stylesheet" href="css/style.css?v=20260930-083224-db04f6">
+<script type="application/ld+json" id="ld-schema">
 {
   "@context": "https://schema.org",
-  "@type": "School",
-  "name": "Grundschule Flegessen",
-  "alternateName": "GS Flegessen",
-  "url": "https://grundschule-flegessen.de/",
-  "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
-  "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
-  "telephone": "+49 5042 53060",
-  "email": "gs-flegessen@t-online.de",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Gülichstr. 1",
-    "postalCode": "31848",
-    "addressLocality": "Bad Münder",
-    "addressRegion": "Niedersachsen",
-    "addressCountry": "DE"
-  }
+  "@graph": [
+    {
+      "@type": "School",
+      "@id": "https://grundschule-flegessen.de/#school",
+      "name": "Grundschule Flegessen",
+      "alternateName": "GS Flegessen",
+      "url": "https://grundschule-flegessen.de/",
+      "logo": "https://grundschule-flegessen.de/assets/images/site/logo.jpg",
+      "image": "https://grundschule-flegessen.de/assets/images/site/og-image.jpg",
+      "telephone": "+49504253060",
+      "email": "gs-flegessen@t-online.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gülichstr. 1",
+        "postalCode": "31848",
+        "addressLocality": "Bad Münder",
+        "addressRegion": "Niedersachsen",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.1554,
+        "longitude": 9.441
+      },
+      "foundingDate": "1934",
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Flegessen"
+        },
+        {
+          "@type": "Place",
+          "name": "Klein Süntel"
+        },
+        {
+          "@type": "Place",
+          "name": "Hasperde"
+        },
+        {
+          "@type": "Place",
+          "name": "Hachmühlen"
+        },
+        {
+          "@type": "Place",
+          "name": "Brullsen"
+        },
+        {
+          "@type": "Place",
+          "name": "Bad Münder am Deister"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://grundschule-flegessen.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Kontakt",
+          "item": "https://grundschule-flegessen.de/kontakt.html"
+        }
+      ]
+    }
+  ]
 }
 </script>
-<script src="js/version-check.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/version-check.js?v=20260930-083224-db04f6" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -50,7 +105,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="index.html">
-      <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48">
+      <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="48" height="48" decoding="async">
       <span>
         <span class="brand__name">Grundschule Flegessen</span>
         <span class="brand__claim">Eine kleine Schule mit großem Herz</span>
@@ -90,12 +145,12 @@
   <div class="page-hero">
     <div class="page-hero__inner">
       <div>
-        <p class="breadcrumbs"><a href="index.html">Home</a> › Kontakt</p>
+        <nav class="breadcrumbs" aria-label="Brotkrumen"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Kontakt</li></ol></nav>
         <h1 data-edit="pages.kontakt.pageTitle">Kontakt</h1>
         <div class="prose" data-edit="pages.kontakt.introHtml"><p>Wir freuen uns über Ihre Nachricht! Rufen Sie uns an, schreiben Sie uns eine E-Mail oder besuchen Sie uns direkt vor Ort.</p></div>
       </div>
       <div class="page-hero__media">
-        <img data-edit-img="pages.kontakt.heroImage" src="assets/images/pages/kontakt-hero.jpg" alt="Eingang der Grundschule Flegessen">
+        <img data-edit-img="pages.kontakt.heroImage" src="assets/images/pages/kontakt-hero.jpg" alt="Eingang der Grundschule Flegessen" srcset="assets/images/pages/kontakt-hero-400w.jpg 400w, assets/images/pages/kontakt-hero-800w.jpg 800w, assets/images/pages/kontakt-hero-1200w.jpg 1200w, assets/images/pages/kontakt-hero.jpg 1600w" width="1600" height="534" decoding="async" sizes="(max-width: 1180px) 100vw, 1180px" fetchpriority="high">
       </div>
     </div>
   </div>
@@ -138,7 +193,7 @@
   <div class="site-footer__inner">
     <div>
       <div class="site-footer__brand">
-        <img src="assets/images/site/logo.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44">
+        <img src="assets/images/site/logo-96.jpg" alt="Logo der Grundschule Flegessen" width="44" height="44" decoding="async">
         <strong>Grundschule Flegessen</strong>
       </div>
       <p>Gülichstr. 1, 31848 Bad Münder<br>Telefon: <a href="tel:+49504253060">05042 53060</a><br>E-Mail: <a href="mailto:gs-flegessen@t-online.de">gs-flegessen@t-online.de</a></p>
@@ -177,6 +232,6 @@
   <button class="lightbox__next" aria-label="Nächstes Bild">›</button>
 </div>
 
-<script src="js/main.js?v=20260930-081500-e28fd7" defer></script>
+<script src="js/main.js?v=20260930-083224-db04f6" defer></script>
 </body>
 </html>

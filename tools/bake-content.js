@@ -9,7 +9,10 @@ const vm = require('vm');
 const root = path.join(__dirname, '..');
 const content = JSON.parse(fs.readFileSync(path.join(root, 'content/content.json'), 'utf8'));
 
-const ctx = { window: {}, document: { querySelector: () => null, querySelectorAll: () => [], addEventListener() {} }, fetch() {}, CustomEvent: function () {} };
+const { loadMeta, setAttr, removeAttr, srcsetFor } = require('./img-util');
+const imageMeta = loadMeta();
+
+const ctx = { window: { GSImageMeta: imageMeta }, document: { querySelector: () => null, querySelectorAll: () => [], addEventListener() {} }, fetch() {}, CustomEvent: function () {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'js/main.js'), 'utf8'), ctx);
 const renderers = ctx.window.GSRenderers;
 
@@ -58,6 +61,10 @@ function bake(html) {
     if (!v || !v.file) return tagStr;
     tagStr = tagStr.replace(/\ssrc="[^"]*"/, ' src="' + escAttr(v.file) + '"');
     if (v.alt) tagStr = tagStr.replace(/\salt="[^"]*"/, ' alt="' + escAttr(v.alt) + '"');
+    const m = imageMeta[v.file];
+    const srcset = srcsetFor(v.file, imageMeta);
+    if (srcset) tagStr = setAttr(tagStr, 'srcset', srcset); else tagStr = removeAttr(tagStr, 'srcset');
+    if (m) { tagStr = setAttr(tagStr, 'width', m.w); tagStr = setAttr(tagStr, 'height', m.h); }
     return tagStr;
   });
   return html;

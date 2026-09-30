@@ -1,8 +1,10 @@
 // Build-Schritt: node tools/build.js   (oder: npm run build)
-//  1. Inhalte aus content.json fest in die HTML-Seiten schreiben (bake-content.js)
-//  2. neue eindeutige Build-ID erzeugen -> version.json
-//  3. CSS/JS-Verweise mit ?v=<ID> versehen und version-check.js einbinden
-//  4. sitemap.xml neu erzeugen (lastmod ändert sich nur bei geänderten Seiten)
+//  1. Bildvarianten (400w/800w/1200w, WebP) und tools/image-meta.json erzeugen (images.js)
+//  2. Inhalte aus content.json fest in die HTML-Seiten schreiben (bake-content.js)
+//  3. neue eindeutige Build-ID erzeugen -> version.json
+//  4. CSS/JS-Verweise mit ?v=<ID> versehen und version-check.js einbinden
+//  5. Breadcrumbs, JSON-LD, theme-color, <img>-Attribute (enhance.js)
+//  6. sitemap.xml neu erzeugen (lastmod ändert sich nur bei geänderten Seiten)
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -11,7 +13,11 @@ const { execFileSync } = require('child_process');
 const root = path.join(__dirname, '..');
 const DOMAIN = 'https://grundschule-flegessen.de';
 
+const { enhance } = require('./enhance');
+
+execFileSync(process.execPath, [path.join(__dirname, 'images.js')], { stdio: 'inherit' });
 execFileSync(process.execPath, [path.join(__dirname, 'bake-content.js')], { stdio: 'inherit' });
+const content = JSON.parse(fs.readFileSync(path.join(root, 'content/content.json'), 'utf8'));
 
 const now = new Date();
 const p2 = (n) => String(n).padStart(2, '0');
@@ -37,7 +43,7 @@ function version(html, prefix) {
 const pages = fs.readdirSync(root).filter((f) => f.endsWith('.html'));
 for (const f of pages) {
   const full = path.join(root, f);
-  fs.writeFileSync(full, version(fs.readFileSync(full, 'utf8'), ''));
+  fs.writeFileSync(full, enhance(version(fs.readFileSync(full, 'utf8'), ''), f, content));
 }
 const adminIndex = path.join(root, 'admin', 'index.html');
 if (fs.existsSync(adminIndex)) fs.writeFileSync(adminIndex, version(fs.readFileSync(adminIndex, 'utf8'), '../'));
