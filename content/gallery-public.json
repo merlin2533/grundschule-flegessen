@@ -5,7 +5,10 @@
     "webp": "assets/images/gallery/0-scaled.webp",
     "thumbJpg": "assets/images/gallery/0-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/0-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/0-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "1-scaled",
@@ -13,7 +16,10 @@
     "webp": "assets/images/gallery/1-scaled.webp",
     "thumbJpg": "assets/images/gallery/1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "2-scaled",
@@ -21,7 +27,10 @@
     "webp": "assets/images/gallery/2-scaled.webp",
     "thumbJpg": "assets/images/gallery/2-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/2-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/2-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "20210423-124623-scaled",
@@ -29,7 +38,10 @@
     "webp": "assets/images/gallery/20210423-124623-scaled.webp",
     "thumbJpg": "assets/images/gallery/20210423-124623-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/20210423-124623-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/20210423-124623-scaled-960w.jpg",
+    "w": 1600,
+    "h": 900
   },
   {
     "slug": "275a1516-scaled",
@@ -37,7 +49,10 @@
     "webp": "assets/images/gallery/275a1516-scaled.webp",
     "thumbJpg": "assets/images/gallery/275a1516-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/275a1516-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/275a1516-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2400
   },
   {
     "slug": "2bb694a2-eabd-4061-a2d8-64f73851e4ad-scaled",
@@ -45,7 +60,10 @@
     "webp": "assets/images/gallery/2bb694a2-eabd-4061-a2d8-64f73851e4ad-scaled.webp",
     "thumbJpg": "assets/images/gallery/2bb694a2-eabd-4061-a2d8-64f73851e4ad-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/2bb694a2-eabd-4061-a2d8-64f73851e4ad-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/2bb694a2-eabd-4061-a2d8-64f73851e4ad-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "3-scaled",
@@ -53,7 +71,10 @@
     "webp": "assets/images/gallery/3-scaled.webp",
     "thumbJpg": "assets/images/gallery/3-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/3-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/3-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "3a131148-cdad-46b9-88c8-591e875fa83d-scaled",
@@ -61,7 +82,10 @@
     "webp": "assets/images/gallery/3a131148-cdad-46b9-88c8-591e875fa83d-scaled.webp",
     "thumbJpg": "assets/images/gallery/3a131148-cdad-46b9-88c8-591e875fa83d-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/3a131148-cdad-46b9-88c8-591e875fa83d-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/3a131148-cdad-46b9-88c8-591e875fa83d-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "4-scaled",
@@ -69,7 +93,10 @@
     "webp": "assets/images/gallery/4-scaled.webp",
     "thumbJpg": "assets/images/gallery/4-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/4-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/4-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "45915b94-ab5d-4590-b533-66664241eaf3-scaled",
@@ -77,7 +104,10 @@
     "webp": "assets/images/gallery/45915b94-ab5d-4590-b533-66664241eaf3-scaled.webp",
     "thumbJpg": "assets/images/gallery/45915b94-ab5d-4590-b533-66664241eaf3-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/45915b94-ab5d-4590-b533-66664241eaf3-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/45915b94-ab5d-4590-b533-66664241eaf3-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "4975dab6-e032-4bb8-a226-f542d4f20fbd-scaled",
@@ -85,7 +115,10 @@
     "webp": "assets/images/gallery/4975dab6-e032-4bb8-a226-f542d4f20fbd-scaled.webp",
     "thumbJpg": "assets/images/gallery/4975dab6-e032-4bb8-a226-f542d4f20fbd-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/4975dab6-e032-4bb8-a226-f542d4f20fbd-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/4975dab6-e032-4bb8-a226-f542d4f20fbd-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "5f5b0317-b68d-44a0-ab4e-73755a6e7628-1-scaled",
@@ -93,7 +126,10 @@
     "webp": "assets/images/gallery/5f5b0317-b68d-44a0-ab4e-73755a6e7628-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/5f5b0317-b68d-44a0-ab4e-73755a6e7628-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/5f5b0317-b68d-44a0-ab4e-73755a6e7628-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/5f5b0317-b68d-44a0-ab4e-73755a6e7628-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "86b0d44d-b43c-4397-ada8-b0803489b3f0-scaled",
@@ -101,7 +137,10 @@
     "webp": "assets/images/gallery/86b0d44d-b43c-4397-ada8-b0803489b3f0-scaled.webp",
     "thumbJpg": "assets/images/gallery/86b0d44d-b43c-4397-ada8-b0803489b3f0-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/86b0d44d-b43c-4397-ada8-b0803489b3f0-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/86b0d44d-b43c-4397-ada8-b0803489b3f0-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "alle-scaled",
@@ -109,7 +148,10 @@
     "webp": "assets/images/gallery/alle-scaled.webp",
     "thumbJpg": "assets/images/gallery/alle-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/alle-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/alle-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "ba1acc74-83eb-432c-b261-01c2552f7dee-scaled",
@@ -117,7 +159,10 @@
     "webp": "assets/images/gallery/ba1acc74-83eb-432c-b261-01c2552f7dee-scaled.webp",
     "thumbJpg": "assets/images/gallery/ba1acc74-83eb-432c-b261-01c2552f7dee-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/ba1acc74-83eb-432c-b261-01c2552f7dee-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/ba1acc74-83eb-432c-b261-01c2552f7dee-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "d36053d5-6b38-4ad4-8a46-a85d5c757823-1-scaled",
@@ -125,7 +170,10 @@
     "webp": "assets/images/gallery/d36053d5-6b38-4ad4-8a46-a85d5c757823-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/d36053d5-6b38-4ad4-8a46-a85d5c757823-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/d36053d5-6b38-4ad4-8a46-a85d5c757823-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/d36053d5-6b38-4ad4-8a46-a85d5c757823-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "dsc05141-scaled",
@@ -133,7 +181,10 @@
     "webp": "assets/images/gallery/dsc05141-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc05141-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc05141-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc05141-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc06787-scaled",
@@ -141,7 +192,10 @@
     "webp": "assets/images/gallery/dsc06787-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc06787-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc06787-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc06787-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc06813-scaled",
@@ -149,7 +203,10 @@
     "webp": "assets/images/gallery/dsc06813-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc06813-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc06813-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc06813-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc06819-scaled",
@@ -157,7 +214,10 @@
     "webp": "assets/images/gallery/dsc06819-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc06819-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc06819-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc06819-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc06828-scaled",
@@ -165,7 +225,10 @@
     "webp": "assets/images/gallery/dsc06828-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc06828-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc06828-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc06828-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2400
   },
   {
     "slug": "dsc07031-scaled",
@@ -173,7 +236,10 @@
     "webp": "assets/images/gallery/dsc07031-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc07031-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc07031-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc07031-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09264-scaled",
@@ -181,7 +247,10 @@
     "webp": "assets/images/gallery/dsc09264-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09264-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09264-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09264-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09265-scaled",
@@ -189,7 +258,10 @@
     "webp": "assets/images/gallery/dsc09265-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09265-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09265-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09265-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09266-scaled",
@@ -197,7 +269,10 @@
     "webp": "assets/images/gallery/dsc09266-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09266-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09266-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09266-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09267-scaled",
@@ -205,7 +280,10 @@
     "webp": "assets/images/gallery/dsc09267-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09267-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09267-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09267-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09271",
@@ -213,7 +291,10 @@
     "webp": "assets/images/gallery/dsc09271.webp",
     "thumbJpg": "assets/images/gallery/dsc09271-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09271-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09271-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09273",
@@ -221,7 +302,10 @@
     "webp": "assets/images/gallery/dsc09273.webp",
     "thumbJpg": "assets/images/gallery/dsc09273-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09273-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09273-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09286",
@@ -229,7 +313,10 @@
     "webp": "assets/images/gallery/dsc09286.webp",
     "thumbJpg": "assets/images/gallery/dsc09286-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09286-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09286-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09309-scaled",
@@ -237,7 +324,10 @@
     "webp": "assets/images/gallery/dsc09309-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09309-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09309-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09309-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2400
   },
   {
     "slug": "dsc09311-scaled",
@@ -245,7 +335,10 @@
     "webp": "assets/images/gallery/dsc09311-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09311-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09311-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09311-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2400
   },
   {
     "slug": "dsc09317-scaled",
@@ -253,7 +346,10 @@
     "webp": "assets/images/gallery/dsc09317-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09317-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09317-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09317-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09325-scaled",
@@ -261,7 +357,10 @@
     "webp": "assets/images/gallery/dsc09325-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09325-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09325-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09325-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09339-scaled",
@@ -269,7 +368,10 @@
     "webp": "assets/images/gallery/dsc09339-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09339-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09339-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09339-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09340-scaled",
@@ -277,7 +379,10 @@
     "webp": "assets/images/gallery/dsc09340-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09340-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09340-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09340-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09355-scaled",
@@ -285,7 +390,10 @@
     "webp": "assets/images/gallery/dsc09355-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09355-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09355-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09355-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09367-scaled",
@@ -293,7 +401,10 @@
     "webp": "assets/images/gallery/dsc09367-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09367-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09367-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09367-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09404-1-scaled",
@@ -301,7 +412,10 @@
     "webp": "assets/images/gallery/dsc09404-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09404-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09404-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09404-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09404-scaled",
@@ -309,7 +423,10 @@
     "webp": "assets/images/gallery/dsc09404-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09404-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09404-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09404-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09431-scaled",
@@ -317,7 +434,10 @@
     "webp": "assets/images/gallery/dsc09431-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09431-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09431-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09431-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "dsc09437-scaled",
@@ -325,7 +445,10 @@
     "webp": "assets/images/gallery/dsc09437-scaled.webp",
     "thumbJpg": "assets/images/gallery/dsc09437-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/dsc09437-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/dsc09437-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1067
   },
   {
     "slug": "eb12d3e2-b825-4d77-ad5d-2876b87dfe02-1-scaled",
@@ -333,7 +456,10 @@
     "webp": "assets/images/gallery/eb12d3e2-b825-4d77-ad5d-2876b87dfe02-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/eb12d3e2-b825-4d77-ad5d-2876b87dfe02-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/eb12d3e2-b825-4d77-ad5d-2876b87dfe02-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/eb12d3e2-b825-4d77-ad5d-2876b87dfe02-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "ehhk56051",
@@ -341,7 +467,10 @@
     "webp": "assets/images/gallery/ehhk56051.webp",
     "thumbJpg": "assets/images/gallery/ehhk56051-thumb.jpg",
     "thumbWebp": "assets/images/gallery/ehhk56051-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/ehhk56051.jpg",
+    "w": 768,
+    "h": 1024
   },
   {
     "slug": "flgsn4-0338-scaled",
@@ -349,7 +478,10 @@
     "webp": "assets/images/gallery/flgsn4-0338-scaled.webp",
     "thumbJpg": "assets/images/gallery/flgsn4-0338-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/flgsn4-0338-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/flgsn4-0338-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2400
   },
   {
     "slug": "img-0569-scaled",
@@ -357,7 +489,10 @@
     "webp": "assets/images/gallery/img-0569-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-0569-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-0569-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-0569-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-0571-1-scaled",
@@ -365,7 +500,10 @@
     "webp": "assets/images/gallery/img-0571-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-0571-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-0571-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-0571-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-0576-scaled",
@@ -373,7 +511,10 @@
     "webp": "assets/images/gallery/img-0576-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-0576-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-0576-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-0576-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-0581-scaled",
@@ -381,7 +522,10 @@
     "webp": "assets/images/gallery/img-0581-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-0581-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-0581-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-0581-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-0583-scaled",
@@ -389,7 +533,10 @@
     "webp": "assets/images/gallery/img-0583-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-0583-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-0583-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-0583-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1977-scaled",
@@ -397,7 +544,10 @@
     "webp": "assets/images/gallery/img-1977-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1977-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1977-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1977-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-1978-scaled",
@@ -405,7 +555,10 @@
     "webp": "assets/images/gallery/img-1978-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1978-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1978-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1978-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1981-scaled",
@@ -413,7 +566,10 @@
     "webp": "assets/images/gallery/img-1981-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1981-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1981-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1981-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-1982-scaled",
@@ -421,7 +577,10 @@
     "webp": "assets/images/gallery/img-1982-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1982-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1982-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1982-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-1984-scaled",
@@ -429,7 +588,10 @@
     "webp": "assets/images/gallery/img-1984-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1984-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1984-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1984-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-1985-1-scaled",
@@ -437,7 +599,10 @@
     "webp": "assets/images/gallery/img-1985-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1985-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1985-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1985-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-1985-scaled",
@@ -445,7 +610,10 @@
     "webp": "assets/images/gallery/img-1985-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1985-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1985-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1985-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-1990-scaled",
@@ -453,7 +621,10 @@
     "webp": "assets/images/gallery/img-1990-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1990-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1990-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1990-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1991-scaled",
@@ -461,7 +632,10 @@
     "webp": "assets/images/gallery/img-1991-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1991-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1991-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1991-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1992-scaled",
@@ -469,7 +643,10 @@
     "webp": "assets/images/gallery/img-1992-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1992-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1992-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1992-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1994-scaled",
@@ -477,7 +654,10 @@
     "webp": "assets/images/gallery/img-1994-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1994-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1994-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1994-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1995-scaled",
@@ -485,7 +665,10 @@
     "webp": "assets/images/gallery/img-1995-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1995-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1995-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1995-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1996-scaled",
@@ -493,7 +676,10 @@
     "webp": "assets/images/gallery/img-1996-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1996-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1996-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1996-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1997-scaled",
@@ -501,7 +687,10 @@
     "webp": "assets/images/gallery/img-1997-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1997-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1997-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1997-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1998-scaled",
@@ -509,7 +698,10 @@
     "webp": "assets/images/gallery/img-1998-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1998-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1998-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1998-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-1999-scaled",
@@ -517,7 +709,10 @@
     "webp": "assets/images/gallery/img-1999-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-1999-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-1999-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-1999-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2001-scaled",
@@ -525,7 +720,10 @@
     "webp": "assets/images/gallery/img-2001-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2001-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2001-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2001-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2002-scaled",
@@ -533,7 +731,10 @@
     "webp": "assets/images/gallery/img-2002-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2002-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2002-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2002-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2003-scaled",
@@ -541,7 +742,10 @@
     "webp": "assets/images/gallery/img-2003-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2003-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2003-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2003-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2004-scaled",
@@ -549,7 +753,10 @@
     "webp": "assets/images/gallery/img-2004-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2004-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2004-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2004-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2005-scaled",
@@ -557,7 +764,10 @@
     "webp": "assets/images/gallery/img-2005-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2005-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2005-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2005-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2006-scaled",
@@ -565,7 +775,10 @@
     "webp": "assets/images/gallery/img-2006-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2006-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2006-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2006-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2007-scaled",
@@ -573,7 +786,10 @@
     "webp": "assets/images/gallery/img-2007-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2007-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2007-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2007-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2008-scaled",
@@ -581,7 +797,10 @@
     "webp": "assets/images/gallery/img-2008-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2008-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2008-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2008-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2009-scaled",
@@ -589,7 +808,10 @@
     "webp": "assets/images/gallery/img-2009-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2009-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2009-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2009-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-2010-scaled",
@@ -597,7 +819,10 @@
     "webp": "assets/images/gallery/img-2010-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2010-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2010-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2010-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2011-scaled",
@@ -605,7 +830,10 @@
     "webp": "assets/images/gallery/img-2011-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2011-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2011-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2011-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2012-scaled",
@@ -613,7 +841,10 @@
     "webp": "assets/images/gallery/img-2012-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2012-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2012-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2012-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2013-scaled",
@@ -621,7 +852,10 @@
     "webp": "assets/images/gallery/img-2013-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2013-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2013-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2013-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2014-scaled",
@@ -629,7 +863,10 @@
     "webp": "assets/images/gallery/img-2014-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2014-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2014-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2014-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2015-scaled",
@@ -637,7 +874,10 @@
     "webp": "assets/images/gallery/img-2015-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2015-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2015-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2015-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2016-scaled",
@@ -645,7 +885,10 @@
     "webp": "assets/images/gallery/img-2016-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2016-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2016-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2016-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2017-scaled",
@@ -653,7 +896,10 @@
     "webp": "assets/images/gallery/img-2017-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2017-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2017-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2017-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2018-scaled",
@@ -661,7 +907,10 @@
     "webp": "assets/images/gallery/img-2018-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2018-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2018-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2018-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2019-scaled",
@@ -669,7 +918,10 @@
     "webp": "assets/images/gallery/img-2019-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2019-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2019-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2019-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2020-scaled",
@@ -677,7 +929,10 @@
     "webp": "assets/images/gallery/img-2020-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2020-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2020-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2020-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2021-scaled",
@@ -685,7 +940,10 @@
     "webp": "assets/images/gallery/img-2021-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2021-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2021-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2021-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2022-scaled",
@@ -693,7 +951,10 @@
     "webp": "assets/images/gallery/img-2022-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2022-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2022-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2022-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2023-scaled",
@@ -701,7 +962,10 @@
     "webp": "assets/images/gallery/img-2023-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2023-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2023-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2023-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2024-scaled",
@@ -709,7 +973,10 @@
     "webp": "assets/images/gallery/img-2024-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2024-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2024-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2024-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2025-scaled",
@@ -717,7 +984,10 @@
     "webp": "assets/images/gallery/img-2025-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2025-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2025-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2025-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2026-scaled",
@@ -725,7 +995,10 @@
     "webp": "assets/images/gallery/img-2026-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2026-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2026-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2026-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2027-scaled",
@@ -733,7 +1006,10 @@
     "webp": "assets/images/gallery/img-2027-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2027-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2027-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2027-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2028-scaled",
@@ -741,7 +1017,10 @@
     "webp": "assets/images/gallery/img-2028-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2028-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2028-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2028-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2029-scaled",
@@ -749,7 +1028,10 @@
     "webp": "assets/images/gallery/img-2029-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2029-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2029-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2029-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2030-scaled",
@@ -757,7 +1039,10 @@
     "webp": "assets/images/gallery/img-2030-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2030-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2030-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2030-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2031-scaled",
@@ -765,7 +1050,10 @@
     "webp": "assets/images/gallery/img-2031-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2031-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2031-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2031-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-2032-scaled",
@@ -773,7 +1061,10 @@
     "webp": "assets/images/gallery/img-2032-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-2032-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-2032-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-2032-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-29551-scaled",
@@ -781,7 +1072,10 @@
     "webp": "assets/images/gallery/img-29551-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-29551-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-29551-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-29551-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-29561-scaled",
@@ -789,7 +1083,10 @@
     "webp": "assets/images/gallery/img-29561-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-29561-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-29561-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-29561-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-29571-scaled",
@@ -797,7 +1094,10 @@
     "webp": "assets/images/gallery/img-29571-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-29571-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-29571-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-29571-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-29581-scaled",
@@ -805,7 +1105,10 @@
     "webp": "assets/images/gallery/img-29581-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-29581-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-29581-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-29581-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-29641-scaled",
@@ -813,7 +1116,10 @@
     "webp": "assets/images/gallery/img-29641-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-29641-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-29641-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-29641-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-31751-scaled",
@@ -821,7 +1127,10 @@
     "webp": "assets/images/gallery/img-31751-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-31751-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-31751-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-31751-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-31801-scaled",
@@ -829,7 +1138,10 @@
     "webp": "assets/images/gallery/img-31801-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-31801-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-31801-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-31801-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-31831-scaled",
@@ -837,7 +1149,10 @@
     "webp": "assets/images/gallery/img-31831-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-31831-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-31831-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-31831-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-31851-scaled",
@@ -845,7 +1160,10 @@
     "webp": "assets/images/gallery/img-31851-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-31851-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-31851-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-31851-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-31871-scaled",
@@ -853,7 +1171,10 @@
     "webp": "assets/images/gallery/img-31871-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-31871-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-31871-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-31871-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-31951-scaled",
@@ -861,7 +1182,10 @@
     "webp": "assets/images/gallery/img-31951-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-31951-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-31951-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-31951-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32061-scaled",
@@ -869,7 +1193,10 @@
     "webp": "assets/images/gallery/img-32061-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32061-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32061-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32061-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32191-scaled",
@@ -877,7 +1204,10 @@
     "webp": "assets/images/gallery/img-32191-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32191-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32191-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32191-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32271-scaled",
@@ -885,7 +1215,10 @@
     "webp": "assets/images/gallery/img-32271-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32271-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32271-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32271-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32301-scaled",
@@ -893,7 +1226,10 @@
     "webp": "assets/images/gallery/img-32301-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32301-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32301-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32301-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32381-scaled",
@@ -901,7 +1237,10 @@
     "webp": "assets/images/gallery/img-32381-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32381-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32381-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32381-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32421-scaled",
@@ -909,7 +1248,10 @@
     "webp": "assets/images/gallery/img-32421-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32421-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32421-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32421-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32451-scaled",
@@ -917,7 +1259,10 @@
     "webp": "assets/images/gallery/img-32451-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32451-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32451-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32451-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32541-scaled",
@@ -925,7 +1270,10 @@
     "webp": "assets/images/gallery/img-32541-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32541-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32541-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32541-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32611-scaled",
@@ -933,7 +1281,10 @@
     "webp": "assets/images/gallery/img-32611-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32611-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32611-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32611-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32641-scaled",
@@ -941,7 +1292,10 @@
     "webp": "assets/images/gallery/img-32641-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32641-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32641-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32641-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32701-1-scaled",
@@ -949,7 +1303,10 @@
     "webp": "assets/images/gallery/img-32701-1-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32701-1-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32701-1-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32701-1-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32701-scaled",
@@ -957,7 +1314,10 @@
     "webp": "assets/images/gallery/img-32701-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32701-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32701-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32701-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32721-scaled",
@@ -965,7 +1325,10 @@
     "webp": "assets/images/gallery/img-32721-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32721-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32721-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32721-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32781-scaled",
@@ -973,7 +1336,10 @@
     "webp": "assets/images/gallery/img-32781-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32781-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32781-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32781-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-32821-scaled",
@@ -981,7 +1347,10 @@
     "webp": "assets/images/gallery/img-32821-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32821-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32821-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32821-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32861-scaled",
@@ -989,7 +1358,10 @@
     "webp": "assets/images/gallery/img-32861-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32861-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32861-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32861-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32891-scaled",
@@ -997,7 +1369,10 @@
     "webp": "assets/images/gallery/img-32891-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32891-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32891-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32891-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-32931-scaled",
@@ -1005,7 +1380,10 @@
     "webp": "assets/images/gallery/img-32931-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-32931-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-32931-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-32931-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6519-scaled",
@@ -1013,7 +1391,10 @@
     "webp": "assets/images/gallery/img-6519-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6519-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6519-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6519-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6520-scaled",
@@ -1021,7 +1402,10 @@
     "webp": "assets/images/gallery/img-6520-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6520-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6520-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6520-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6521-scaled",
@@ -1029,7 +1413,10 @@
     "webp": "assets/images/gallery/img-6521-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6521-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6521-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6521-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6522-scaled",
@@ -1037,7 +1424,10 @@
     "webp": "assets/images/gallery/img-6522-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6522-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6522-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6522-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-6638-scaled",
@@ -1045,7 +1435,10 @@
     "webp": "assets/images/gallery/img-6638-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6638-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6638-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6638-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6642-scaled",
@@ -1053,7 +1446,10 @@
     "webp": "assets/images/gallery/img-6642-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6642-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6642-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6642-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6648-scaled",
@@ -1061,7 +1457,10 @@
     "webp": "assets/images/gallery/img-6648-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6648-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6648-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6648-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6652-scaled",
@@ -1069,7 +1468,10 @@
     "webp": "assets/images/gallery/img-6652-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6652-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6652-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6652-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6656-scaled",
@@ -1077,7 +1479,10 @@
     "webp": "assets/images/gallery/img-6656-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6656-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6656-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6656-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6668-scaled",
@@ -1085,7 +1490,10 @@
     "webp": "assets/images/gallery/img-6668-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6668-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6668-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6668-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6670-scaled",
@@ -1093,7 +1501,10 @@
     "webp": "assets/images/gallery/img-6670-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6670-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6670-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6670-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6675-scaled",
@@ -1101,7 +1512,10 @@
     "webp": "assets/images/gallery/img-6675-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6675-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6675-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6675-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6678-scaled",
@@ -1109,7 +1523,10 @@
     "webp": "assets/images/gallery/img-6678-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6678-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6678-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6678-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-6682-scaled",
@@ -1117,7 +1534,10 @@
     "webp": "assets/images/gallery/img-6682-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6682-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6682-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6682-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-6696-scaled",
@@ -1125,7 +1545,10 @@
     "webp": "assets/images/gallery/img-6696-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6696-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6696-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6696-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6697-scaled",
@@ -1133,7 +1556,10 @@
     "webp": "assets/images/gallery/img-6697-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6697-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6697-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6697-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6700-scaled",
@@ -1141,7 +1567,10 @@
     "webp": "assets/images/gallery/img-6700-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6700-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6700-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6700-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6703-scaled",
@@ -1149,7 +1578,10 @@
     "webp": "assets/images/gallery/img-6703-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6703-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6703-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6703-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6707-scaled",
@@ -1157,7 +1589,10 @@
     "webp": "assets/images/gallery/img-6707-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6707-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6707-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6707-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6709-scaled",
@@ -1165,7 +1600,10 @@
     "webp": "assets/images/gallery/img-6709-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6709-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6709-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6709-scaled-960w.jpg",
+    "w": 1600,
+    "h": 1200
   },
   {
     "slug": "img-6725-scaled",
@@ -1173,7 +1611,10 @@
     "webp": "assets/images/gallery/img-6725-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6725-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6725-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6725-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "img-6726-scaled",
@@ -1181,7 +1622,10 @@
     "webp": "assets/images/gallery/img-6726-scaled.webp",
     "thumbJpg": "assets/images/gallery/img-6726-scaled-thumb.jpg",
     "thumbWebp": "assets/images/gallery/img-6726-scaled-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/img-6726-scaled-960w.jpg",
+    "w": 1600,
+    "h": 2133
   },
   {
     "slug": "a1",
@@ -1189,7 +1633,10 @@
     "webp": "assets/images/gallery/a1.webp",
     "thumbJpg": "assets/images/gallery/a1-thumb.jpg",
     "thumbWebp": "assets/images/gallery/a1-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/a1.jpg",
+    "w": 800,
+    "h": 800
   },
   {
     "slug": "ad2",
@@ -1197,7 +1644,10 @@
     "webp": "assets/images/gallery/ad2.webp",
     "thumbJpg": "assets/images/gallery/ad2-thumb.jpg",
     "thumbWebp": "assets/images/gallery/ad2-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/ad2.jpg",
+    "w": 600,
+    "h": 400
   },
   {
     "slug": "ad7",
@@ -1205,7 +1655,10 @@
     "webp": "assets/images/gallery/ad7.webp",
     "thumbJpg": "assets/images/gallery/ad7-thumb.jpg",
     "thumbWebp": "assets/images/gallery/ad7-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/ad7.jpg",
+    "w": 600,
+    "h": 400
   },
   {
     "slug": "av1",
@@ -1213,7 +1666,10 @@
     "webp": "assets/images/gallery/av1.webp",
     "thumbJpg": "assets/images/gallery/av1-thumb.jpg",
     "thumbWebp": "assets/images/gallery/av1-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/av1.jpg",
+    "w": 800,
+    "h": 600
   },
   {
     "slug": "av2",
@@ -1221,7 +1677,10 @@
     "webp": "assets/images/gallery/av2.webp",
     "thumbJpg": "assets/images/gallery/av2-thumb.jpg",
     "thumbWebp": "assets/images/gallery/av2-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/av2.jpg",
+    "w": 800,
+    "h": 600
   },
   {
     "slug": "av4",
@@ -1229,6 +1688,9 @@
     "webp": "assets/images/gallery/av4.webp",
     "thumbJpg": "assets/images/gallery/av4-thumb.jpg",
     "thumbWebp": "assets/images/gallery/av4-thumb.webp",
-    "alt": "Impression aus dem Schulleben der Grundschule Flegessen"
+    "alt": "Impression aus dem Schulleben der Grundschule Flegessen",
+    "mid": "assets/images/gallery/av4.jpg",
+    "w": 800,
+    "h": 600
   }
 ]
