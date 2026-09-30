@@ -248,14 +248,26 @@
     if (!data) return;
 
     document.querySelectorAll("[data-edit]").forEach(function (el) {
-      var val = getPath(data, el.getAttribute("data-edit"));
-      if (typeof val === "string" && val.trim() !== "" && el.innerHTML.trim() !== val.trim()) el.innerHTML = val;
+      var key = el.getAttribute("data-edit");
+      var val = getPath(data, key);
+      if (typeof val === "string" && el.innerHTML.trim() !== val.trim()) el.innerHTML = val;
+      // zugehöriges Link-Ziel (…Label/…Title -> …Href) übernehmen
+      var hrefKey = key.replace(/(Label|Title)$/, "Href");
+      if (hrefKey !== key) {
+        var href = getPath(data, hrefKey);
+        var link = el.tagName === "A" ? el : el.closest("a");
+        if (typeof href === "string" && href && link && link.getAttribute("href") !== href) link.setAttribute("href", href);
+      }
     });
+
+    applySite(data);
 
     document.querySelectorAll("[data-edit-img]").forEach(function (el) {
       var val = getPath(data, el.getAttribute("data-edit-img"));
-      if (!val || !val.file) return;
+      if (!val || typeof val.file !== "string") return;
       var target = el.tagName === "IMG" ? el : el.querySelector("img");
+      if (val.file === "") { if (target) target.hidden = true; return; }
+      if (target) target.hidden = false;
       var src = rootPath() + val.file;
       if (target) {
         if (target.getAttribute("src") !== src) {
@@ -275,7 +287,7 @@
     var pending = lists.map(function (el) {
       var val = getPath(data, el.getAttribute("data-edit-list"));
       var tpl = el.getAttribute("data-list-template");
-      if (!Array.isArray(val) || !renderers[tpl] || !val.length) return null;
+      if (!Array.isArray(val) || !renderers[tpl]) return null;
       var probe = document.createElement("div");
       probe.innerHTML = val.map(renderers[tpl]).join("");
       if (listSignature(probe) === listSignature(el)) return null;
@@ -292,6 +304,42 @@
       fetchJson(["content/image-meta.json"]).then(function (m) { if (m) window.GSImageMeta = m; commit(); });
     } else {
       commit();
+    }
+  }
+
+  var PAGE_KEYS = { "unsere-schule": 1, team: 1, klassen: 1, schulalltag: 1, unterrichtszeiten: 1, eltern: 1, mitteilungen: 1, aktuelles: 1, galerie: 1, kontakt: 1, impressum: 1, datenschutz: 1 };
+
+  // Kontaktdaten, Karte und Meta-Angaben aus den Inhalten übernehmen
+  function applySite(data) {
+    var site = data.site || {};
+    var phone = typeof site.phone === "string" ? site.phone.trim() : "";
+    var mail = typeof site.email === "string" ? site.email.trim() : "";
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+      if (!phone) return;
+      a.setAttribute("href", "tel:" + phone.replace(/[^\d+]/g, "").replace(/^0/, "+49"));
+      if (!a.closest(".cta-bar") && a.textContent.trim() !== phone) a.textContent = phone;
+    });
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+      if (!mail) return;
+      a.setAttribute("href", "mailto:" + mail);
+      if (!a.closest(".cta-bar") && !a.classList.contains("btn") && a.textContent.trim() !== mail) a.textContent = mail;
+    });
+    var form = document.querySelector("form[data-mailto]");
+    if (form && mail) form.setAttribute("data-mailto", mail);
+    if (typeof site.mapEmbedUrl === "string" && site.mapEmbedUrl) {
+      document.querySelectorAll("[data-map-src]").forEach(function (box) {
+        box.setAttribute("data-map-src", site.mapEmbedUrl);
+        var f = box.querySelector("iframe");
+        if (f && f.getAttribute("src") !== site.mapEmbedUrl) f.src = site.mapEmbedUrl;
+      });
+    }
+    var file = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "");
+    var page = file === "index" ? (data.pages || {}).home : PAGE_KEYS[file] ? (data.pages || {})[file] : null;
+    if (page && typeof page.metaDescription === "string" && page.metaDescription) {
+      ["meta[name=\"description\"]", "meta[property=\"og:description\"]"].forEach(function (q) {
+        var m = document.querySelector(q);
+        if (m) m.setAttribute("content", page.metaDescription);
+      });
     }
   }
 
@@ -517,6 +565,7 @@
   }
 
   /* ---------------- Scroll-Effekte und Zähler ---------------- */
+  var contentReady = false;
   var revealObserver = null;
   function initReveal() {
     if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -552,7 +601,7 @@
   }
 
   function runCounter(el) {
-    if (el.getAttribute("data-counted")) return;
+    if (!contentReady || el.getAttribute("data-counted")) return;
     el.setAttribute("data-counted", "1");
     var m = el.textContent.trim().match(/^(\d{1,3})(\D.*)?$/);
     if (!m || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -664,8 +713,11 @@
     initFilters();
     openFaqFromHash();
     window.addEventListener("hashchange", openFaqFromHash);
-    initReveal();
-    loadContent().then(applyContent);
+    loadContent().then(function (data) {
+      contentReady = true;
+      if (data) applyContent(data);
+      else document.dispatchEvent(new CustomEvent("content:applied", { detail: null }));
+    });
   });
 
   // nach dem Einspielen der Inhalte: Filter, Stundenplan, Effekte neu anwenden

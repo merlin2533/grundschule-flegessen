@@ -48,7 +48,7 @@
     if (!changed && !stale) return;
     return clearCaches().then(function () {
       try { localStorage.setItem(KEY, v.id); } catch (e) {}
-      var done = false;
+      var done = true; // ohne funktionierenden sessionStorage nie neu laden (Schleifenschutz)
       try { done = sessionStorage.getItem(RELOAD_KEY) === v.id; sessionStorage.setItem(RELOAD_KEY, v.id); } catch (e) {}
       if (stale && !done) location.reload();
     });

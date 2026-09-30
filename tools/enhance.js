@@ -58,7 +58,7 @@ function jsonLd(file, title, content) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: DOMAIN + '/' },
-        { '@type': 'ListItem', position: 2, name: title, item: DOMAIN + '/' + file }
+        { '@type': 'ListItem', position: 2, name: stripTags(title), item: DOMAIN + '/' + file }
       ]
     });
   }

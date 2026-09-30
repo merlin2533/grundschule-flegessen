@@ -621,3 +621,10 @@ body.lightbox-open { overflow: hidden; }
 
 /* Große Bereiche später rendern */
 .site-footer { content-visibility: auto; contain-intrinsic-size: auto 420px; }
+
+.site-header.is-hidden:focus-within { transform: none; }
+@media print {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .cta-bar, .back-to-top, .site-header, .nav-toggle, .lightbox { display: none !important; }
+  .site-footer { content-visibility: visible; background: none; color: #000; }
+}

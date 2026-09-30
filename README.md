@@ -1,14 +1,14 @@
 # Grundschule Flegessen – Website
 
 Moderne, schnelle und SEO-optimierte Website für die Grundschule Flegessen (Bad Münder).
-Reines **HTML, CSS und JavaScript** – kein Server, keine Datenbank, keine Cookies.
+Frontend in **HTML, CSS und JavaScript**; Inhalte und Bilder werden über einen Admin mit kleiner PHP-Schnittstelle und SQLite-Datenbank gepflegt. Für Besucher: keine Cookies, kein Tracking.
 
 ## Aufbau
 
 | Pfad | Inhalt |
 |---|---|
 | `*.html` | Öffentliche Seiten (Startseite, Schule, Team, Klassen, Aktuelles, Eltern, Galerie, Kontakt, Impressum, Datenschutz, 404) |
-| `content/content.json` | **Alle Texte und Bildverweise** der Seiten – wird vom Admin-Bereich bearbeitet |
+| `content/content.json` | **Standardinhalt** (Texte, Bildverweise) – Grundlage für den Admin; der Admin ändert diese Datei nie, sondern speichert Abweichungen in der Datenbank |
 | `version.json` | Aktuelle Build-ID (Cache-Busting), wird von Build und Admin erzeugt |
 | `content/gallery-public.json` | Liste der Galerie-Fotos |
 | `css/style.css` | Design-System (responsive, nur helles Design) |
@@ -88,7 +88,7 @@ Beim Wiederherstellen eines Backups gilt dieselbe Regel; der Import zeigt, was �
 - Öffentliche Besucher erhalten **keine Cookies**; nur der Admin verwendet nach dem Login ein Sitzungs-Cookie.
 - Ohne PHP/SQLite zeigt die Website einfach den Standardinhalt aus `content/content.json`.
 - Optional: zusätzlicher Schutz per `.htpasswd` (Vorlage: `admin/.htaccess.example`).
-- Hinweis: Steht das Passwort in der README, sollte das Repository privat bleiben.
+- Das Start-Passwort muss beim ersten Login geändert werden. Hinweis: Steht das Passwort in der README, sollte das Repository privat bleiben und `README.md` nicht auf den Webserver gelangen.
 
 Neue PDFs für „Mitteilungen“ legt man per FTP in `assets/downloads/` ab und trägt den Pfad im Admin unter *Mitteilungen* ein.
 
@@ -107,4 +107,6 @@ Für Google Ads (SEA): Zielseiten `eltern.html` (Anmeldung/Einschulung), `unsere
 
 ## Deployment
 
-Zuerst `npm run build`, dann alle Dateien (außer `node_modules/`, `tools/`, `archive/`) auf den Webspace hochladen – inklusive `version.json`.
+Zuerst `npm run build`, dann hochladen: `*.html`, `css/`, `js/`, `assets/`, `content/`, `api/`, `admin/`, `sitemap.xml`, `robots.txt`, `version.json`, `.htaccess`.
+**Nicht hochladen bzw. nicht überschreiben:** `data/`, `uploads/` (Laufzeitdaten des Admins), außerdem `node_modules/`, `tools/`, `archive/`, `.git`, `README.md`, `package*.json` (die `.htaccess` sperrt sie zusätzlich).
+Beim allerersten Deployment `api/config.local.php` anlegen, falls `data/`/`uploads/` außerhalb des Web-Roots liegen sollen.

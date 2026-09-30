@@ -11,3 +11,6 @@ uploads/*
 !uploads/.gitkeep
 !uploads/.htaccess
 api/config.local.php
+
+# Aussortierte Fotos (Personen) – nie ins Repository
+archive/

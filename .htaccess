@@ -1,5 +1,12 @@
 # Apache-Konfiguration (optional, greift nur auf Apache-Hosting)
 Options -Indexes
+
+# Interne Dateien nie ausliefern
+<IfModule mod_authz_core.c>
+  <FilesMatch "(\.md$|^package(-lock)?\.json$|^\.gitignore$|^\.git|^\.env)">
+    Require all denied
+  </FilesMatch>
+</IfModule>
 ErrorDocument 404 /404.html
 
 <IfModule mod_mime.c>
@@ -14,6 +21,7 @@ ErrorDocument 404 /404.html
 # WebP automatisch ausliefern, wenn der Browser es unterstützt und eine .webp-Datei existiert (gilt auch für -400w/-800w/-1200w/-960w/-96)
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteRule ^(tools|archive|node_modules|\.git)(/|$) - [F,L]
   RewriteCond %{HTTP_ACCEPT} image/webp
   RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
   RewriteRule ^(.+)\.jpe?g$ $1.webp [T=image/webp,L]
