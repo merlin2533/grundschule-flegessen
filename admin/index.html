@@ -3,103 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="color-scheme" content="light">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin – Grundschule Flegessen</title>
-<meta name="description" content="Internes Bearbeitungswerkzeug für die Texte und Bilder der Website der Grundschule Flegessen.">
+<meta name="description" content="Interner Admin-Bereich zum Bearbeiten der Texte und Bilder der Website der Grundschule Flegessen.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="vendor/quill.snow.css?v=20260930-083224-db04f6">
-<link rel="stylesheet" href="admin.css?v=20260930-083224-db04f6">
-<script src="../js/version-check.js?v=20260930-083224-db04f6" defer></script>
+<link rel="stylesheet" href="vendor/quill.snow.css?v=20260930-085502-bc04cd">
+<link rel="stylesheet" href="admin.css?v=20260930-085502-bc04cd">
+<script src="../js/version-check.js?v=20260930-085502-bc04cd" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+<noscript><p style="padding:1rem">Für den Admin-Bereich wird JavaScript benötigt.</p></noscript>
 
-<!-- ================= LOGIN SCREEN ================= -->
-<div id="loginScreen" class="login-screen">
+<!-- ================= Anmeldung ================= -->
+<div id="login" class="login" hidden>
   <div class="login-card">
+    <div class="login-logo" aria-hidden="true">GS</div>
     <h1>Admin-Bereich</h1>
-    <p class="lead">Grundschule Flegessen – Website-Inhalte bearbeiten</p>
-    <form id="loginForm" autocomplete="off">
-      <div class="field-group">
-        <label for="passwordInput">Passwort</label>
-        <input type="password" id="passwordInput" name="password" autocomplete="current-password" required>
+    <p class="lead">Grundschule Flegessen – Texte und Bilder der Website bearbeiten</p>
+    <form id="loginForm" novalidate>
+      <label class="mini-label" for="loginPw">Passwort</label>
+      <div class="pw-row">
+        <input id="loginPw" class="input" type="password" autocomplete="current-password" required>
+        <button type="button" id="pwToggle" class="btn btn-outline btn-small" aria-pressed="false">Anzeigen</button>
       </div>
-      <div id="loginError" class="error-msg" role="alert"></div>
-      <button type="submit" class="btn btn-primary" style="width:100%;">Anmelden</button>
+      <div id="loginError" class="form-msg err" role="alert" aria-live="assertive"></div>
+      <button id="loginBtn" class="btn btn-primary btn-block" type="submit">Anmelden</button>
     </form>
-    <div class="hint-box">
-      <strong>Hinweis:</strong> Dieser Passwortschutz ist nur ein einfacher Basisschutz.
-      Schützen Sie den <code>/admin/</code>-Ordner zusätzlich serverseitig (z.&nbsp;B. per
-      <code>.htpasswd</code>), sobald die Seite online ist. Eine Beispieldatei
-      (<code>admin/.htaccess.example</code>) liegt diesem Ordner bereits bei.
-    </div>
-    <div id="secureContextWarning" class="warning-box hidden"></div>
+    <p class="field-hint">Nach 5 Fehlversuchen ist die Anmeldung 10 Minuten gesperrt.</p>
   </div>
 </div>
 
-<!-- ================= APP (after login) ================= -->
-<div id="appRoot" class="hidden">
-
-  <header class="app-header">
-    <div class="app-header-inner">
-      <h1 class="app-title">Flegessen&nbsp;Admin</h1>
-      <span id="modeBadge" class="mode-badge hidden"></span>
-      <div class="spacer"></div>
-      <span id="saveStatus" class="save-status">Noch nicht gespeichert</span>
-      <button id="logoutBtn" class="btn btn-outline btn-small" type="button">Abmelden</button>
-    </div>
+<!-- ================= App ================= -->
+<div id="app" hidden>
+  <header class="topbar">
+    <button id="menuToggle" class="icon-btn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="sidebar">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <span class="topbar-title">Flegessen Admin</span>
+    <span id="topDirty" class="dirty-dot" hidden title="Ungespeicherte Änderungen"><span class="visually-hidden">Ungespeicherte Änderungen</span></span>
   </header>
 
-  <!-- Onboarding: choose how to load content.json -->
-  <div id="startScreen" class="start-screen">
-    <div class="start-card">
-      <h2>Projekt öffnen</h2>
-      <p>Um die Inhalte zu bearbeiten, öffnen Sie zunächst die Projektdaten. Je nach
-         Browser stehen unterschiedliche Möglichkeiten zur Verfügung.</p>
+  <aside id="sidebar" class="sidebar" aria-label="Navigation">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">GS</span><span><strong>Grundschule Flegessen</strong><small>Admin-Bereich</small></span></div>
+    <nav id="menu" aria-label="Hauptmenü"></nav>
+  </aside>
+  <div id="scrim" class="scrim"></div>
 
-      <div id="fullModeOption">
-        <p><strong>Vollmodus (empfohlen, Chrome/Edge):</strong> Wählen Sie den obersten
-           Ordner der Website (den Ordner, der <code>content/content.json</code>,
-           <code>assets/</code> usw. enthält). Änderungen werden direkt gespeichert.</p>
-        <div class="option-row">
-          <button id="openFolderBtn" class="btn btn-primary" type="button">📁 Projektordner öffnen</button>
-        </div>
-      </div>
+  <main id="main" class="main" tabindex="-1"></main>
 
-      <div id="fallbackModeOption" style="margin-top: var(--space-3);">
-        <p><strong>Download-Modus (Firefox/Safari &amp; als Alternative):</strong> Wählen Sie
-           nur die Datei <code>content/content.json</code> aus. Änderungen werden am Ende als
-           Datei zum Herunterladen bereitgestellt.</p>
-        <div class="option-row">
-          <label class="btn btn-outline" style="cursor:pointer;">
-            📄 content.json auswählen
-            <input type="file" id="jsonFileInput" accept=".json,application/json" class="visually-hidden">
-          </label>
-        </div>
-      </div>
-
-    </div>
+  <div id="savebar" class="savebar" hidden>
+    <span id="saveStatus" class="save-status" role="status" aria-live="polite">Alles gespeichert</span>
+    <span class="spacer"></span>
+    <button id="discardBtn" class="btn btn-outline" type="button" disabled>Verwerfen</button>
+    <button id="saveBtn" class="btn btn-accent" type="button" disabled>Speichern</button>
   </div>
-
-  <!-- Main editor -->
-  <div id="editorShell" class="app-body hidden">
-    <nav id="tabNav" class="tab-nav" aria-label="Seiten"></nav>
-    <main id="pageContent" class="page-content"></main>
-  </div>
-
-  <div id="saveBar" class="save-bar hidden">
-    <button id="saveBtn" class="btn btn-accent" type="button">💾 Speichern</button>
-    <span id="saveBarStatus" class="save-status"></span>
-  </div>
-
-  <footer class="admin-footer">Grundschule Flegessen — internes Admin-Werkzeug, läuft vollständig im Browser.</footer>
 </div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<!-- Hidden helper elements -->
-<a id="downloadHelperLink" class="hidden"></a>
-
-<script src="vendor/quill.js?v=20260930-083224-db04f6"></script>
-<script src="app.js?v=20260930-083224-db04f6"></script>
+<script src="vendor/quill.js?v=20260930-085502-bc04cd"></script>
+<script src="js/core.js?v=20260930-085502-bc04cd"></script>
+<script src="js/editor.js?v=20260930-085502-bc04cd"></script>
+<script src="js/media.js?v=20260930-085502-bc04cd"></script>
+<script src="js/views.js?v=20260930-085502-bc04cd"></script>
+<script src="app.js?v=20260930-085502-bc04cd"></script>
 </body>
 </html>

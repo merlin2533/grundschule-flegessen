@@ -208,6 +208,7 @@ try {
             break;
         }
         case 'backup_restore': {
+            Media::checkPostSize();
             if (isset($_FILES['file'])) {
                 $f = $_FILES['file'];
                 if (is_array($f['error']) || $f['error'] !== UPLOAD_ERR_OK) {

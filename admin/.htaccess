@@ -1,0 +1,16 @@
+# Admin-Bereich: keine Zwischenspeicherung, Sicherheits-Header, nicht indexierbar.
+Options -Indexes
+
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-cache"
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set X-Frame-Options "DENY"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "same-origin"
+  # Quill nutzt Inline-Styles (style-src 'unsafe-inline'); es werden keine externen Ressourcen geladen.
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+</IfModule>

@@ -37,9 +37,20 @@ final class Media
 
     // ------------------------------------------------------------ Upload
 
+    /** PHP verwirft zu große POST-Bodys stillschweigend – dann eine verständliche Meldung liefern. */
+    public static function checkPostSize(): void
+    {
+        $len = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+        $max = ini_bytes((string)ini_get('post_max_size'));
+        if ($len > 0 && $max > 0 && $len > $max) {
+            fail(413, 'Die Datei ist größer als das Limit dieses Servers (post_max_size ' . ini_get('post_max_size') . ').');
+        }
+    }
+
     public static function handleUpload(PDO $pdo): array
     {
         if (!extension_loaded('gd')) fail(503, 'Die PHP-Erweiterung GD fehlt – Bilder können nicht verarbeitet werden.');
+        self::checkPostSize();
         if (!isset($_FILES['file']) || !is_array($_FILES['file'])) fail(400, 'Keine Datei empfangen (Feld „file“).');
         $f = $_FILES['file'];
         if (is_array($f['error'])) fail(400, 'Bitte je Anfrage nur eine Datei senden.');
@@ -268,7 +279,7 @@ final class Media
         foreach ($tree as $k => $v) {
             $p = $prefix === '' ? (string)$k : $prefix . (is_int($k) ? '[' . ($k + 1) . ']' : '.' . $k);
             if (is_array($v)) self::usageMap($v, $p, $map);
-            elseif (is_string($v) && preg_match('#^(uploads|assets/images)/#', $v)) $map[$v][] = $p;
+            elseif (is_string($v) && preg_match('#^(uploads|assets/images)/#', $v)) $map[$v][] = preg_replace('/\.file$/', '', $p);
         }
         return $map;
     }
@@ -299,6 +310,8 @@ final class Media
             $uploads[] = [
                 'file' => $rel,
                 'thumb' => is_file($v['thumb']) ? $pre . basename($v['thumb']) : $rel,
+                'webp' => is_file($v['webp']) ? $pre . basename($v['webp']) : '',
+                'thumbWebp' => is_file($v['thumbWebp']) ? $pre . basename($v['thumbWebp']) : '',
                 'name' => $r['original_name'] ?? $name,
                 'width' => $wd,
                 'height' => $ht,

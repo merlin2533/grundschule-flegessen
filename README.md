@@ -13,7 +13,9 @@ Reines **HTML, CSS und JavaScript** – kein Server, keine Datenbank, keine Cook
 | `content/gallery-public.json` | Liste der Galerie-Fotos |
 | `css/style.css` | Design-System (responsive, nur helles Design) |
 | `js/main.js` | Navigation, Übernahme der Inhalte aus `content.json`, Lightbox, Karten-Einwilligung |
-| `admin/` | Admin-Bereich mit WYSIWYG-Editor |
+| `admin/` | Admin-Oberfläche (WYSIWYG, Mediathek, Backup) |
+| `api/` | PHP-Schnittstelle + SQLite (Inhalte, Upload, Backup) |
+| `data/`, `uploads/` | Laufzeitdaten des Admins (nicht im Git, nicht überschreiben) |
 | `assets/images/` | Optimierte Bilder (JPEG + WebP) |
 | `assets/downloads/` | PDFs (Elternbriefe) und Schullied |
 | `assets/fonts/` | Selbst gehostete Schrift (keine Verbindung zu Google) |
@@ -21,9 +23,9 @@ Reines **HTML, CSS und JavaScript** – kein Server, keine Datenbank, keine Cook
 | `archive/` | Aussortierte Fotos (Porträts, Klassenfotos …) – **nicht hochladen** |
 
 Die HTML-Seiten enthalten die Texte bereits fest eingebaut (gut für Suchmaschinen, funktioniert auch ohne JavaScript).
-Beim Laden überschreibt `main.js` diese Texte mit den aktuellen Werten aus `content/content.json` –
-so wirken Änderungen aus dem Admin-Bereich für Besucher sofort.
-Damit auch Suchmaschinen und Besucher ohne JavaScript den neuen Stand sehen, nach größeren Änderungen einmal ausführen:
+Beim Laden holt `main.js` die aktuellen Inhalte von `api/?a=content` (Fallback: `content/content.json`) und legt sie über die eingebauten Texte –
+so wirken Änderungen aus dem Admin sofort.
+Für Suchmaschinen und Besucher ohne JavaScript enthält das HTML den Standardtext. Der Build schreibt `content/content.json` fest ein:
 
 ```bash
 node tools/bake-content.js   # schreibt content.json fest in die HTML-Seiten
@@ -40,7 +42,7 @@ Der Build
 2. erzeugt bei **jedem** Lauf eine neue eindeutige Build-ID in `version.json` und hängt sie als `?v=<ID>` an CSS/JS,
 3. erzeugt `sitemap.xml` neu (`lastmod` ändert sich nur bei geänderten Seiten).
 
-Auch der Admin schreibt bei jedem Speichern eine neue `version.json`. Beim Seitenaufruf vergleicht `js/version-check.js` die ID mit der im Browser gemerkten;
+Die API meldet zusätzlich eine Inhalts-Revision (`api/?a=version`), die sich bei jedem Speichern im Admin erhöht. Beim Seitenaufruf vergleicht `js/version-check.js` die ID mit der im Browser gemerkten;
 fehlt sie oder weicht sie ab, werden Cache Storage und Service Worker geleert und die Seite einmal neu geladen – so sehen Besucher immer den neuesten Stand.
 HTML, JSON und XML werden per `.htaccess` nie zwischengespeichert. Vor jedem Upload (Deployment) `npm run build` ausführen.
 
@@ -51,24 +53,44 @@ python3 -m http.server 8080
 # dann http://localhost:8080 öffnen
 ```
 
-## Admin-Bereich (Texte & Bilder pflegen)
+## Admin-Bereich (Texte, Bilder, Backup)
 
-1. `https://<domain>/admin/` öffnen und mit dem Admin-Passwort anmelden (siehe unten).
-2. **Chrome/Edge:** „Projektordner öffnen“ wählen und den Website-Ordner auswählen. Änderungen werden direkt in `content/content.json` und `assets/images/` gespeichert.
-3. **Firefox/Safari:** `content.json` laden, bearbeiten und die heruntergeladene Datei per FTP hochladen.
-4. Texte mit dem WYSIWYG-Editor bearbeiten, Bilder per Klick ersetzen, Team-Mitglieder, Klassen, Neuigkeiten und Dokumente hinzufügen oder entfernen.
+Der Admin läuft auf dem Webserver mit einer kleinen PHP-Schnittstelle (`api/`, PHP 8, ohne Frameworks) und einer **SQLite-Datenbank**.
+Die Seiten selbst bleiben reines HTML/JavaScript.
 
-Neue PDFs für „Mitteilungen“ legt man in `assets/downloads/` ab und trägt sie im Admin unter *Mitteilungen* ein.
+- Aufruf: `https://<domain>/admin/`
+- **Start-Passwort:** `Flegessen#Admin26` (danach im Admin unter *Einstellungen* ändern; das Passwort wird nur als Hash in der Datenbank gespeichert).
+  Passwort vergessen: Datei `data/RESET_PASSWORD.txt` mit dem neuen Passwort (mind. 10 Zeichen) anlegen – sie wird beim nächsten Login übernommen und gelöscht.
+- Menü: Übersicht (Systemprüfung), Seiten & Texte (alle Texte per WYSIWYG, alle Bilder), Bilder & Medien (Mediathek, Galerie-Manager),
+  Backup & Wiederherstellung, Verlauf (auf früheren Stand zurücksetzen), Einstellungen (Passwort, alles auf Auslieferungszustand, nicht mehr passende Einträge).
+- Änderungen werden sofort gespeichert und sind sofort online. Hochgeladene Bilder werden verkleinert, gedreht und als WebP-Variante abgelegt.
 
-**Admin-Passwort:** `Flegessen#Admin26`
+### Wo liegen die Daten? (Deployment überschreibt sie nicht)
 
-Das Passwort wird bewusst einfach gehalten und bei Bedarf manuell geändert: neuen SHA-256-Hash erzeugen
-(`printf '%s' 'NEUES_PASSWORT' | sha256sum`) und in `admin/app.js` bei `PASSWORD_HASH_HEX` eintragen.
-Hinweis: Steht das Passwort in der README, sollte das Repository privat bleiben bzw. die README nicht mit hochgeladen werden.
+| Ordner | Inhalt | Beim Deployment |
+|---|---|---|
+| `data/` | `site.sqlite` (alle Änderungen), `backups/` | **nicht hochladen / nicht überschreiben** |
+| `uploads/` | im Admin hochgeladene Bilder | **nicht hochladen / nicht überschreiben** |
+| alles andere | „Rahmen“ (HTML, CSS, JS, `api/`, `admin/`, `content/content.json` als Standardinhalt) | wird ersetzt |
 
-> **Sicherheit:** Der Passwortschutz im Admin ist nur ein Basisschutz im Browser. Vor dem Livegang den Ordner `admin/` zusätzlich serverseitig schützen (z. B. `.htpasswd`, Vorlage: `admin/.htaccess.example`) – oder den Admin nur lokal nutzen und ihn nicht hochladen.
+Beide Ordner sind in `.gitignore` und werden nur mit Platzhaltern ausgeliefert. Wer möchte, kann sie über `api/config.local.php` (Vorlage: `api/config.local.php.example`) außerhalb des Web-Roots ablegen.
 
-Bilder, die im Admin ersetzt werden, werden verkleinert (max. 1600 px) und unter neuem Dateinamen gespeichert (kein Cache-Problem).
+### Weiterentwicklung: nur Passendes wird übernommen
+
+Die Datenbank speichert nur **Abweichungen** vom Standardinhalt (`content/content.json`). Ändert sich der Rahmen (Felder umbenannt/entfernt/Typ geändert),
+werden nur Einträge angewandt, die noch zum Standard passen. Nicht mehr passende bleiben gespeichert, sind im Admin unter *Einstellungen* sichtbar und können gelöscht oder exportiert werden.
+Beim Wiederherstellen eines Backups gilt dieselbe Regel; der Import zeigt, was übernommen und was übersprungen wurde. Vor jeder Wiederherstellung, jedem Zurücksetzen und täglich beim ersten Speichern wird automatisch eine Sicherung angelegt.
+
+### Voraussetzungen und Sicherheit
+
+- PHP 8 mit `pdo_sqlite` (Pflicht), `gd`, `zip`, `dom`, `mbstring` (empfohlen) – die Systemprüfung im Admin zeigt fehlende Teile.
+- **Unbedingt HTTPS** nutzen (Login und Sitzung). Anmeldung mit Sperre nach 5 Fehlversuchen, CSRF-Schutz, HTML-Bereinigung, Upload-Prüfung.
+- Öffentliche Besucher erhalten **keine Cookies**; nur der Admin verwendet nach dem Login ein Sitzungs-Cookie.
+- Ohne PHP/SQLite zeigt die Website einfach den Standardinhalt aus `content/content.json`.
+- Optional: zusätzlicher Schutz per `.htpasswd` (Vorlage: `admin/.htaccess.example`).
+- Hinweis: Steht das Passwort in der README, sollte das Repository privat bleiben.
+
+Neue PDFs für „Mitteilungen“ legt man per FTP in `assets/downloads/` ab und trägt den Pfad im Admin unter *Mitteilungen* ein.
 
 ## Rechtliches
 

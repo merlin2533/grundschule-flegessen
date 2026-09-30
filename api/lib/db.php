@@ -25,6 +25,7 @@ final class Db
         if (!ensure_dir(DATA_DIR, true)) {
             fail(503, 'Das Datenverzeichnis ist nicht vorhanden oder nicht beschreibbar.');
         }
+        ensure_dir(BACKUP_DIR, true);
         try {
             $pdo = new PDO('sqlite:' . DB_FILE, null, null, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

@@ -1,0 +1,16 @@
+<?php
+/**
+ * Beispiel für eigene Einstellungen. Zum Verwenden kopieren nach:  api/config.local.php
+ * (config.local.php wird nie ins Repository übernommen und beim Frame-Deployment nicht überschrieben.)
+ */
+defined('GSF_API') or exit;
+
+// Datenbank und Backups außerhalb des Webroots ablegen (sicherer als data/ mit .htaccess):
+// define('DATA_DIR', '/home/USER/flegessen-daten');
+
+// Start-Passwort für die allererste Anmeldung (danach im Admin ändern):
+// define('INITIAL_ADMIN_PASSWORD', 'Bitte-etwas-Eigenes#2026');
+
+// Weitere Grenzen (Standardwerte in api/config.php):
+// define('MAX_UPLOAD_BYTES', 8 * 1024 * 1024);
+// define('MAX_AUTO_BACKUPS', 14);

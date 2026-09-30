@@ -160,7 +160,8 @@ function human_bytes(int $b): string
 {
     if ($b < 1024) return $b . ' B';
     if ($b < 1048576) return round($b / 1024, 1) . ' KB';
-    return round($b / 1048576, 1) . ' MB';
+    if ($b < 1073741824) return round($b / 1048576, 1) . ' MB';
+    return round($b / 1073741824, 1) . ' GB';
 }
 
 function ini_bytes(string $v): int
@@ -176,4 +177,19 @@ function ini_bytes(string $v): int
         case 'k': $n *= 1024;
     }
     return $n;
+}
+
+/* ---- Notlösungen, falls die PHP-Erweiterung mbstring fehlt ---- */
+if (!function_exists('mb_check_encoding')) {
+    function mb_check_encoding($s = null, $enc = null): bool { return preg_match('//u', (string)$s) === 1; }
+}
+if (!function_exists('mb_strlen')) {
+    function mb_strlen($s, $enc = null): int { return preg_match_all('/./us', (string)$s) ?: 0; }
+}
+if (!function_exists('mb_substr')) {
+    function mb_substr($s, $start, $len = null, $enc = null): string
+    {
+        if (preg_match_all('/./us', (string)$s, $m) === false) return substr((string)$s, $start, $len);
+        return implode('', array_slice($m[0], $start, $len));
+    }
 }
