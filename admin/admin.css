@@ -5,6 +5,7 @@
    ========================================================================== */
 
 :root {
+  color-scheme: light;
   --color-primary: #0091c2;
   --color-primary-dark: #00688c;
   --color-primary-light: #e6f6fc;
@@ -41,20 +42,6 @@
   --header-height: 64px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-ink: #f2f5f7;
-    --color-body: #dbe2e8;
-    --color-muted: #a7b2bd;
-    --color-line: #2c3742;
-    --color-surface: #14191e;
-    --color-surface-alt: #1b2229;
-    --color-surface-deep: #202933;
-    --color-primary-light: #12303c;
-    --shadow-s: 0 2px 8px rgba(0, 0, 0, 0.35);
-    --shadow-m: 0 12px 32px rgba(0, 0, 0, 0.45);
-  }
-}
 
 * , *::before, *::after { box-sizing: border-box; }
 
@@ -189,9 +176,6 @@ button, input, select, textarea { font-family: inherit; font-size: 1rem; }
   color: #6b4c00;
   margin-top: var(--space-2);
 }
-@media (prefers-color-scheme: dark) {
-  .warning-box { background: #3a2c00; color: #ffe6a8; }
-}
 
 /* ---------- App shell ---------- */
 .app-header {
@@ -225,10 +209,6 @@ button, input, select, textarea { font-family: inherit; font-size: 1rem; }
 }
 .mode-badge.full { background: #e3f6ea; color: #1c6b3a; }
 .mode-badge.download { background: #fff4e0; color: #7a5400; }
-@media (prefers-color-scheme: dark) {
-  .mode-badge.full { background: #123322; color: #7fe0a4; }
-  .mode-badge.download { background: #3a2c00; color: #ffe6a8; }
-}
 .spacer { flex: 1; }
 .save-status {
   font-size: 0.82rem;

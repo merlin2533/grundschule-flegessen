@@ -12,6 +12,7 @@
 }
 
 :root {
+  color-scheme: light;
   /* Brand colors */
   --color-primary: #00789f;
   --color-primary-dark: #005a78;
@@ -57,23 +58,6 @@
   --header-height: 84px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-ink: #f2f5f7;
-    --color-body: #dbe2e8;
-    --color-muted: #a7b2bd;
-    --color-line: #2c3742;
-    --color-surface: #14191e;
-    --color-surface-alt: #1b2229;
-    --color-surface-deep: #202933;
-    --color-primary-light: #12303c;
-    --color-link: #6cd0f2;
-    --color-primary-dark: #6cd0f2;
-    --shadow-s: 0 2px 8px rgba(0, 0, 0, 0.35);
-    --shadow-m: 0 12px 32px rgba(0, 0, 0, 0.4);
-    --shadow-l: 0 24px 56px rgba(0, 0, 0, 0.5);
-  }
-}
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }

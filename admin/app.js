@@ -9,12 +9,12 @@
    1) PASSWORTSCHUTZ (nur Basisschutz, siehe Hinweis in der Oberfläche)
    -------------------------------------------------------------------- */
 
-// SHA-256-Hash des Standardpassworts "flegessen2026".
+// SHA-256-Hash des Admin-Passworts (Passwort steht in der README.md).
 // Um das Passwort zu ändern: neuen Hash in der Browser-Konsole erzeugen mit
 //   crypto.subtle.digest('SHA-256', new TextEncoder().encode('NEUES_PASSWORT'))
 //     .then(b => console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
 // und den Wert unten eintragen.
-const PASSWORD_HASH_HEX = "b3317983fb8bef1134ef98e0d73bdf16321dcc9b3ed18c5bd48fdf941f4fbe98";
+const PASSWORD_HASH_HEX = "82ecd602e3a505c07c93efa0370347985c3eb29a8c7df3a843f9a7ba066091aa";
 const SESSION_FLAG = "gsflegessen_admin_unlocked";
 
 async function sha256Hex(text) {
@@ -751,6 +751,16 @@ document.getElementById("saveBtn").addEventListener("click", async () => {
   }
 });
 
+// Neue eindeutige Versions-ID (Cache-Busting): wird bei jedem Speichern erzeugt.
+function newVersionJson() {
+  const d = new Date();
+  const p2 = (n) => String(n).padStart(2, "0");
+  const rnd = Array.from(crypto.getRandomValues(new Uint8Array(3))).map((b) => b.toString(16).padStart(2, "0")).join("");
+  const id = "" + d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "-" +
+    p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "-" + rnd;
+  return JSON.stringify({ id: id, built: d.toISOString() }, null, 2) + "\n";
+}
+
 async function saveFullMode() {
   if (!rootDirHandle) throw new Error("Kein Projektordner geöffnet.");
 
@@ -769,6 +779,9 @@ async function saveFullMode() {
   await writable.write(JSON.stringify(contentData, null, 2));
   await writable.close();
 
+  // 3) Neue Versions-ID schreiben -> Besucher-Caches werden automatisch geleert
+  await writeFileIntoDirHandle(rootDirHandle, "version.json", new Blob([newVersionJson()], { type: "application/json" }));
+
   // Refresh previews (image bytes changed on disk, and object URLs used for
   // preview so far already reflect the new file — nothing else to do).
 }
@@ -779,7 +792,8 @@ async function saveDownloadMode() {
   const json = JSON.stringify(contentData, null, 2);
   const blob = new Blob([json], { type: "application/json" });
   triggerFileDownload(blob, "content.json");
-  toast("content.json wurde heruntergeladen. Bitte ersetzen Sie damit content/content.json auf Ihrem Server.");
+  setTimeout(() => triggerFileDownload(new Blob([newVersionJson()], { type: "application/json" }), "version.json"), 600);
+  toast("content.json und version.json wurden heruntergeladen. Bitte ersetzen Sie damit content/content.json und version.json (Hauptordner) auf Ihrem Server.");
 }
 
 /** Given the field path used as key in pendingImages (e.g. "pages.team.members.3.photo"),
