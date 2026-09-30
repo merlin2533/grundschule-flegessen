@@ -60,7 +60,7 @@ Die Seiten selbst bleiben reines HTML/JavaScript.
 
 - Aufruf: `https://<domain>/admin/`
 - **Start-Passwort:** `Flegessen#Admin26` (danach im Admin unter *Einstellungen* ändern; das Passwort wird nur als Hash in der Datenbank gespeichert).
-  Passwort vergessen: Datei `data/RESET_PASSWORD.txt` mit dem neuen Passwort (mind. 10 Zeichen) anlegen – sie wird beim nächsten Login übernommen und gelöscht.
+  Passwort vergessen: Datei `data/RESET_PASSWORD.txt` mit einem neuen Passwort (mind. 12 Zeichen) per FTP anlegen anlegen – sie wird beim nächsten Login übernommen und gelöscht.
 - Menü: Übersicht (Systemprüfung), Seiten & Texte (alle Texte per WYSIWYG, alle Bilder), Bilder & Medien (Mediathek, Galerie-Manager),
   Backup & Wiederherstellung, Verlauf (auf früheren Stand zurücksetzen), Einstellungen (Passwort, alles auf Auslieferungszustand, nicht mehr passende Einträge).
 - Änderungen werden sofort gespeichert und sind sofort online. Hochgeladene Bilder werden verkleinert, gedreht und als WebP-Variante abgelegt.
@@ -88,7 +88,7 @@ Beim Wiederherstellen eines Backups gilt dieselbe Regel; der Import zeigt, was �
 - Öffentliche Besucher erhalten **keine Cookies**; nur der Admin verwendet nach dem Login ein Sitzungs-Cookie.
 - Ohne PHP/SQLite zeigt die Website einfach den Standardinhalt aus `content/content.json`.
 - Optional: zusätzlicher Schutz per `.htpasswd` (Vorlage: `admin/.htaccess.example`).
-- Das Start-Passwort muss beim ersten Login geändert werden. Hinweis: Steht das Passwort in der README, sollte das Repository privat bleiben und `README.md` nicht auf den Webserver gelangen.
+- Das Start-Passwort muss beim ersten Login geändert werden (neues Passwort mindestens 12 Zeichen, alte Sitzungen werden dabei ungültig). Hinweis: Steht das Passwort in der README, sollte das Repository privat bleiben und `README.md` nicht auf den Webserver gelangen.
 
 Neue PDFs für „Mitteilungen“ legt man per FTP in `assets/downloads/` ab und trägt den Pfad im Admin unter *Mitteilungen* ein.
 

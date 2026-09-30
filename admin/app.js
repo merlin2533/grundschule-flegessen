@@ -6,6 +6,8 @@
   let routeToken = 0;
 
   /* ---------- Anmeldung ---------- */
+  let overlayResolve = null; // gesetzt, solange die Anmeldung als Overlay über der App liegt (Sitzung abgelaufen)
+
   function showLogin(message) {
     $("app").hidden = true;
     $("login").hidden = false;
@@ -18,6 +20,81 @@
   }
   G.onLoggedOut = showLogin;
 
+  /**
+   * Sitzung abgelaufen: Anmeldung als Overlay über der unveränderten App (Entwurf, Änderungsliste und Scroll-Position
+   * bleiben erhalten). Ergebnis true = erneut angemeldet (die Anfrage wird wiederholt), false = abgebrochen.
+   */
+  let reauthPromise = null;
+  G.reauth = () => {
+    if (reauthPromise) return reauthPromise;
+    reauthPromise = new Promise((resolve) => {
+      overlayResolve = resolve;
+      const l = $("login");
+      l.classList.add("login-overlay");
+      l.hidden = false;
+      $("loginTitle").textContent = "Sitzung abgelaufen";
+      $("loginLead").textContent = "Bitte melden Sie sich erneut an. Ihre ungespeicherten Änderungen bleiben erhalten und werden danach gespeichert.";
+      $("loginCancel").hidden = false;
+      $("loginError").textContent = "";
+      G.editor.flushDraft();
+      api("session").then((s) => {
+        G.session.csrf = s.csrf;
+        if (s.authenticated) endOverlay(true); // in einem anderen Tab schon wieder angemeldet
+      }).catch(() => { /* Fehler zeigt der Login-Versuch */ });
+      setTimeout(() => $("loginPw").focus(), 30);
+    }).then((v) => { reauthPromise = null; return v; });
+    return reauthPromise;
+  };
+  function endOverlay(ok) {
+    const l = $("login");
+    l.classList.remove("login-overlay");
+    l.hidden = true;
+    $("loginTitle").textContent = "Admin-Bereich";
+    $("loginLead").textContent = "Grundschule Flegessen – Texte und Bilder der Website bearbeiten";
+    $("loginCancel").hidden = true;
+    const r = overlayResolve; overlayResolve = null;
+    if (r) r(ok);
+  }
+
+  /** Blockierender Bildschirm „Neues Passwort festlegen“. knownPw: eben eingegebenes Passwort (sonst wird danach gefragt). */
+  let forcePending = null;
+  function showForceChange(knownPw) {
+    if (forcePending) return forcePending;
+    forcePending = new Promise((resolve) => {
+      const box = $("pwForce"), form = $("pwForceForm"), err = $("pwForceError"), btn = $("pwForceBtn");
+      const cur = $("pwForceCur"), n1 = $("pwForceNew"), n2 = $("pwForceNew2");
+      $("pwForceCurWrap").hidden = !!knownPw;
+      cur.value = n1.value = n2.value = ""; err.textContent = "";
+      box.hidden = false;
+      setTimeout(() => (knownPw ? n1 : cur).focus(), 30);
+      form.onsubmit = async (ev) => {
+        ev.preventDefault();
+        err.textContent = "";
+        const current = knownPw || cur.value;
+        if (!current) { err.textContent = "Bitte das aktuelle Passwort eingeben."; cur.focus(); return; }
+        if (n1.value.length < 12) { err.textContent = "Das neue Passwort muss mindestens 12 Zeichen lang sein."; n1.focus(); return; }
+        if (n1.value !== n2.value) { err.textContent = "Die beiden neuen Passwörter stimmen nicht überein."; n2.focus(); return; }
+        if (n1.value === current) { err.textContent = "Das neue Passwort muss sich vom bisherigen unterscheiden."; n1.focus(); return; }
+        btn.disabled = true;
+        try {
+          const r = await api("password_change", { method: "POST", json: { current, new: n1.value } });
+          if (r.csrf) G.session.csrf = r.csrf;
+          G.session.mustChange = false; G.session.passwordInitial = false;
+          cur.value = n1.value = n2.value = "";
+          box.hidden = true;
+          toast("Neues Passwort gespeichert.");
+          forcePending = null;
+          resolve();
+        } catch (e) {
+          err.textContent = e.message;
+        }
+        btn.disabled = false;
+      };
+    });
+    return forcePending;
+  }
+  G.onMustChange = () => { if (!forcePending) showForceChange(null).then(() => { if (G.session.authenticated && G.content.loaded) G.route(); }); };
+
   async function doLogin(ev) {
     ev.preventDefault();
     const pw = $("loginPw");
@@ -29,8 +106,18 @@
     try {
       const r = await api("login", { method: "POST", json: { password: pw.value } });
       G.session.csrf = r.csrf; G.session.passwordInitial = !!r.password_is_initial;
+      const used = pw.value;
       pw.value = "";
-      await enterApp();
+      if (overlayResolve) {
+        // Wieder angemeldet: App und Entwurf bleiben unangetastet (kein loadContent), die Anfrage wird wiederholt.
+        $("login").hidden = true;
+        if (r.must_change_password) await showForceChange(used);
+        endOverlay(true);
+      } else {
+        $("login").hidden = true;
+        if (r.must_change_password) await showForceChange(used);
+        await enterApp();
+      }
     } catch (e) {
       err.textContent = e.message;
       pw.select();
@@ -43,11 +130,12 @@
     $("login").hidden = true;
     $("app").hidden = false;
     try {
-      await G.editor.loadContent();
+      await G.editor.loadContent({ keepDrafts: true });
     } catch (e) {
       $("main").appendChild(h("div", { class: "notice error", role: "alert" }, "Inhalte konnten nicht geladen werden: " + e.message));
       return;
     }
+    await G.editor.offerDrafts(); // ungespeicherte Entwürfe aus dieser Browsersitzung (z. B. nach Neuladen)
     buildMenu();
     route();
   }
@@ -55,6 +143,7 @@
   async function logout() {
     if (G.dirtyCount && !(await G.confirm({ title: "Abmelden?", text: "Es gibt ungespeicherte Änderungen, die verloren gehen.", confirmLabel: "Trotzdem abmelden", danger: true }))) return;
     G.dirtyCount = 0;
+    G.editor.clearDrafts();
     try { await api("logout", { method: "POST" }); } catch (e) { /* egal */ }
     location.hash = "";
     location.reload();
@@ -199,6 +288,7 @@
   /* ---------- Start ---------- */
   document.addEventListener("DOMContentLoaded", () => {
     $("loginForm").addEventListener("submit", doLogin);
+    $("loginCancel").addEventListener("click", () => endOverlay(false));
     $("pwToggle").addEventListener("click", () => {
       const pw = $("loginPw"); const show = pw.type === "password";
       pw.type = show ? "text" : "password";
@@ -218,7 +308,10 @@
       try {
         const s = await api("session");
         G.session.csrf = s.csrf;
-        if (s.authenticated) await enterApp(); else { $("login").hidden = false; $("loginPw").focus(); }
+        if (s.authenticated) {
+          if (s.must_change_password) await showForceChange(null);
+          await enterApp();
+        } else { $("login").hidden = false; $("loginPw").focus(); }
       } catch (e) {
         $("login").hidden = false;
         $("loginError").textContent = e.message + (e.status === 404 || e.status === 0 ? " Der Admin-Bereich benötigt PHP-Webspace." : "");

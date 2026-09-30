@@ -14,3 +14,14 @@ defined('GSF_API') or exit;
 // Weitere Grenzen (Standardwerte in api/config.php):
 // define('MAX_UPLOAD_BYTES', 8 * 1024 * 1024);
 // define('MAX_AUTO_BACKUPS', 14);
+
+// Nur setzen, wenn ein vertrauenswürdiger Reverse-Proxy davorsteht, der X-Forwarded-For/-Proto selbst setzt
+// (wirkt auf Login-Sperre je IP und das Secure-Flag des Cookies). Standard: false = Header werden ignoriert.
+// define('TRUST_PROXY_HEADERS', true);
+
+// Login-Sperre: je IP (IPv6 auf /64) LOGIN_MAX_FAILURES, insgesamt LOGIN_GLOBAL_MAX_FAILURES je LOGIN_WINDOW_SECONDS.
+// define('LOGIN_GLOBAL_MAX_FAILURES', 40);
+// define('LOGIN_GLOBAL_LOCK_SECONDS', 300);
+
+// Automatische Backups enthalten Bilder nur bis zu dieser Gesamtgröße:
+// define('AUTO_BACKUP_MEDIA_MAX_BYTES', 30 * 1024 * 1024);

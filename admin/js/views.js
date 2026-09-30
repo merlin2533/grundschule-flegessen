@@ -30,9 +30,49 @@
       r.skipped.forEach((s) => ul.appendChild(h("li", null, h("code", { text: s.path }), h("div", { text: s.reason }))));
       wrap.appendChild(ul);
     }
-    if (r.media) wrap.appendChild(h("p", { class: "field-hint", text: "Bilder: " + r.media.restored + " wiederhergestellt, " + r.media.existing + " waren schon vorhanden" + (r.media.rejected ? ", " + r.media.rejected + " abgelehnt" : "") + "." }));
-    if (r.auto_backup) wrap.appendChild(h("p", { class: "field-hint", text: "Vorher wurde automatisch gesichert: " + r.auto_backup }));
+    if (r.warnings && r.warnings.length) {
+      wrap.appendChild(h("div", { class: "notice warn" }, icon("warn"), h("div", null, h("strong", { text: "Hinweise zur Anpassung an die aktuelle Website-Struktur" }),
+        h("ul", { class: "err-list" }, r.warnings.map((w) => h("li", { text: w }))))));
+    }
+    wrap.appendChild(h("p", { class: "field-hint", text: "Listen (z. B. Team, Galerie) werden Eintrag für Eintrag angepasst: Felder, die es auf der Website nicht mehr gibt, entfallen; neue Felder bleiben zunächst leer; Verweise auf nicht mehr vorhandene Bilder werden geleert. Bereits vorhandene „nicht mehr passende Einträge“ (Einstellungen) bleiben unverändert gespeichert." }));
+    if (r.media) wrap.appendChild(h("p", { class: "field-hint", text: "Bilder: " + r.media.restored + " wiederhergestellt (neu kodiert wie beim Hochladen), " + r.media.existing + " waren schon vorhanden" + (r.media.rejected ? ", " + r.media.rejected + " abgelehnt/übersprungen" : "") + "." }));
+    if (r.auto_backup) wrap.appendChild(h("p", { class: "field-hint", text: "Vorher wurde automatisch gesichert: " + r.auto_backup + (r.auto_backup_note ? " (" + r.auto_backup_note + ")" : "") }));
     return wrap;
+  }
+
+  /* ================= Erreichbarkeit von außen (Prüfung im Browser) ================= */
+  /**
+   * Der Server legt die harmlose Testdatei data/probe-check.txt an und nennt Prüfadressen; der Browser ruft sie von
+   * außen ab (so zeigt sich, ob der Webserver data/ und api/ wirklich schützt) und räumt danach auf.
+   * @returns Promise<Array<{id,label,level,detail,hint}>>
+   */
+  async function runProbes(r) {
+    const res = { data: [], api: [] };
+    for (const p of r.probes || []) {
+      let exposed = false;
+      try {
+        const rsp = await fetch("../" + p.url, { method: p.method, cache: "no-store", credentials: "omit", redirect: "manual" });
+        if (rsp.status >= 200 && rsp.status < 300) {
+          if (p.kind === "blocked") exposed = p.token ? (await rsp.text()).indexOf(p.token) !== -1 : true;
+          else exposed = /<\?php|defined\(\s*['"]GSF_API/.test(await rsp.text()); // PHP-Quelltext lesbar
+        }
+      } catch (e) { /* nicht erreichbar = gut */ }
+      (res[p.id] = res[p.id] || []).push(exposed);
+    }
+    try { await api("health_cleanup", { method: "POST" }); } catch (e) { /* Testdatei ist harmlos */ }
+    const rows = [];
+    const row = (id, label, level, detail, hint) => ({ id, label, level, ok: level === "ok", detail, hint: hint || "" });
+    if (r.data_outside_root) rows.push(row("probe_data", "Datenordner geschützt?", "ok", "liegt außerhalb des Webroots – von außen nicht erreichbar."));
+    else if (!res.data.length) rows.push(row("probe_data", "Datenordner geschützt?", "warn", "konnte nicht geprüft werden (data/ nicht beschreibbar?)."));
+    else if (res.data.some(Boolean)) rows.push(row("probe_data", "Datenordner geschützt?", "error", "data/ ist öffentlich erreichbar – Webserver-Konfiguration prüfen (nginx: location /data { deny all; })",
+      "Datenbank, Backups und RESET_PASSWORD.txt wären für jeden abrufbar. Apache: data/.htaccess muss wirksam sein (AllowOverride). Oder das Datenverzeichnis per api/config.local.php außerhalb des Webroots ablegen."));
+    else rows.push(row("probe_data", "Datenordner geschützt?", "ok", "data/ ist von außen nicht abrufbar."));
+    if (res.api.length) {
+      if (res.api.some(Boolean)) rows.push(row("probe_api", "API-Quelltext geschützt?", "error", "api/config.php bzw. api/lib/ ist öffentlich lesbar – Webserver-Konfiguration prüfen (nginx: location ~ ^/api/(lib/|config) { deny all; } und PHP-Verarbeitung für .php sicherstellen)",
+        "Der PHP-Quelltext (Konfiguration, ggf. Passwörter) dürfte nie als Text ausgeliefert werden."));
+      else rows.push(row("probe_api", "API-Quelltext geschützt?", "ok", "api/config.php und api/lib/ werden nicht als Quelltext ausgeliefert."));
+    }
+    return rows;
   }
 
   /* ================= Übersicht ================= */
@@ -41,7 +81,7 @@
     const host = h("div"); container.appendChild(host); host.appendChild(loading());
     let health, revs, backups;
     try {
-      [health, revs, backups] = await Promise.all([api("health"), api("revisions"), api("backup_list")]);
+      [health, revs, backups] = await Promise.all([api("health", { query: { probe: 1 } }), api("revisions"), api("backup_list")]);
     } catch (e) { clear(host); host.appendChild(errBox(e.message)); return; }
     clear(host);
     const S = G.content;
@@ -86,8 +126,16 @@
     const sys = h("section", { class: "card" }, h("h2", { text: "Systemprüfung" }));
     if (!problems.length) sys.appendChild(h("p", { class: "ok-line" }, icon("check"), " Alle Prüfungen bestanden."));
     else problems.forEach((c) => sys.appendChild(checkRow(c)));
+    const probeHost = h("div"); sys.appendChild(probeHost);
     sys.appendChild(h("a", { href: "#/einstellungen", text: "Alle Prüfungen anzeigen" }));
     host.appendChild(sys);
+    // Erreichbarkeit von außen prüfen; bei Problemen zusätzlich ein deutlicher Hinweis ganz oben.
+    runProbes(health).then((rows) => {
+      const bad = rows.filter((c) => c.level !== "ok");
+      bad.forEach((c) => probeHost.appendChild(checkRow(c)));
+      bad.filter((c) => c.level === "error").forEach((c) => host.insertBefore(h("div", { class: "notice error", role: "alert" }, icon("warn"), h("div", null, h("strong", { text: c.label + " " }), c.detail)), host.firstChild));
+      if (!bad.length && !problems.length) { const ok = sys.querySelector(".ok-line"); if (ok) ok.appendChild(document.createTextNode(" Datenordner und API sind von außen nicht abrufbar.")); }
+    }).catch(() => {});
   }
   function statCard(label, value, sub, href, tone) {
     return h("a", { class: "stat " + (tone || ""), href }, h("span", { class: "stat-label", text: label }), h("span", { class: "stat-value", text: value }), h("span", { class: "stat-sub", text: sub }));
@@ -96,6 +144,11 @@
     const b = h("button", { type: "button", class: "quick" }, icon(ic), h("span", null, h("strong", { text: title }), h("small", { text: sub })));
     b.addEventListener("click", () => fn(b));
     return b;
+  }
+  function checkRowAlways(c) {
+    return h("div", { class: "check-row " + c.level },
+      icon(c.level === "ok" ? "check" : "warn"),
+      h("div", null, h("strong", { text: c.label }), h("span", { class: "check-detail", text: " – " + c.detail }), c.hint ? h("div", { class: "field-hint", text: c.hint }) : null));
   }
   function checkRow(c) {
     return h("div", { class: "check-row " + c.level },
@@ -141,8 +194,10 @@
           h("div", { class: "b-main" },
             h("div", { class: "b-title" }, h("strong", { text: fmtDate(b.created_at || b.mtime) }),
               b.auto ? h("span", { class: "badge", text: "automatisch" }) : null,
-              b.include_media ? h("span", { class: "badge badge-info", text: "mit Bildern" }) : null),
+              b.include_media ? h("span", { class: "badge badge-info", text: "mit Bildern" }) : null,
+              b.media_skipped ? h("span", { class: "badge", title: b.media_skipped, text: "ohne Bilder (zu groß)" }) : null),
             h("div", { class: "b-note", text: b.note || "(ohne Notiz)" }),
+            b.media_skipped ? h("div", { class: "field-hint", text: b.media_skipped }) : null,
             h("div", { class: "field-hint", text: fmtBytes(b.bytes) + (b.override_count !== null ? " · " + b.override_count + (b.override_count === 1 ? " geändertes Feld" : " geänderte Felder") : "") + (b.media_files ? " · " + b.media_files + " Bilddateien" : "") + " · " + b.file })),
           h("div", { class: "b-actions" },
             h("a", { class: "btn btn-outline btn-small", href: G.API + "?a=backup_download&file=" + encodeURIComponent(b.file), download: b.file }, icon("download"), "Herunterladen"),
@@ -153,7 +208,7 @@
             } }, icon("trash"), "Löschen"))));
       });
       list.appendChild(rows);
-      list.appendChild(h("p", { class: "field-hint", text: "Automatische Sicherungen entstehen einmal täglich beim Speichern sowie vor jeder Wiederherstellung; die letzten " + 14 + " werden aufbewahrt." }));
+      list.appendChild(h("p", { class: "field-hint", text: "Automatische Sicherungen entstehen einmal täglich beim Speichern sowie vor jeder Wiederherstellung; die letzten " + 14 + " werden aufbewahrt. Sie enthalten die hochgeladenen Bilder, solange diese zusammen höchstens 30 MB groß sind – darüber werden automatische Sicherungen ohne Bilder angelegt (dann bitte hier manuell „mit Bildern“ sichern)." }));
       host.appendChild(list);
 
       // --- Datei einspielen
@@ -163,7 +218,7 @@
         if (!f) { toast("Bitte zuerst eine Backup-Datei auswählen.", "warn"); return; }
         if (f.size > r.max_upload) { toast("Die Datei ist größer als das Upload-Limit dieses Servers (" + fmtBytes(r.max_upload) + ").", "error"); return; }
         if (!(await guardDirty("Backup einspielen"))) return;
-        if (!(await G.confirm({ title: "Backup-Datei einspielen?", text: "Der aktuelle Stand wird zuerst automatisch gesichert. Danach werden Ihre Änderungen durch den Inhalt der Datei ersetzt – nur Einträge, die noch zur aktuellen Website passen, werden übernommen.", confirmLabel: "Einspielen", danger: true }))) return;
+        if (!(await G.confirm({ title: "Backup-Datei einspielen?", text: "Der aktuelle Stand wird zuerst automatisch gesichert. Danach werden Ihre Änderungen durch den Inhalt der Datei ersetzt – nur Einträge, die noch zur aktuellen Website passen, werden übernommen (Listen Eintrag für Eintrag angepasst, fehlende Bilder geleert). Bereits vorhandene „nicht mehr passende Einträge“ bleiben gespeichert.", confirmLabel: "Einspielen", danger: true }))) return;
         up.disabled = true;
         try {
           const fd = new FormData(); fd.append("file", f, f.name);
@@ -183,7 +238,7 @@
       const ok = await G.confirm({
         title: "Diesen Stand wiederherstellen?",
         text: h("div", null, h("p", null, "Ihre aktuellen Änderungen werden durch den Stand aus dem Backup vom ", h("strong", { text: fmtDate(b.created_at || b.mtime) }), " ersetzt."),
-          h("p", { text: "Vorher wird automatisch ein weiteres Backup des jetzigen Standes angelegt, sodass Sie jederzeit zurückkehren können. Nur Einträge, die noch zur aktuellen Website passen, werden übernommen.", class: "field-hint" })),
+          h("p", { text: "Vorher wird automatisch ein weiteres Backup des jetzigen Standes angelegt, sodass Sie jederzeit zurückkehren können. Nur Einträge, die noch zur aktuellen Website passen, werden übernommen; Listen werden Eintrag für Eintrag angepasst (entfallene Felder verworfen, neue leer ergänzt, fehlende Bilder geleert). Bereits vorhandene „nicht mehr passende Einträge“ bleiben gespeichert.", class: "field-hint" })),
         confirmLabel: "Wiederherstellen", danger: true,
       });
       if (!ok) return;
@@ -231,13 +286,13 @@
 
     // --- Passwort
     const cur = h("input", { class: "input", type: "password", autocomplete: "current-password", id: "pwCur" });
-    const n1 = h("input", { class: "input", type: "password", autocomplete: "new-password", id: "pwNew", minlength: "10" });
+    const n1 = h("input", { class: "input", type: "password", autocomplete: "new-password", id: "pwNew", minlength: "12" });
     const n2 = h("input", { class: "input", type: "password", autocomplete: "new-password", id: "pwNew2" });
     const msg = h("div", { class: "form-msg", role: "alert" });
     const pwBtn = h("button", { type: "submit", class: "btn btn-primary" }, "Passwort ändern");
     const pwForm = h("form", { class: "stack", novalidate: true, onsubmit: async (e) => {
       e.preventDefault(); msg.textContent = ""; msg.className = "form-msg";
-      if (n1.value.length < 10) { msg.textContent = "Das neue Passwort muss mindestens 10 Zeichen lang sein."; msg.classList.add("err"); n1.focus(); return; }
+      if (n1.value.length < 12) { msg.textContent = "Das neue Passwort muss mindestens 12 Zeichen lang sein."; msg.classList.add("err"); n1.focus(); return; }
       if (n1.value !== n2.value) { msg.textContent = "Die beiden neuen Passwörter stimmen nicht überein."; msg.classList.add("err"); n2.focus(); return; }
       pwBtn.disabled = true;
       try {
@@ -245,32 +300,28 @@
         if (r.csrf) G.session.csrf = r.csrf;
         G.session.passwordInitial = false;
         cur.value = n1.value = n2.value = "";
-        msg.textContent = "Passwort geändert."; msg.classList.add("ok");
+        msg.textContent = "Passwort geändert. Alle anderen angemeldeten Sitzungen wurden beendet."; msg.classList.add("ok");
         toast("Passwort geändert.");
       } catch (er) { msg.textContent = er.message; msg.classList.add("err"); }
       pwBtn.disabled = false;
     } },
       h("label", { class: "mini-label", for: "pwCur" }, "Aktuelles Passwort", cur),
-      h("label", { class: "mini-label", for: "pwNew" }, "Neues Passwort (mindestens 10 Zeichen)", n1),
+      h("label", { class: "mini-label", for: "pwNew" }, "Neues Passwort (mindestens 12 Zeichen)", n1),
       h("label", { class: "mini-label", for: "pwNew2" }, "Neues Passwort wiederholen", n2), msg, h("div", { class: "btn-row" }, pwBtn));
     host.appendChild(h("section", { class: "card" }, h("h2", { text: "Passwort ändern" }), pwForm));
 
     // --- Systemprüfung
     const sys = h("section", { class: "card" }, h("h2", { text: "Systemprüfung" }));
     host.appendChild(sys); sys.appendChild(loading());
-    api("health").then(async (r) => {
+    api("health", { query: { probe: 1 } }).then(async (r) => {
       clear(sys); sys.appendChild(h("h2", { text: "Systemprüfung" }));
       r.checks.forEach((c) => sys.appendChild(checkRow(c)));
-      // Ist data/ von außen erreichbar? (Test aus Sicht des Browsers)
-      const row = h("div", { class: "check-row" }, icon("clock"), h("div", null, h("strong", { text: "Datenordner geschützt?" }), h("span", { class: "check-detail", text: " – prüfe …" })));
-      sys.appendChild(row);
-      let exposed = null;
-      try { const t = await fetch("../data/site.sqlite", { method: "HEAD", cache: "no-store" }); exposed = t.ok; } catch (e) { exposed = false; }
-      const ok = exposed === false;
-      row.className = "check-row " + (ok ? "ok" : "warn"); clear(row);
-      row.appendChild(icon(ok ? "check" : "warn"));
-      row.appendChild(h("div", null, h("strong", { text: "Datenordner geschützt?" }), h("span", { class: "check-detail", text: ok ? " – data/ ist von außen nicht abrufbar." : " – data/site.sqlite ist über die Website abrufbar!" }),
-        ok ? null : h("div", { class: "field-hint", text: "Bitte sicherstellen, dass data/.htaccess wirksam ist (Apache: AllowOverride) oder das Datenverzeichnis per api/config.local.php außerhalb des Webroots ablegen." })));
+      // Ist data/ (bzw. api/) von außen erreichbar? Echter Abruf aus Sicht des Browsers.
+      const pending = h("div", { class: "check-row" }, icon("clock"), h("div", null, h("strong", { text: "Erreichbarkeit von außen" }), h("span", { class: "check-detail", text: " – prüfe …" })));
+      sys.appendChild(pending);
+      const rows = await runProbes(r);
+      pending.remove();
+      rows.forEach((c) => sys.appendChild(checkRowAlways(c)));
     }).catch((e) => { clear(sys); sys.appendChild(errBox(e.message)); });
 
     // --- nicht mehr passende Einträge
@@ -279,7 +330,7 @@
     function drawOrphans() {
       clear(orph); orph.appendChild(h("h2", { text: "Nicht mehr passende Einträge" }));
       const list = G.content.orphans;
-      orph.appendChild(h("p", { class: "field-hint", text: "Wenn sich die Struktur der Website später ändert (z. B. ein Feld umbenannt oder entfernt wird), werden gespeicherte Änderungen, die nicht mehr passen, nicht angewendet. Sie bleiben hier gespeichert und können exportiert oder gelöscht werden." }));
+      orph.appendChild(h("p", { class: "field-hint", text: "Wenn sich die Struktur der Website später ändert, werden gespeicherte Änderungen, deren Feld oder Typ es nicht mehr gibt, nicht angewendet. Sie bleiben hier gespeichert (auch bei Wiederherstellung und Zurücksetzen) und können exportiert oder gelöscht werden. Bei Listen (Team, Klassen, Galerie …) werden dagegen nur die einzelnen Felder angepasst: entfallene Felder verworfen, neue leer ergänzt – die Liste selbst bleibt aktiv." }));
       if (!list.length) { orph.appendChild(h("p", { class: "ok-line" }, icon("check"), " Alle gespeicherten Änderungen passen zur aktuellen Website.")); return; }
       const ul = h("div", { class: "orphan-list" });
       list.forEach((o) => ul.appendChild(h("div", { class: "backup-row" },
@@ -301,7 +352,7 @@
 
     // --- Alles zurücksetzen
     host.appendChild(h("section", { class: "card danger-zone" }, h("h2", { text: "Alles auf Standard zurücksetzen" }),
-      h("p", { text: "Entfernt alle Ihre Text-, Bild- und Galerieänderungen; die Website zeigt danach wieder die ausgelieferten Standardinhalte. Hochgeladene Bilddateien bleiben erhalten. Vorher wird automatisch ein Backup angelegt." }),
+      h("p", { text: "Entfernt alle Ihre Text-, Bild- und Galerieänderungen; die Website zeigt danach wieder die ausgelieferten Standardinhalte. Hochgeladene Bilddateien und bereits vorhandene „nicht mehr passende Einträge“ bleiben erhalten. Vorher wird automatisch ein Backup angelegt." }),
       h("div", { class: "btn-row" }, h("button", { type: "button", class: "btn btn-danger", onclick: async () => {
         if (!(await guardDirty("Zurücksetzen"))) return;
         if (!(await G.confirm({ title: "Wirklich alles zurücksetzen?", text: "Alle Änderungen an Texten, Bildern und der Galerie gehen verloren (ein Backup wird vorher angelegt).", confirmLabel: "Weiter", danger: true }))) return;
@@ -315,5 +366,5 @@
       } }, icon("trash"), "Alles auf Standard zurücksetzen"))));
   }
 
-  Object.assign(G, { renderDashboard, renderBackup, renderHistory, renderSettings });
+  Object.assign(G, { runProbes, renderDashboard, renderBackup, renderHistory, renderSettings });
 })(window.GSA);

@@ -19,7 +19,7 @@ final class Backups
         return rtrim(BACKUP_DIR, '/');
     }
 
-    private static function overridesDoc(PDO $pdo, string $note, bool $includeMedia): array
+    private static function overridesDoc(PDO $pdo, string $note, bool $includeMedia, string $mediaSkipped = ''): array
     {
         $ov = Db::overrides($pdo);
         return [
@@ -29,6 +29,7 @@ final class Backups
             'created_at' => now_iso(),
             'note' => $note,
             'include_media' => $includeMedia,
+            'media_skipped' => $mediaSkipped,
             'defaults_hash' => Content::defaultsHash(),
             'defaults_path_count' => count(Content::units(Content::defaults())),
             'override_count' => count($ov),
@@ -36,6 +37,22 @@ final class Backups
         ];
     }
 
+    /** Alle vorhandenen Dateien (Haupt- und Vorschaubilder, WebP) der Mediathek. @return string[] absolute Pfade */
+    private static function mediaFiles(array $media): array
+    {
+        $files = [];
+        foreach ($media as $r) {
+            $name = Media::uploadName((string)$r['file']);
+            if ($name === null) continue;
+            foreach (Media::variants($name) as $abs) if (is_file($abs)) $files[$abs] = (int)@filesize($abs);
+        }
+        return $files;
+    }
+
+    /**
+     * Backup anlegen. Automatische Backups ($auto) enthalten die Bilder, solange deren Gesamtgröße
+     * AUTO_BACKUP_MEDIA_MAX_BYTES (30 MB) nicht übersteigt – sonst ohne Bilder (Hinweis in den Metadaten).
+     */
     public static function create(PDO $pdo, string $note, bool $includeMedia, bool $auto = false): array
     {
         $dir = self::dir();
@@ -44,12 +61,25 @@ final class Backups
         $media = [];
         foreach ($pdo->query('SELECT * FROM media') as $r) $media[] = $r;
         $warn = '';
+        $skipped = '';
         $useZip = class_exists('ZipArchive');
+        if ($auto) $includeMedia = true;
+        $files = [];
         if ($includeMedia && !$useZip) {
             $includeMedia = false;
             $warn = 'Die PHP-Erweiterung zip fehlt – es wurde ein Backup ohne Bilder erstellt.';
+            if ($auto) $skipped = 'zip-Erweiterung fehlt';
         }
-        $doc = self::overridesDoc($pdo, $note, $includeMedia);
+        if ($includeMedia) {
+            $files = self::mediaFiles($media);
+            $total = array_sum($files);
+            if ($auto && $total > AUTO_BACKUP_MEDIA_MAX_BYTES) {
+                $includeMedia = false;
+                $files = [];
+                $skipped = 'Bilder (' . human_bytes((int)$total) . ') überschreiten ' . human_bytes(AUTO_BACKUP_MEDIA_MAX_BYTES) . ' – automatisches Backup ohne Bilder; Bilder bitte manuell sichern.';
+            }
+        }
+        $doc = self::overridesDoc($pdo, $note, $includeMedia, $skipped);
         $stamp = date('Ymd-His') . '-' . rand_hex(2);
         $final = 'backup-' . $stamp . ($auto ? '-auto' : '') . ($useZip ? '.zip' : '.json');
         $target = $dir . '/' . $final;
@@ -60,19 +90,9 @@ final class Backups
             if ($zip->open($tmp, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) fail(500, 'Backup-Datei konnte nicht angelegt werden.');
             $zip->addFromString('overrides.json', json_encode($doc, json_flags() | JSON_PRETTY_PRINT));
             $zip->addFromString('media.json', json_encode(['format' => 'gsf-media', 'media' => $media], json_flags() | JSON_PRETTY_PRINT));
-            $count = 0;
-            if ($includeMedia) {
-                foreach ($media as $r) {
-                    $name = Media::uploadName((string)$r['file']);
-                    if ($name === null) continue;
-                    foreach (Media::variants($name) as $abs) {
-                        if (is_file($abs)) {
-                            $zip->addFile($abs, 'uploads/' . basename($abs));
-                            if (method_exists($zip, 'setCompressionName')) $zip->setCompressionName('uploads/' . basename($abs), ZipArchive::CM_STORE);
-                            $count++;
-                        }
-                    }
-                }
+            foreach (array_keys($files) as $abs) {
+                $zip->addFile($abs, 'uploads/' . basename($abs));
+                if (method_exists($zip, 'setCompressionName')) $zip->setCompressionName('uploads/' . basename($abs), ZipArchive::CM_STORE);
             }
             if (!$zip->close()) {
                 @unlink($tmp);
@@ -89,7 +109,7 @@ final class Backups
         @chmod($target, 0640);
         if ($auto) self::pruneAuto();
         $r = self::describe($target);
-        $r['warning'] = $warn;
+        $r['warning'] = $warn ?: $skipped;
         return $r;
     }
 
@@ -124,7 +144,7 @@ final class Backups
             'mtime' => gmdate('Y-m-d\TH:i:s\Z', (int)@filemtime($abs)),
             'auto' => (bool)preg_match('/-auto\./', $name),
             'type' => substr($name, -4) === '.zip' ? 'zip' : 'json',
-            'note' => '', 'include_media' => false, 'override_count' => null, 'media_files' => 0, 'created_at' => null,
+            'note' => '', 'include_media' => false, 'media_skipped' => '', 'override_count' => null, 'media_files' => 0, 'created_at' => null,
         ];
         try {
             $doc = null;
@@ -144,6 +164,7 @@ final class Backups
             if (is_array($doc)) {
                 $info['note'] = (string)($doc['note'] ?? '');
                 $info['include_media'] = (bool)($doc['include_media'] ?? false);
+                $info['media_skipped'] = (string)($doc['media_skipped'] ?? '');
                 $info['override_count'] = isset($doc['override_count']) ? (int)$doc['override_count'] : (is_array($doc['overrides'] ?? null) ? count($doc['overrides']) : null);
                 $info['created_at'] = $doc['created_at'] ?? null;
             }
@@ -228,9 +249,10 @@ final class Backups
         }
 
         // 1) IMMER zuerst sichern
-        $auto = self::create($pdo, 'Automatisch vor Wiederherstellung (' . mb_substr($label, 0, 60) . ')', false, true);
+        $auto = self::create($pdo, 'Automatisch vor Wiederherstellung (' . mb_substr($label, 0, 60) . ')', true, true);
 
-        // 2) Bilder zurückschreiben
+        // 2) Bilder zurückschreiben – wie Uploads durch GD neu kodiert (Metadaten/Fremdinhalte entfallen, Größe begrenzt);
+        //    Dateien, die sich nicht verlustfrei lesen lassen, werden übersprungen.
         $mediaReport = ['restored' => 0, 'existing' => 0, 'rejected' => 0];
         if ($zip) {
             $total = 0;
@@ -247,18 +269,22 @@ final class Backups
                     $mediaReport['existing']++;
                     continue;
                 }
+                if (!ensure_dir(UPLOAD_DIR)) {
+                    $mediaReport['rejected']++;
+                    continue;
+                }
                 $data = $zip->getFromIndex($i);
-                $gi = $data === false ? false : @getimagesizefromstring($data);
-                if (!$gi || !in_array($gi[2], [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP], true)) {
+                $tmpImg = rtrim(BACKUP_DIR, '/') . '/.img-' . rand_hex(6);
+                $ok = $data !== false && @file_put_contents($tmpImg, $data) !== false
+                    && Media::reencode($tmpImg, $dest, preg_match('/-thumb\.[a-z]+$/i', $name) ? THUMB_SIDE : IMAGE_MAX_SIDE);
+                @unlink($tmpImg);
+                unset($data);
+                if ($ok) {
+                    @chmod($dest, 0644);
+                    $mediaReport['restored']++;
+                } else {
                     $mediaReport['rejected']++;
-                    continue;
                 }
-                if (!ensure_dir(UPLOAD_DIR) || @file_put_contents($dest, $data) === false) {
-                    $mediaReport['rejected']++;
-                    continue;
-                }
-                @chmod($dest, 0644);
-                $mediaReport['restored']++;
             }
             $zip->close();
         }
@@ -288,14 +314,17 @@ final class Backups
             }
             $raw[(string)$path] = $o['value'];
         }
-        [$ok, $skip2] = Store::filterCompatible($raw);
+        [$ok, $skip2, $warnings] = Store::filterCompatible($raw);
         $skipped = array_merge($skipped, $skip2);
+        if ($mediaReport['rejected'] > 0) $warnings[] = $mediaReport['rejected'] . ' Bilddatei(en) aus dem Backup konnten nicht verarbeitet werden und wurden übersprungen.';
         $rev = Store::replaceAll($pdo, $ok, 'Wiederherstellung aus „' . mb_substr($label, 0, 80) . '“');
         return [
             'imported' => count($ok),
             'skipped' => $skipped,
+            'warnings' => $warnings,
             'media' => $mediaReport,
             'auto_backup' => $auto['file'],
+            'auto_backup_note' => $auto['media_skipped'] ?? '',
             'rev' => $rev,
         ];
     }

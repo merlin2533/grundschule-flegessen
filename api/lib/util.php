@@ -30,16 +30,45 @@ function is_list_array($a): bool
     return true;
 }
 
+/** Erster Eintrag eines Proxy-Headers – nur wenn TRUST_PROXY_HEADERS aktiv ist, sonst immer null. */
+function trusted_proxy_header(string $serverKey): ?string
+{
+    if (!TRUST_PROXY_HEADERS) return null;
+    $v = (string)($_SERVER[$serverKey] ?? '');
+    if ($v === '') return null;
+    $first = trim(explode(',', $v)[0]);
+    return $first === '' ? null : $first;
+}
+
 function is_https(): bool
 {
+    $proto = trusted_proxy_header('HTTP_X_FORWARDED_PROTO');
+    if ($proto !== null) return strtolower($proto) === 'https';
     if (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off') return true;
     if (($_SERVER['SERVER_PORT'] ?? '') === '443') return true;
     return false;
 }
 
+/** Client-IP. X-Forwarded-For wird ignoriert, außer TRUST_PROXY_HEADERS ist true (dann der erste Eintrag). */
 function client_ip(): string
 {
-    return substr((string)($_SERVER['REMOTE_ADDR'] ?? 'unknown'), 0, 64);
+    $ip = (string)($_SERVER['REMOTE_ADDR'] ?? '');
+    $xff = trusted_proxy_header('HTTP_X_FORWARDED_FOR');
+    if ($xff !== null && filter_var($xff, FILTER_VALIDATE_IP)) $ip = $xff;
+    return substr($ip !== '' ? $ip : 'unknown', 0, 64);
+}
+
+/** Schlüssel für die Login-Begrenzung: IPv4 einzeln, IPv6 auf /64 zusammengefasst, IPv4-mapped als IPv4. */
+function client_key(): string
+{
+    $ip = client_ip();
+    $bin = filter_var($ip, FILTER_VALIDATE_IP) ? @inet_pton($ip) : false;
+    if ($bin === false) return 'unknown';
+    if (strlen($bin) === 16) {
+        if (substr($bin, 0, 12) === "\0\0\0\0\0\0\0\0\0\0\xff\xff") return (string)inet_ntop(substr($bin, 12));
+        return 'v6:' . bin2hex(substr($bin, 0, 8));
+    }
+    return (string)inet_ntop($bin);
 }
 
 function now_iso(): string

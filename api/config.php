@@ -50,6 +50,13 @@ defined('JPEG_QUALITY') or define('JPEG_QUALITY', 82);
 defined('SESSION_IDLE_SECONDS') or define('SESSION_IDLE_SECONDS', 8 * 3600);
 defined('LOGIN_MAX_FAILURES') or define('LOGIN_MAX_FAILURES', 5);
 defined('LOGIN_WINDOW_SECONDS') or define('LOGIN_WINDOW_SECONDS', 600);
+defined('LOGIN_GLOBAL_MAX_FAILURES') or define('LOGIN_GLOBAL_MAX_FAILURES', 40);  // alle IPs zusammen, je Zeitfenster
+defined('LOGIN_GLOBAL_LOCK_SECONDS') or define('LOGIN_GLOBAL_LOCK_SECONDS', 300);  // globale Sperre danach
+defined('MIN_PASSWORD_LENGTH') or define('MIN_PASSWORD_LENGTH', 12);
+defined('AUTO_BACKUP_MEDIA_MAX_BYTES') or define('AUTO_BACKUP_MEDIA_MAX_BYTES', 30 * 1024 * 1024); // automatische Backups enthalten Bilder nur bis zu dieser Gesamtgröße
+// Nur auf „true“ setzen, wenn ein vertrauenswürdiger Reverse-Proxy davorsteht, der X-Forwarded-For / X-Forwarded-Proto
+// selbst setzt (sonst könnten Angreifer ihre IP für die Login-Sperre fälschen).
+defined('TRUST_PROXY_HEADERS') or define('TRUST_PROXY_HEADERS', false);
 defined('API_DEBUG') or define('API_DEBUG', false);
 
 // Version des Datenformats für Backups/Exporte.

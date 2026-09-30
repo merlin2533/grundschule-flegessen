@@ -5,7 +5,7 @@
 
   /* ================= Zustand ================= */
   const S = (G.content = {
-    defaults: null, effective: null, draft: null, overridden: {}, orphans: [], rev: 0,
+    defaults: null, effective: null, draft: null, overridden: {}, orphans: [], rev: 0, baseRev: 0,
     dirty: new Set(), loaded: false,
   });
   const registry = {}; // Einheit (Pfad) -> [refresh-Funktionen]
@@ -67,14 +67,77 @@
   const eqDefault = (unit) => canon(norm(getAt(S.draft, unit))) === canon(norm(getAt(S.defaults, unit)));
   const eqEffective = (unit) => canon(norm(getAt(S.draft, unit))) === canon(norm(getAt(S.effective, unit)));
 
+  /* ================= Entwurf im sessionStorage (Schutz vor Datenverlust) ================= */
+  // Jede Änderung wird (leicht verzögert) je Ausgangsstand (rev) gespiegelt. Nach Neuladen/Abmeldung/abgelaufener
+  // Sitzung kann der Entwurf wiederhergestellt werden. Nur pro Browser-Tab, nie auf dem Server.
+  const DRAFT_PREFIX = "gsa-draft-";
+  let draftTimer = null;
+  function draftKeys() {
+    const out = [];
+    try { for (let i = 0; i < sessionStorage.length; i++) { const k = sessionStorage.key(i); if (k && k.indexOf(DRAFT_PREFIX) === 0) out.push(k); } } catch (e) { /* kein Speicher */ }
+    return out;
+  }
+  function flushDraft() {
+    clearTimeout(draftTimer); draftTimer = null;
+    if (!S.loaded) return;
+    try {
+      const key = DRAFT_PREFIX + S.baseRev;
+      if (!S.dirty.size) { sessionStorage.removeItem(key); return; }
+      const units = {};
+      S.dirty.forEach((u) => { units[u] = clone(getAt(S.draft, u)); });
+      sessionStorage.setItem(key, JSON.stringify({ rev: S.baseRev, ts: Date.now(), units }));
+    } catch (e) { /* Speicher voll/gesperrt: Entwurf bleibt im Arbeitsspeicher */ }
+  }
+  function scheduleDraft() { clearTimeout(draftTimer); draftTimer = setTimeout(flushDraft, 300); }
+  function clearDrafts() {
+    clearTimeout(draftTimer); draftTimer = null;
+    try { draftKeys().forEach((k) => sessionStorage.removeItem(k)); } catch (e) { /* ignore */ }
+  }
+  window.addEventListener("pagehide", flushDraft);
+  window.addEventListener("beforeunload", flushDraft);
+
+  /** Nach dem Start: gespeicherte Entwürfe anbieten („Ungespeicherte Entwürfe wiederherstellen“). */
+  async function offerDrafts() {
+    const found = [];
+    draftKeys().forEach((k) => {
+      try {
+        const d = JSON.parse(sessionStorage.getItem(k));
+        if (d && d.units && typeof d.units === "object") found.push({ key: k, d });
+      } catch (e) { /* defekt */ }
+    });
+    found.sort((x, y) => (y.d.ts || 0) - (x.d.ts || 0));
+    const use = found.find((f) => Object.keys(f.d.units).some((u) => S.units && u in S.units));
+    if (!use) { clearDrafts(); return; }
+    const units = Object.keys(use.d.units).filter((u) => u in S.units);
+    const list = h("ul", { class: "err-list" });
+    units.slice(0, 12).forEach((u) => list.appendChild(h("li", null, h("strong", { text: pathLabel(u) }))));
+    if (units.length > 12) list.appendChild(h("li", { text: "… und " + (units.length - 12) + " weitere" }));
+    const stale = use.d.rev !== S.rev;
+    const ans = await G.modal({
+      title: "Ungespeicherte Entwürfe wiederherstellen?", alert: true, escValue: false,
+      body: h("div", null,
+        h("p", { text: "In dieser Browsersitzung gibt es ungespeicherte Änderungen (" + units.length + (units.length === 1 ? " Feld" : " Felder") + ", zuletzt bearbeitet " + G.fmtDate(new Date(use.d.ts).toISOString()) + "):" }),
+        list,
+        stale ? h("p", { class: "field-hint", text: "Der Entwurf baut auf einem älteren Stand der Inhalte auf. Beim Speichern wird geprüft, ob jemand dieselben Felder inzwischen geändert hat." }) : null),
+      actions: [{ label: "Entwurf verwerfen", kind: "btn-outline", value: false }, { label: "Entwurf wiederherstellen", kind: "btn-primary", value: true, autofocus: true }],
+    });
+    if (ans !== true) { clearDrafts(); return; }
+    units.forEach((u) => { setAt(S.draft, u, clone(use.d.units[u])); });
+    S.baseRev = Math.min(Number(use.d.rev) || S.rev, S.rev);
+    units.forEach((u) => touch(u));
+    flushDraft();
+    toast("Entwurf wiederhergestellt – noch nicht gespeichert.");
+  }
+
   /* ================= Laden / Patch / Speichern ================= */
-  async function loadContent() {
+  async function loadContent(opts) {
     const r = await api("admin_content");
     S.defaults = r.defaults; S.effective = r.effective; S.draft = clone(r.effective);
-    S.overridden = r.overridden || {}; S.orphans = r.orphans || []; S.rev = r.rev;
+    S.overridden = r.overridden || {}; S.orphans = r.orphans || []; S.rev = r.rev; S.baseRev = r.rev;
     S.units = unitsOf(r.defaults);
     S.dirty.clear(); G.dirtyCount = 0;
     S.loaded = true;
+    if (!(opts && opts.keepDrafts)) clearDrafts();
     if (barHook) barHook();
     return r;
   }
@@ -89,6 +152,7 @@
     if (eqEffective(unit)) S.dirty.delete(unit); else S.dirty.add(unit);
     G.dirtyCount = S.dirty.size;
     (registry[unit] || []).forEach((fn) => fn());
+    scheduleDraft();
     if (barHook) barHook();
   }
   function register(unit, fn) { (registry[unit] = registry[unit] || []).push(fn); }
@@ -97,16 +161,43 @@
   async function save(note) {
     const patch = computePatch();
     if (!Object.keys(patch).length) { toast("Keine Änderungen zum Speichern."); return true; }
+    return send(patch, note || "", false);
+  }
+
+  /** Speichert mit Ausgangsstand (base_rev). Bei Konflikt (409) entscheidet der Nutzer: überschreiben oder neu laden. */
+  async function send(patch, note, force) {
     try {
-      const r = await api("save", { method: "POST", json: { patch, note: note || "" } });
+      const r = await api("save", { method: "POST", json: { patch, note, base_rev: S.baseRev, force: !!force } });
+      S.rev = r.rev; // neuer Stand vom Server; loadContent übernimmt ihn als Ausgangsstand des nächsten Entwurfs
       await loadContent();
       toast(r.changed ? "Gespeichert – " + (r.changed === 1 ? "1 Änderung ist" : r.changed + " Änderungen sind") + " jetzt online." : "Gespeichert.");
       return true;
     } catch (e) {
+      if (e.status === 409 && e.data && e.data.error === "conflict") return resolveConflict(e.data.paths || [], patch, note);
       if (e.status === 422 && e.data && e.data.errors) showSaveErrors(e.data.errors);
-      else toast("Speichern fehlgeschlagen: " + e.message, "error");
+      else if (e.status !== 403 || !e.data || e.data.error !== "password_change_required") toast("Speichern fehlgeschlagen: " + e.message, "error");
       return false;
     }
+  }
+
+  async function resolveConflict(paths, patch, note) {
+    const list = h("ul", { class: "err-list" });
+    paths.forEach((p) => list.appendChild(h("li", null, h("strong", { text: pathLabel(p) }), h("div", { class: "field-hint", text: p }))));
+    const ans = await G.modal({
+      title: "Änderungs-Konflikt", alert: true, wide: true, escValue: "cancel",
+      body: h("div", null,
+        h("p", { text: "Nichts wurde gespeichert. Diese Felder wurden in der Zwischenzeit von jemand anderem geändert (z. B. in einem anderen Browser-Fenster oder von einer anderen Person):" }),
+        list,
+        h("p", { class: "field-hint", text: "„Überschreiben“ ersetzt die neuere Fassung durch Ihre Änderung (die ältere Fassung bleibt im Verlauf abrufbar). „Neu laden“ übernimmt die neuere Fassung und verwirft Ihre ungespeicherten Änderungen." })),
+      actions: [
+        { label: "Abbrechen (weiter bearbeiten)", kind: "btn-outline", value: "cancel" },
+        { label: "Neu laden (meine Änderungen verwerfen)", kind: "btn-outline", value: "reload" },
+        { label: "Meine Änderung behalten (überschreiben)", kind: "btn-danger", value: "force" },
+      ],
+    });
+    if (ans === "force") return send(patch, note, true);
+    if (ans === "reload") { await loadContent(); toast("Neu geladen – Ihre ungespeicherten Änderungen wurden verworfen."); return true; }
+    return false;
   }
 
   function showSaveErrors(errors) {
@@ -195,7 +286,7 @@
   const PAGE_FILES = { home: "index.html" };
   function pageFile(key) { return key === "site" ? "index.html" : (PAGE_FILES[key] || key + ".html"); }
   function pageLabel(key) {
-    if (key === "site") return "Allgemein (Schule, Kontakt, Logo)";
+    if (key === "site") return "Allgemein (Kontakt, Karte)";
     if (key === "home" && !(S.effective.pages.home && S.effective.pages.home.pageTitle)) return "Startseite";
     const p = S.effective && S.effective.pages && S.effective.pages[key];
     const d = S.defaults && S.defaults.pages && S.defaults.pages[key];
@@ -208,9 +299,13 @@
     if (parts[0] === "site") return "Allgemein › " + labelFor(parts[parts.length - 1], path);
     return pageLabel(parts[1]) + " › " + labelFor(parts[parts.length - 1], path);
   }
+  // Nur diese site.*-Felder sind auf der Website tatsächlich angebunden (data-edit …) und werden im Editor gezeigt;
+  // alle anderen (Name, Adresse, Logo, Leitspruch …) bleiben unverändert in den Daten, sind aber nicht bearbeitbar.
+  const SITE_VISIBLE = ["phone", "email", "mapEmbedUrl"];
+  const siteVisible = (key) => SITE_VISIBLE.indexOf(key) !== -1 || /Href$/.test(key);
   function unitsUnder(key) {
     const prefix = key === "site" ? "site." : "pages." + key + ".";
-    return Object.keys(S.units).filter((u) => u.startsWith(prefix));
+    return Object.keys(S.units).filter((u) => u.startsWith(prefix) && (key !== "site" || siteVisible(u.slice(5).split(".")[0])));
   }
   function pageChangedCount(key) {
     return unitsUnder(key).filter((u) => !eqDefault(u)).length;
@@ -275,7 +370,14 @@
     return "text";
   }
   const decodeEntities = (s) => { const t = document.createElement("textarea"); t.innerHTML = s; return t.value; };
-  const encodeEntities = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  /*
+   * Klartext-Felder (kein HTML-Editor): Die API liefert ALLE Zeichenketten als „sicheres HTML“ – die öffentliche Seite
+   * setzt sie per innerHTML ein. Ein „<“ im Klartext steht daher als „&lt;“ in den Daten. Damit das Eingabefeld nie
+   * „&lt;“ zeigt, wird beim Anzeigen entschlüsselt und beim Speichern symmetrisch wieder verschlüsselt.
+   * „&“ wird nur dann zu „&amp;“, wenn der Wert bisher schon so gespeichert war oder es sonst wie eine Entity aussähe.
+   * Links (…Href/…Url/file) bleiben unverändert (dort ist „&“ Teil der Adresse).
+   */
+  const encodeEntities = (s, fullAmp) => (fullAmp ? s.replace(/&/g, "&amp;") : s.replace(/&(?=#?\w+;)/g, "&amp;")).replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
   function autosize(ta) {
     ta.style.height = "auto";
@@ -340,6 +442,7 @@
   function buildText(ctrl, obj, key, label, changed, kind, entityMode, path) {
     const raw = obj[key] === null || obj[key] === undefined ? "" : String(obj[key]);
     const val = entityMode ? decodeEntities(raw) : raw;
+    const fullAmp = /&amp;/.test(raw);
     let el;
     if (kind === "textarea") {
       el = h("textarea", { class: "input", rows: 3, "aria-label": label });
@@ -352,7 +455,7 @@
     const counter = /metaDescription$/.test(key) ? h("div", { class: "field-hint", "aria-live": "off" }) : null;
     const upd = () => { if (counter) { const n = el.value.length; counter.textContent = n + " Zeichen (Suchmaschinen zeigen meist ca. 150–160 an)"; counter.classList.toggle("warn", n > 170); } };
     el.addEventListener("input", () => {
-      obj[key] = entityMode ? encodeEntities(el.value) : el.value;
+      obj[key] = entityMode ? encodeEntities(el.value, fullAmp) : el.value;
       if (kind === "textarea") autosize(el);
       upd(); changed();
     });
@@ -502,8 +605,9 @@
         }
         else {
           const inp = h("input", { class: "input", type: "text", "aria-label": label + " " + (i + 1) });
-          inp.value = String(item);
-          inp.addEventListener("input", () => { arr[idx] = inp.value; changed(); });
+          const rawItem = String(item);
+          inp.value = decodeEntities(rawItem);
+          inp.addEventListener("input", () => { arr[idx] = encodeEntities(inp.value, /&amp;/.test(rawItem)); changed(); });
           body.appendChild(inp);
         }
       }
@@ -535,7 +639,7 @@
   function renderObject(container, obj, prefix, ctx) {
     ctx = ctx || { unit: null };
     let group = null, groupKey = null;
-    const keys = Object.keys(obj);
+    const keys = Object.keys(obj).filter((k) => prefix !== "site" || siteVisible(k));
     if (prefix === "site") keys.sort((a, b) => Object.keys(SITE_GROUP).indexOf(a) - Object.keys(SITE_GROUP).indexOf(b));
     const grouping = !ctx.unit;
     keys.forEach((key) => {
@@ -604,7 +708,7 @@
     // Text
     const def = ctx.unit ? undefined : getAt(S.defaults, path);
     const kind = stringKind(key, v, def);
-    const entityMode = !ctx.unit && typeof def === "string" && ENTITY_RE.test(def) && kind !== "html";
+    const entityMode = kind !== "html" && kind !== "link";
     field(container, ctx, { path, label, build: (ctrl, changed) => {
       if (kind === "html") buildRich(ctrl, obj, key, label, changed);
       else buildText(ctrl, obj, key, label, changed, kind, entityMode, path);
@@ -619,7 +723,7 @@
     const title = pageLabel(key);
     const changed = pageChangedCount(key);
     const head = h("div", { class: "page-head" },
-      h("div", null, h("h1", { text: title }), h("p", { class: "lead", text: key === "site" ? "Angaben, die auf mehreren Seiten der Website erscheinen." : "Alle Texte und Bilder dieser Seite." })),
+      h("div", null, h("h1", { text: title }), h("p", { class: "lead", text: key === "site" ? "Kontaktdaten und Karte, die auf mehreren Seiten der Website erscheinen." : "Alle Texte und Bilder dieser Seite." })),
       h("div", { class: "btn-row" },
         h("a", { class: "btn btn-outline btn-small", href: "../" + pageFile(key), target: "_blank", rel: "noopener" }, icon("external"), "Seite ansehen"),
         h("button", { type: "button", class: "btn btn-outline btn-small", id: "pageResetBtn", disabled: changed === 0, onclick: async () => {
@@ -643,6 +747,6 @@
   }
 
   Object.assign(G, {
-    editor: { S, loadContent, computePatch, save, discard, touch, register, resetRegistry, renderPage, pageKeys, pageLabel, pageChangedCount, pathLabel, labelFor, unitField, galleryUnitField, eqDefault, getAt, setAt, canon, blankFrom, richestSample, cls, isImage, imgSrc, unitsUnder },
+    editor: { S, loadContent, computePatch, save, discard, offerDrafts, clearDrafts, flushDraft, touch, register, resetRegistry, renderPage, pageKeys, pageLabel, pageChangedCount, pathLabel, labelFor, unitField, galleryUnitField, eqDefault, getAt, setAt, canon, blankFrom, richestSample, cls, isImage, imgSrc, unitsUnder },
   });
 })(window.GSA);

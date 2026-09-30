@@ -58,11 +58,60 @@ final class Health
         $c[] = self::row('https', 'Verschlüsselte Verbindung (HTTPS)', is_https() ? 'ok' : 'warn', is_https() ? 'aktiv' : 'nicht aktiv',
             'Für den Admin-Bereich unbedingt HTTPS nutzen (Passwort und Sitzung).');
         if ($pdo) {
-            $initial = Db::metaGet($pdo, 'password_is_initial', '0') === '1';
+            $initial = Db::metaGet($pdo, 'password_is_initial', '0') === '1' || Auth::mustChangePassword($pdo);
             $c[] = self::row('password', 'Admin-Passwort', $initial ? 'warn' : 'ok', $initial ? 'Start-Passwort noch aktiv' : 'individuell gesetzt',
                 $initial ? 'Bitte unter Einstellungen ein eigenes Passwort festlegen.' : '');
             $c[] = self::row('schema', 'Datenbank-Schema', 'ok', 'Version ' . Db::metaGet($pdo, 'schema_version', '?'));
         }
         return $c;
+    }
+
+    // ------------------------------------------------------------ Erreichbarkeit von außen (Prüfung im Browser)
+
+    public const PROBE_FILE = 'probe-check.txt';
+
+    /** Pfad relativ zur Website-Wurzel (für URLs) oder null, wenn außerhalb des Webroots. */
+    private static function relToRoot(string $abs): ?string
+    {
+        $root = realpath(ROOT_DIR);
+        $real = realpath($abs);
+        if ($root === false || $real === false) return null;
+        $root = rtrim(str_replace('\\', '/', $root), '/') . '/';
+        $real = str_replace('\\', '/', $real);
+        return strpos($real . '/', $root) === 0 ? trim(substr($real . '/', strlen($root)), '/') : null;
+    }
+
+    /**
+     * Prüfziele für den Browser. Legt bei $create die harmlose Testdatei data/probe-check.txt an (Inhalt = Zufallswort);
+     * der Browser ruft die Adressen ab und meldet danach probe_cleanup (Datei wird wieder entfernt).
+     * kind „blocked“: 2xx = öffentlich erreichbar (Fehler). kind „source“: 2xx mit PHP-Quelltext = Fehler.
+     * @return array{probes:array,data_outside_root:bool}
+     */
+    public static function probes(bool $create): array
+    {
+        $probes = [];
+        $dataRel = self::relToRoot(DATA_DIR);
+        $outside = $dataRel === null;
+        if (!$outside) {
+            $tok = 'gsf-probe-' . rand_hex(8);
+            if ($create && is_dir(DATA_DIR) && is_writable(DATA_DIR)) {
+                @file_put_contents(DATA_DIR . '/' . self::PROBE_FILE, $tok);
+                $probes[] = ['id' => 'data', 'url' => $dataRel . '/' . self::PROBE_FILE, 'method' => 'GET', 'kind' => 'blocked', 'token' => $tok];
+            }
+            if (is_file(DB_FILE)) $probes[] = ['id' => 'data', 'url' => $dataRel . '/' . rawurlencode(basename(DB_FILE)), 'method' => 'HEAD', 'kind' => 'blocked'];
+            if (is_file(DATA_DIR . '/RESET_PASSWORD.txt')) $probes[] = ['id' => 'data', 'url' => $dataRel . '/RESET_PASSWORD.txt', 'method' => 'HEAD', 'kind' => 'blocked'];
+        }
+        $apiRel = self::relToRoot(__DIR__ . '/..');
+        if ($apiRel !== null) {
+            $probes[] = ['id' => 'api', 'url' => $apiRel . '/config.php', 'method' => 'GET', 'kind' => 'source'];
+            $probes[] = ['id' => 'api', 'url' => $apiRel . '/lib/util.php', 'method' => 'GET', 'kind' => 'source'];
+            if (is_file(__DIR__ . '/../config.local.php')) $probes[] = ['id' => 'api', 'url' => $apiRel . '/config.local.php', 'method' => 'GET', 'kind' => 'source'];
+        }
+        return ['probes' => $probes, 'data_outside_root' => $outside];
+    }
+
+    public static function probeCleanup(): void
+    {
+        @unlink(DATA_DIR . '/' . self::PROBE_FILE);
     }
 }

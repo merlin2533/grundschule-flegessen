@@ -73,15 +73,40 @@ final class Html
         }
     }
 
+    /** HTML-Entities wiederholt auflösen (auch numerische ohne Semikolon), wie es ein Browser in Attributen tut. */
+    public static function decodeEntitiesDeep(string $s): string
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $d = preg_replace_callback('/&#(x[0-9a-f]{1,6}|[0-9]{1,7});?/i', function ($m) {
+                $n = strtolower($m[1][0]) === 'x' ? hexdec(substr($m[1], 1)) : (int)$m[1];
+                return $n > 0 && $n <= 0x10FFFF ? html_entity_decode('&#' . $n . ';', ENT_QUOTES | ENT_HTML5, 'UTF-8') : '';
+            }, $s);
+            $d = html_entity_decode((string)$d, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            if ($d === $s) break;
+            $s = $d;
+        }
+        return $s;
+    }
+
+    /**
+     * URL-Schema (kleingeschrieben) oder null. Entities werden zuerst aufgelöst, danach Leerraum-, Steuer- und
+     * unsichtbare Zeichen entfernt – so werden „java&#x0A;script:“, „javascript&colon;“ oder „java\tscript:“ erkannt.
+     */
+    public static function schemeOf(string $url): ?string
+    {
+        $d = self::decodeEntitiesDeep($url);
+        $probe = @preg_replace('/[\p{Cc}\p{Cf}\p{Z}\s]+/u', '', $d);
+        if ($probe === null) $probe = preg_replace('/[\x00-\x20\x7F]+/', '', $d);
+        return preg_match('/^([a-z][a-z0-9+.\-]*):/i', (string)$probe, $m) ? strtolower($m[1]) : null;
+    }
+
     /** Erlaubt: http, https, mailto, tel, Anker und relative Pfade. */
     public static function safeHref(string $href): ?string
     {
         $href = trim($href);
         if ($href === '' || strlen($href) > 2000) return null;
-        $probe = preg_replace('/[\x00-\x20\x7F]+/', '', $href);
-        if (preg_match('/^([a-z][a-z0-9+.\-]*):/i', $probe, $m)) {
-            if (!in_array(strtolower($m[1]), ['http', 'https', 'mailto', 'tel'], true)) return null;
-        }
+        $scheme = self::schemeOf($href);
+        if ($scheme !== null && !in_array($scheme, ['http', 'https', 'mailto', 'tel'], true)) return null;
         if (preg_match('/[\x00-\x1F\x7F]/', $href)) return null;
         return $href;
     }

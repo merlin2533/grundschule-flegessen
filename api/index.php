@@ -39,8 +39,10 @@ try {
         'backup_create' => ['POST', true], 'backup_list' => ['GET', false], 'backup_download' => ['GET', false],
         'backup_delete' => ['POST', true], 'backup_restore' => ['POST', true],
         'orphans_delete' => ['POST', true], 'orphans_export' => ['GET', false],
-        'password_change' => ['POST', true], 'health' => ['GET', false],
+        'password_change' => ['POST', true], 'health' => ['GET', false], 'health_cleanup' => ['POST', true],
     ];
+    // Solange das Passwort noch gewechselt werden muss (Start-Passwort / nach Reset), sind nur diese Aktionen erlaubt.
+    $allowedWhileMustChange = ['session', 'login', 'logout', 'password_change', 'health'];
 
     if (in_array($action, $public, true)) {
         // Öffentliche Besucher bekommen niemals ein Cookie.
@@ -74,9 +76,15 @@ try {
 
     // ---- ohne Login erlaubt
     if ($action === 'session') {
-        $out = ['ok' => true, 'authenticated' => Auth::authenticated(), 'csrf' => Auth::csrf(), 'https' => is_https(),
-            'db' => Db::available()];
-        json_out($out);
+        $authed = Auth::authenticated();
+        $must = false;
+        if ($authed) {
+            $pdo = Db::pdo();
+            if (Auth::sessionCurrent($pdo)) $must = Auth::mustChangePassword($pdo);
+            else { Auth::dropLogin(); $authed = false; }
+        }
+        json_out(['ok' => true, 'authenticated' => $authed, 'must_change_password' => $must, 'csrf' => Auth::csrf(), 'https' => is_https(),
+            'db' => Db::available()]);
         exit;
     }
     if ($action === 'login') {
@@ -87,6 +95,7 @@ try {
         $pdo = Db::pdo();
         Auth::login($pdo, $pw);
         json_out(['ok' => true, 'authenticated' => true, 'csrf' => Auth::csrf(),
+            'must_change_password' => Auth::mustChangePassword($pdo),
             'password_is_initial' => Db::metaGet($pdo, 'password_is_initial', '0') === '1']);
         exit;
     }
@@ -94,7 +103,6 @@ try {
     // ---- ab hier Login erforderlich
     Auth::requireLogin();
     if ($needsCsrf) Auth::requireCsrf();
-    if (!in_array($action, ['logout', 'password_change'], true)) session_write_close(); // Sitzungssperre früh lösen
 
     if ($action === 'logout') {
         Auth::logout();
@@ -103,6 +111,11 @@ try {
     }
 
     $pdo = Db::pdo();
+    Auth::requireCurrent($pdo); // Sitzungsversion: nach Passwortwechsel/Reset sind alle anderen Sitzungen ungültig
+    if (Auth::mustChangePassword($pdo) && !in_array($action, $allowedWhileMustChange, true)) {
+        fail(403, 'password_change_required');
+    }
+    if ($action !== 'password_change') session_write_close(); // Sitzungssperre früh lösen
 
     switch ($action) {
         case 'admin_content': {
@@ -118,7 +131,8 @@ try {
             $b = read_json_body();
             if (!isset($b['patch']) || !is_array($b['patch'])) fail(400, 'Feld „patch“ fehlt.');
             $note = is_string($b['note'] ?? null) ? trim(strip_tags($b['note'])) : '';
-            $r = Store::applyPatch($pdo, $b['patch'], $note);
+            $baseRev = isset($b['base_rev']) && is_numeric($b['base_rev']) ? (int)$b['base_rev'] : null;
+            $r = Store::applyPatch($pdo, $b['patch'], $note, $baseRev, !empty($b['force']));
             json_out(['ok' => true] + $r);
             break;
         }
@@ -242,7 +256,7 @@ try {
                 Db::tx(function (PDO $pdo) use ($del) {
                     Db::addRevision($pdo, 'Nicht mehr passende Einträge gelöscht (' . count($del) . ')');
                     foreach ($del as $p) Db::deleteOverride($pdo, $p);
-                    Db::bumpRev($pdo);
+                    Db::markPaths($pdo, $del, Db::bumpRev($pdo));
                 });
             }
             json_out(['ok' => true, 'deleted' => $del]);
@@ -270,7 +284,13 @@ try {
             break;
         }
         case 'health': {
-            json_out(['ok' => true, 'checks' => Health::run($pdo), 'php' => PHP_VERSION, 'time' => now_iso()]);
+            $probe = Health::probes(!empty($_GET['probe']));
+            json_out(['ok' => true, 'checks' => Health::run($pdo), 'php' => PHP_VERSION, 'time' => now_iso()] + $probe);
+            break;
+        }
+        case 'health_cleanup': {
+            Health::probeCleanup();
+            json_out(['ok' => true]);
             break;
         }
         default:
@@ -280,6 +300,13 @@ try {
     if (headers_sent()) exit;
     json_out(['ok' => false, 'error' => $e->getMessage()] + $e->extra, $e->status);
 } catch (Throwable $e) {
+    if ($e instanceof PDOException && Db::isBusy($e)) {
+        // Datenbank kurz gesperrt: nie 500, sondern ein klares, wiederholbares 503.
+        if (headers_sent()) exit;
+        header('Retry-After: 3');
+        json_out(['ok' => false, 'error' => 'Der Server ist gerade ausgelastet. Bitte in einigen Sekunden erneut versuchen.', 'retry_after' => 3], 503);
+        exit;
+    }
     log_error(get_class($e) . ': ' . $e->getMessage() . ' @ ' . basename($e->getFile()) . ':' . $e->getLine());
     if (headers_sent()) exit;
     json_out(['ok' => false, 'error' => 'Interner Fehler.'] + (API_DEBUG ? ['debug' => $e->getMessage()] : []), 500);

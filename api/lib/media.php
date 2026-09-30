@@ -160,6 +160,60 @@ final class Media
         ];
     }
 
+    /**
+     * Bilddatei (z. B. aus einem Backup) mit GD neu kodieren und unter $dest ablegen; Format nach Zieldatei-Endung
+     * (jpg/jpeg, png, webp). Prüft Typ und Größe, wendet die EXIF-Ausrichtung an und begrenzt die Kantenlänge.
+     * @return bool false = Datei unbrauchbar (überspringen)
+     */
+    public static function reencode(string $src, string $dest, int $max): bool
+    {
+        if (!extension_loaded('gd')) return false;
+        $bytes = (int)@filesize($src);
+        if ($bytes <= 0 || $bytes > MAX_UPLOAD_BYTES) return false;
+        $info = @getimagesize($src);
+        if (!$info || !in_array($info[2], [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP], true)) return false;
+        $w = (int)$info[0];
+        $h = (int)$info[1];
+        if ($w < 1 || $h < 1 || $w > 12000 || $h > 12000 || $w * $h > 50000000) return false;
+        $mem = ini_bytes((string)ini_get('memory_limit'));
+        if ($mem > 0 && $mem < 512 * 1048576) @ini_set('memory_limit', '512M');
+        $type = $info[2];
+        if ($type === IMAGETYPE_JPEG) $im = @imagecreatefromjpeg($src);
+        elseif ($type === IMAGETYPE_PNG) $im = @imagecreatefrompng($src);
+        else $im = function_exists('imagecreatefromwebp') ? @imagecreatefromwebp($src) : false;
+        if (!$im) return false;
+        if (!imageistruecolor($im)) imagepalettetotruecolor($im);
+        if ($type === IMAGETYPE_JPEG) $im = self::orient($im, self::exifOrientation($src));
+        $im = self::fit($im, $max);
+        $ext = strtolower(pathinfo($dest, PATHINFO_EXTENSION));
+        $tmp = $dest . '.tmp' . rand_hex(3);
+        $ok = false;
+        if ($ext === 'png') {
+            imagesavealpha($im, true);
+            $ok = @imagepng($im, $tmp, 9);
+        } elseif ($ext === 'webp') {
+            if (function_exists('imagewebp')) {
+                imagesavealpha($im, true);
+                $ok = @imagewebp($im, $tmp, 80);
+            }
+        } else {
+            // JPEG kennt keine Transparenz: auf Weiß setzen
+            $bg = imagecreatetruecolor(imagesx($im), imagesy($im));
+            imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+            imagecopy($bg, $im, 0, 0, 0, 0, imagesx($im), imagesy($im));
+            imagedestroy($im);
+            $im = $bg;
+            imageinterlace($im, true);
+            $ok = @imagejpeg($im, $tmp, JPEG_QUALITY);
+        }
+        imagedestroy($im);
+        if (!$ok || !is_file($tmp) || filesize($tmp) === 0 || !@rename($tmp, $dest)) {
+            @unlink($tmp);
+            return false;
+        }
+        return true;
+    }
+
     private static function save($im, string $path, bool $png): bool
     {
         if ($png) {

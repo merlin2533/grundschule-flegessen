@@ -188,20 +188,20 @@ final class Content
             return 'Typ passt nicht mehr (erwartet: ' . self::label($dc) . ', gefunden: ' . self::label($vc) . ')';
         }
         if ($dc === 'array') {
+            // Listen sind kompatibel, solange Pfad und Typklasse (Liste von Objekten / Bildern / einfachen Werten)
+            // noch existieren. Einzelne Felder der Einträge werden NICHT mehr geprüft: sie werden je Eintrag
+            // migriert (siehe migrateList), damit eine kleine Strukturänderung nicht die ganze Liste verwaist.
             $schema = self::schema($def);
             if ($schema !== null) {
                 foreach ($value as $i => $item) {
                     if (isset($schema['keys'])) {
-                        if (!is_array($item) || (is_list_array($item) && $item)) return 'Listeneintrag ' . ($i + 1) . ' hat nicht mehr die erwartete Form';
-                        if (isset($schema['keys']['@image'])) continue;
-                        foreach ($item as $k => $v) {
-                            if (!isset($schema['keys'][$k])) return 'Feld „' . $k . '“ in Listeneintrag ' . ($i + 1) . ' existiert nicht mehr';
-                            if (!self::classOk(self::cls($v), $schema['keys'][$k])) {
-                                return 'Feld „' . $k . '“ in Listeneintrag ' . ($i + 1) . ' hat einen anderen Typ als im Standard';
-                            }
+                        if (isset($schema['keys']['@image'])) {
+                            if (!self::isImage($item)) return 'Listeneintrag ' . ($i + 1) . ' hat nicht mehr die erwartete Form (Bild)';
+                        } elseif (!is_array($item) || (is_list_array($item) && $item) || self::isImage($item)) {
+                            return 'Listeneintrag ' . ($i + 1) . ' hat nicht mehr die erwartete Form';
                         }
-                    } else {
-                        if (!self::classOk(self::cls($item), $schema['scalar'])) return 'Listeneintrag ' . ($i + 1) . ' hat einen anderen Typ als im Standard';
+                    } elseif (!is_scalar($item) && $item !== null || !self::classOk(self::cls($item), $schema['scalar'])) {
+                        return 'Listeneintrag ' . ($i + 1) . ' hat einen anderen Typ als im Standard';
                     }
                 }
             }
@@ -238,7 +238,8 @@ final class Content
             $def = self::lookup($defaults, $path);
             $val = $o['value'];
             if (is_array($val) && is_list_array($val)) {
-                $val = self::fillItems($val, self::schema($def));
+                $stats = [];
+                $val = self::migrateList($val, self::schema($def), false, $path, $stats);
             }
             self::setPath($eff, $path, $val);
             $applied[$path] = $o['updated_at'];
@@ -246,18 +247,69 @@ final class Content
         return [$eff, $orphans, $applied];
     }
 
-    /** Fehlende Felder in Listeneinträgen mit leeren Werten auffüllen (neue Felder im Standard). */
-    private static function fillItems(array $items, ?array $schema): array
+    /** Existiert die Bilddatei (Standardbild der Website oder Upload)? */
+    public static function imageExists(string $p): bool
     {
-        if (!$schema || !isset($schema['keys']) || isset($schema['keys']['@image'])) return $items;
-        foreach ($items as $i => $item) {
-            if (!is_array($item)) continue;
-            foreach ($schema['keys'] as $k => $classes) {
-                if (!array_key_exists($k, $item)) $item[$k] = self::blank($classes[0]);
+        if ($p === '') return true;
+        if (strpos($p, '..') === false && strpos($p, '//') === false && isset(self::defaultImagePaths()[$p])) return true;
+        return self::resolveImage($p) !== null;
+    }
+
+    /**
+     * Listeneinträge auf die aktuelle Form des Standards bringen (je Eintrag, nicht je Liste):
+     *  - Felder, die im Standard nicht mehr vorkommen, werden entfernt,
+     *  - fehlende Felder werden mit leeren Werten aus der Form des Standards (Vereinigung aller Standard-Einträge,
+     *    also der „reichsten“ Form) aufgefüllt ('' bzw. leeres Bildobjekt),
+     *  - Felder mit inzwischen anderem Typ werden geleert.
+     * Mit $checkFiles (Import/Wiederherstellung) werden Bildverweise auf nicht mehr vorhandene Dateien geleert
+     * (Bildobjekt {file:'',alt} bzw. ''); Galerie-Einträge ohne Hauptbild entfallen. Zählungen landen in $stats.
+     * @param array{missing_images?:int,dropped_fields?:int,dropped_items?:int,filled_fields?:int} $stats
+     */
+    public static function migrateList(array $items, ?array $schema, bool $checkFiles, string $path, array &$stats): array
+    {
+        foreach (['missing_images', 'dropped_fields', 'dropped_items', 'filled_fields'] as $k) $stats[$k] = $stats[$k] ?? 0;
+        if (!$schema || !isset($schema['keys'])) return $items;
+        $out = [];
+        foreach ($items as $item) {
+            if (isset($schema['keys']['@image'])) {
+                if ($checkFiles && self::isImage($item) && is_string($item['file']) && $item['file'] !== '' && !self::imageExists($item['file'])) {
+                    $item['file'] = '';
+                    $stats['missing_images']++;
+                }
+                $out[] = $item;
+                continue;
             }
-            $items[$i] = $item;
+            if (!is_array($item)) { $out[] = $item; continue; }
+            $new = [];
+            $dropMain = false;
+            foreach ($schema['keys'] as $k => $classes) {
+                if (!array_key_exists($k, $item)) {
+                    $new[$k] = self::blank($classes[0]);
+                    $stats['filled_fields']++;
+                    continue;
+                }
+                $v = $item[$k];
+                if (!self::classOk(self::cls($v), $classes)) {
+                    $v = self::blank($classes[0]);
+                } elseif (self::cls($v) === 'image') {
+                    if ($checkFiles && is_string($v['file']) && $v['file'] !== '' && !self::imageExists($v['file'])) {
+                        $v['file'] = '';
+                        $stats['missing_images']++;
+                    }
+                } elseif (in_array('imgpath', $classes, true) && is_string($v) && $v !== '') {
+                    if ($checkFiles && !self::imageExists(trim($v))) {
+                        $v = '';
+                        $stats['missing_images']++;
+                        if ($path === 'gallery.items' && $k === 'jpg') $dropMain = true;
+                    }
+                }
+                $new[$k] = $v;
+            }
+            foreach ($item as $k => $_) if (!isset($schema['keys'][$k])) $stats['dropped_fields']++;
+            if ($dropMain) { $stats['dropped_items']++; continue; }
+            $out[] = $new;
         }
-        return $items;
+        return $out;
     }
 
     public static function blank(string $cls)
@@ -267,6 +319,7 @@ final class Content
             case 'number': return 0;
             case 'bool': return false;
             case 'array': return [];
+            case 'object': return [];
             case 'null': return '';
             default: return '';
         }
@@ -279,8 +332,11 @@ final class Content
         if ($pdo === null) {
             return ['defaults' => $defaults, 'effective' => $defaults, 'orphans' => [], 'applied' => [], 'rev' => 0];
         }
+        // Revision VOR den Überschreibungen lesen: ein paralleler Schreibvorgang kann so höchstens zu einem
+        // (harmlosen) falschen Konflikt führen, nie zu einem übersehenen.
+        $rev = Db::contentRev($pdo);
         [$eff, $orph, $applied] = self::merge($defaults, Db::overrides($pdo));
-        return ['defaults' => $defaults, 'effective' => $eff, 'orphans' => $orph, 'applied' => $applied, 'rev' => Db::contentRev($pdo)];
+        return ['defaults' => $defaults, 'effective' => $eff, 'orphans' => $orph, 'applied' => $applied, 'rev' => $rev];
     }
 
     // ------------------------------------------------------------ Prüfen & Bereinigen
@@ -341,9 +397,8 @@ final class Content
         if ($v === '') return '';
         if (strlen($v) > 2000) throw new InvalidArgumentException('Link ist zu lang.');
         if (preg_match('/[\x00-\x1F\x7F]/', $v)) throw new InvalidArgumentException('Link enthält ungültige Zeichen.');
-        $probe = preg_replace('/[\x00-\x20\x7F]+/', '', $v);
-        if (preg_match('/^([a-z][a-z0-9+.\-]*):/i', $probe, $m)) {
-            $scheme = strtolower($m[1]);
+        $scheme = Html::schemeOf($v); // löst Entities auf und ignoriert Leer-/Steuerzeichen (javascript&colon; usw.)
+        if ($scheme !== null) {
             $allowed = preg_match('/EmbedUrl$/', $key) ? ['https'] : ['http', 'https', 'mailto', 'tel'];
             if (!in_array($scheme, $allowed, true)) {
                 throw new InvalidArgumentException('Link-Art „' . $scheme . ':“ ist nicht erlaubt (erlaubt: ' . implode(', ', $allowed) . ' oder relative Adresse).');

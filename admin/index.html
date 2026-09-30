@@ -7,9 +7,9 @@
 <title>Admin – Grundschule Flegessen</title>
 <meta name="description" content="Interner Admin-Bereich zum Bearbeiten der Texte und Bilder der Website der Grundschule Flegessen.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="vendor/quill.snow.css?v=20260930-090657-680756">
-<link rel="stylesheet" href="admin.css?v=20260930-090657-680756">
-<script src="../js/version-check.js?v=20260930-090657-680756" defer></script>
+<link rel="stylesheet" href="vendor/quill.snow.css?v=20260930-092154-9c1e92">
+<link rel="stylesheet" href="admin.css?v=20260930-092154-9c1e92">
+<script src="../js/version-check.js?v=20260930-092154-9c1e92" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -17,10 +17,10 @@
 
 <!-- ================= Anmeldung ================= -->
 <div id="login" class="login" hidden>
-  <div class="login-card">
+  <div class="login-card" role="group" aria-labelledby="loginTitle">
     <div class="login-logo" aria-hidden="true">GS</div>
-    <h1>Admin-Bereich</h1>
-    <p class="lead">Grundschule Flegessen – Texte und Bilder der Website bearbeiten</p>
+    <h1 id="loginTitle">Admin-Bereich</h1>
+    <p class="lead" id="loginLead">Grundschule Flegessen – Texte und Bilder der Website bearbeiten</p>
     <form id="loginForm" novalidate>
       <label class="mini-label" for="loginPw">Passwort</label>
       <div class="pw-row">
@@ -29,8 +29,31 @@
       </div>
       <div id="loginError" class="form-msg err" role="alert" aria-live="assertive"></div>
       <button id="loginBtn" class="btn btn-primary btn-block" type="submit">Anmelden</button>
+      <button id="loginCancel" class="btn btn-outline btn-block" type="button" hidden>Abbrechen (Änderungen bleiben im Editor)</button>
     </form>
     <p class="field-hint">Nach 5 Fehlversuchen ist die Anmeldung 10 Minuten gesperrt.</p>
+  </div>
+</div>
+
+<!-- ================= Pflicht: neues Passwort festlegen ================= -->
+<div id="pwForce" class="login blocking" hidden role="dialog" aria-modal="true" aria-labelledby="pwForceTitle">
+  <div class="login-card">
+    <div class="login-logo" aria-hidden="true">GS</div>
+    <h1 id="pwForceTitle">Neues Passwort festlegen</h1>
+    <p class="lead">Das Start-Passwort ist öffentlich dokumentiert und deshalb nicht sicher. Bitte legen Sie jetzt ein eigenes Passwort fest, bevor Sie den Admin-Bereich nutzen.</p>
+    <form id="pwForceForm" novalidate>
+      <div id="pwForceCurWrap" hidden>
+        <label class="mini-label" for="pwForceCur">Aktuelles Passwort</label>
+        <input id="pwForceCur" class="input" type="password" autocomplete="current-password">
+      </div>
+      <label class="mini-label" for="pwForceNew">Neues Passwort (mindestens 12 Zeichen)</label>
+      <input id="pwForceNew" class="input" type="password" autocomplete="new-password" minlength="12" required>
+      <label class="mini-label" for="pwForceNew2">Neues Passwort wiederholen</label>
+      <input id="pwForceNew2" class="input" type="password" autocomplete="new-password" required>
+      <div id="pwForceError" class="form-msg err" role="alert" aria-live="assertive"></div>
+      <button id="pwForceBtn" class="btn btn-primary btn-block" type="submit">Passwort festlegen und weiter</button>
+    </form>
+    <p class="field-hint">Das neue Passwort muss sich vom Start-Passwort unterscheiden. Alle anderen angemeldeten Sitzungen werden dabei beendet.</p>
   </div>
 </div>
 
@@ -62,11 +85,11 @@
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<script src="vendor/quill.js?v=20260930-090657-680756"></script>
-<script src="js/core.js?v=20260930-090657-680756"></script>
-<script src="js/editor.js?v=20260930-090657-680756"></script>
-<script src="js/media.js?v=20260930-090657-680756"></script>
-<script src="js/views.js?v=20260930-090657-680756"></script>
-<script src="app.js?v=20260930-090657-680756"></script>
+<script src="vendor/quill.js?v=20260930-092154-9c1e92"></script>
+<script src="js/core.js?v=20260930-092154-9c1e92"></script>
+<script src="js/editor.js?v=20260930-092154-9c1e92"></script>
+<script src="js/media.js?v=20260930-092154-9c1e92"></script>
+<script src="js/views.js?v=20260930-092154-9c1e92"></script>
+<script src="app.js?v=20260930-092154-9c1e92"></script>
 </body>
 </html>

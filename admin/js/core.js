@@ -113,7 +113,7 @@
   class ApiError extends Error {
     constructor(status, message, data) { super(message); this.status = status; this.data = data || {}; }
   }
-  G.session = { csrf: "", authenticated: false };
+  G.session = { csrf: "", authenticated: false, mustChange: false };
 
   async function api(action, opts) {
     opts = opts || {};
@@ -137,9 +137,17 @@
     try { data = JSON.parse(text); } catch (e) { data = null; }
     if (!res.ok || !data || data.ok === false) {
       const msg = (data && data.error) || (res.status === 404 ? "Die API wurde nicht gefunden (läuft PHP auf diesem Server?)." : "Serverfehler (" + res.status + ").");
-      if (res.status === 401 && G.session.authenticated && action !== "login") {
-        G.session.authenticated = false;
-        if (G.onLoggedOut) G.onLoggedOut("Ihre Sitzung ist abgelaufen. Bitte erneut anmelden.");
+      // Sitzung abgelaufen (oder durch Passwortwechsel anderswo ungültig): Entwurf im Speicher behalten, Anmeldung als
+      // Overlay zeigen und die Anfrage nach erfolgreicher Anmeldung wiederholen – nichts wird neu geladen oder verworfen.
+      if (res.status === 401 && G.session.authenticated && action !== "login" && action !== "session" && !opts._retried && G.reauth) {
+        const again = await G.reauth();
+        if (again) return api(action, Object.assign({}, opts, { _retried: true }));
+        throw new ApiError(401, "Nicht angemeldet. Ihre Änderungen sind im Editor noch vorhanden – bitte erneut anmelden und speichern.", data || {});
+      }
+      if (res.status === 403 && data && data.error === "password_change_required") {
+        G.session.mustChange = true;
+        if (G.onMustChange) G.onMustChange();
+        throw new ApiError(403, "Bitte legen Sie zuerst ein neues Passwort fest.", data);
       }
       throw new ApiError(res.status, msg, data || {});
     }

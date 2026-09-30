@@ -32,7 +32,7 @@ final class Db
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
             ]);
-            $pdo->exec('PRAGMA busy_timeout = 5000');
+            $pdo->exec('PRAGMA busy_timeout = 8000');
             try { $pdo->exec('PRAGMA journal_mode = WAL'); } catch (Throwable $e) { /* z. B. Netzlaufwerk */ }
             $pdo->exec('PRAGMA synchronous = NORMAL');
             $pdo->exec('PRAGMA foreign_keys = ON');
@@ -75,10 +75,21 @@ final class Db
                 $pdo->exec('CREATE TABLE IF NOT EXISTS login_attempts (ip TEXT NOT NULL, ts INTEGER NOT NULL)');
                 $pdo->exec('CREATE INDEX IF NOT EXISTS idx_login_attempts ON login_attempts (ip, ts)');
             },
-            // Künftige Schema-Änderungen hier als 2 => function..., 3 => ... ergänzen.
+            // 2: Optimistic Locking (Änderungsstand je Pfad), Pflicht-Passwortwechsel, Sitzungsversion
+            2 => function (PDO $pdo) {
+                $pdo->exec('CREATE TABLE IF NOT EXISTS path_rev (path TEXT PRIMARY KEY, rev INTEGER NOT NULL)');
+                $rev = (int)self::metaGet($pdo, 'content_rev', '1');
+                // Bestehende Überschreibungen gelten konservativ als „beim aktuellen Stand geändert“.
+                $pdo->prepare('INSERT OR IGNORE INTO path_rev (path, rev) SELECT path, ? FROM overrides')->execute([$rev]);
+                if (self::metaGet($pdo, 'session_version', '') === '') self::metaSet($pdo, 'session_version', '1');
+                if (self::metaGet($pdo, 'must_change_password', '') === '') {
+                    self::metaSet($pdo, 'must_change_password', self::metaGet($pdo, 'password_is_initial', '0') === '1' ? '1' : '0');
+                }
+            },
+            // Künftige Schema-Änderungen hier als 3 => function... ergänzen.
         ];
         if ($ver >= max(array_keys($migrations))) return;
-        $pdo->exec('BEGIN IMMEDIATE');
+        self::beginImmediate($pdo);
         try {
             $ver = (int)self::metaGet($pdo, 'schema_version', '0');
             foreach ($migrations as $v => $fn) {
@@ -97,11 +108,14 @@ final class Db
     private static function seed(PDO $pdo): void
     {
         if (self::metaGet($pdo, 'password_hash', '') === '') {
-            $pdo->exec('BEGIN IMMEDIATE');
+            self::beginImmediate($pdo);
             try {
                 if (self::metaGet($pdo, 'password_hash', '') === '') {
                     self::metaSet($pdo, 'password_hash', password_hash((string)INITIAL_ADMIN_PASSWORD, PASSWORD_DEFAULT));
                     self::metaSet($pdo, 'password_is_initial', '1');
+                    // Das Start-Passwort steht in der Dokumentation: Wechsel beim ersten Login erzwingen.
+                    self::metaSet($pdo, 'must_change_password', '1');
+                    self::metaSet($pdo, 'session_version', '1');
                 }
                 if (self::metaGet($pdo, 'content_rev', '') === '') self::metaSet($pdo, 'content_rev', '1');
                 $pdo->exec('COMMIT');
@@ -126,11 +140,31 @@ final class Db
         $st->execute([$key, $value]);
     }
 
+    public static function isBusy(Throwable $e): bool
+    {
+        $m = strtolower($e->getMessage());
+        return strpos($m, 'locked') !== false || strpos($m, 'busy') !== false;
+    }
+
+    /** BEGIN IMMEDIATE mit Wiederholung, falls die Datenbank kurz gesperrt ist (SQLITE_BUSY). */
+    public static function beginImmediate(PDO $pdo, int $tries = 6): void
+    {
+        for ($i = 1;; $i++) {
+            try {
+                $pdo->exec('BEGIN IMMEDIATE');
+                return;
+            } catch (PDOException $e) {
+                if (!self::isBusy($e) || $i >= $tries) throw $e;
+                usleep(random_int(30000, 120000) * $i);
+            }
+        }
+    }
+
     /** Transaktion mit sofortiger Schreibsperre. */
     public static function tx(callable $fn)
     {
         $pdo = self::pdo();
-        $pdo->exec('BEGIN IMMEDIATE');
+        self::beginImmediate($pdo);
         try {
             $r = $fn($pdo);
             $pdo->exec('COMMIT');
@@ -187,5 +221,29 @@ final class Db
     public static function deleteOverride(PDO $pdo, string $path): void
     {
         $pdo->prepare('DELETE FROM overrides WHERE path = ?')->execute([$path]);
+    }
+
+    // ---------------------------------------------------------------- Änderungsstand je Pfad (Optimistic Locking)
+
+    /** Merkt, bei welchem Stand (content_rev) diese Pfade zuletzt geändert wurden – auch bei Zurücksetzen/Löschen. */
+    public static function markPaths(PDO $pdo, array $paths, int $rev): void
+    {
+        if (!$paths) return;
+        $st = $pdo->prepare('INSERT INTO path_rev (path, rev) VALUES (?, ?) ON CONFLICT(path) DO UPDATE SET rev = excluded.rev');
+        foreach (array_unique($paths) as $p) $st->execute([(string)$p, $rev]);
+    }
+
+    /** @return string[] Pfade, die nach $baseRev geändert wurden. */
+    public static function changedSince(PDO $pdo, array $paths, int $baseRev): array
+    {
+        $st = $pdo->prepare('SELECT rev FROM path_rev WHERE path = ?');
+        $out = [];
+        foreach ($paths as $p) {
+            $st->execute([(string)$p]);
+            $r = $st->fetchColumn();
+            $st->closeCursor();
+            if ($r !== false && (int)$r > $baseRev) $out[] = (string)$p;
+        }
+        return $out;
     }
 }

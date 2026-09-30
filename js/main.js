@@ -256,7 +256,7 @@
       if (hrefKey !== key) {
         var href = getPath(data, hrefKey);
         var link = el.tagName === "A" ? el : el.closest("a");
-        if (typeof href === "string" && href && link && link.getAttribute("href") !== href) link.setAttribute("href", href);
+        if (typeof href === "string" && href && link) { href = unesc(href); if (link.getAttribute("href") !== href) link.setAttribute("href", href); }
       }
     });
 
@@ -307,13 +307,20 @@
     }
   }
 
+  // Klartext-Felder kommen HTML-maskiert aus der API (&amp; …) -> für Attribute/Textknoten zurückwandeln
+  function unesc(str) {
+    var t = document.createElement("textarea");
+    t.innerHTML = str;
+    return t.value;
+  }
+
   var PAGE_KEYS = { "unsere-schule": 1, team: 1, klassen: 1, schulalltag: 1, unterrichtszeiten: 1, eltern: 1, mitteilungen: 1, aktuelles: 1, galerie: 1, kontakt: 1, impressum: 1, datenschutz: 1 };
 
   // Kontaktdaten, Karte und Meta-Angaben aus den Inhalten übernehmen
   function applySite(data) {
     var site = data.site || {};
-    var phone = typeof site.phone === "string" ? site.phone.trim() : "";
-    var mail = typeof site.email === "string" ? site.email.trim() : "";
+    var phone = typeof site.phone === "string" ? unesc(site.phone).trim() : "";
+    var mail = typeof site.email === "string" ? unesc(site.email).trim() : "";
     document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
       if (!phone) return;
       a.setAttribute("href", "tel:" + phone.replace(/[^\d+]/g, "").replace(/^0/, "+49"));
@@ -327,10 +334,11 @@
     var form = document.querySelector("form[data-mailto]");
     if (form && mail) form.setAttribute("data-mailto", mail);
     if (typeof site.mapEmbedUrl === "string" && site.mapEmbedUrl) {
+      var mapUrl = unesc(site.mapEmbedUrl);
       document.querySelectorAll("[data-map-src]").forEach(function (box) {
-        box.setAttribute("data-map-src", site.mapEmbedUrl);
+        box.setAttribute("data-map-src", mapUrl);
         var f = box.querySelector("iframe");
-        if (f && f.getAttribute("src") !== site.mapEmbedUrl) f.src = site.mapEmbedUrl;
+        if (f && f.getAttribute("src") !== mapUrl) f.src = mapUrl;
       });
     }
     var file = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "");
@@ -338,7 +346,7 @@
     if (page && typeof page.metaDescription === "string" && page.metaDescription) {
       ["meta[name=\"description\"]", "meta[property=\"og:description\"]"].forEach(function (q) {
         var m = document.querySelector(q);
-        if (m) m.setAttribute("content", page.metaDescription);
+        if (m) m.setAttribute("content", unesc(page.metaDescription));
       });
     }
   }
